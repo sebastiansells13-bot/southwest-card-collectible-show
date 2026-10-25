@@ -1,0 +1,12 @@
+---
+layout: layouts/base.njk
+---
+<article class="wrapper post">
+  <p class="kicker"><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></p>
+  <h1 class="glow">{{ title }}</h1>
+  <div class="post__grid">
+    {% if image %}<div class="arch arch--flyer"><img src="{{ image | url }}" alt=""></div>{% endif %}
+    <div class="prose">{{ content | safe }}</div>
+  </div>
+  <p class="actions"><a class="btn btn--ghost" href="{{ '/news/' | url }}">All news</a></p>
+</article>

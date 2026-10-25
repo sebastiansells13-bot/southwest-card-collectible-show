@@ -1,0 +1,11 @@
+{
+  "status": "Tables for the October 24 show are SOLD OUT",
+  "intro": "Want a table at a future Southwest Card & Collectible Show or Trade Day? We're always working on ways to add more tables so more vendors can be part of SWCCS. Join the Discord or DM us on Instagram to get on the list for the next event.",
+  "map": "/img/posts/vendor-map.jpg",
+  "mapCaption": "Official vendor map, October 24 show — Las Cruces Convention Center.",
+  "faqs": [
+    { "q": "How do I reserve a table?", "a": "Table sales are announced on Instagram and in our Discord first. Send us a DM to get on the vendor list for the next show." },
+    { "q": "What can I sell?", "a": "Sports cards, Pokémon and other TCG, comics, Hot Wheels, memorabilia, toys and collectibles. If collectors want it, it probably fits." },
+    { "q": "Is there public seating for trading?", "a": "Trade Days include public seating so collectors can trade without a table. Shows are vendor tables only." }
+  ]
+}

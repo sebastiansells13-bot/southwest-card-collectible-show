@@ -1,0 +1,31 @@
+---
+layout: layouts/page.njk
+title: Vendors
+description: Get a table at the Southwest Card & Collectible Show, and see the official vendor map.
+permalink: /vendors/
+---
+<section class="page-hero wrapper">
+  <p class="kicker">Sell at SWCCS</p>
+  <h1 class="glow">Vendors</h1>
+  {% if vendors.status %}<p class="status-pill">{{ vendors.status }}</p>{% endif %}
+  <p class="lede">{{ vendors.intro }}</p>
+  <p class="actions">
+    <a class="btn" href="{{ business.social.discord }}" rel="noopener">Join the Discord</a>
+    <a class="btn btn--ghost" href="{{ business.social.instagram }}" rel="noopener">DM us on Instagram</a>
+  </p>
+</section>
+<section class="wrapper section">
+  <h2 class="section-title"><span>Vendor map</span></h2>
+  <figure class="map">
+    <a href="{{ vendors.map | url }}"><img src="{{ vendors.map | url }}" alt="Vendor floor map"></a>
+    <figcaption>{{ vendors.mapCaption }}</figcaption>
+  </figure>
+</section>
+<section class="wrapper section">
+  <h2 class="section-title"><span>Vendor FAQ</span></h2>
+  <div class="faq">
+    {% for f in vendors.faqs %}
+    <details><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+    {% endfor %}
+  </div>
+</section>

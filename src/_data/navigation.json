@@ -1,0 +1,8 @@
+[
+  { "text": "Home", "url": "/" },
+  { "text": "Shows", "url": "/shows/" },
+  { "text": "Vendors", "url": "/vendors/" },
+  { "text": "Sponsors", "url": "/sponsors/" },
+  { "text": "News", "url": "/news/" },
+  { "text": "About", "url": "/about/" }
+]

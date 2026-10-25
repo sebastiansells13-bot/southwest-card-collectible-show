@@ -1,0 +1,21 @@
+// Brand palette pulled from the SWCCS Instagram flyers: black stage,
+// neon-orange sign glow, navy ribbon banners with white type.
+$color-bg: #0a0a0c;
+$color-surface: #15151a;
+$color-text: #f5f1ea;
+$color-muted: #b9b2a8;
+$color-accent: #ff7a1a;
+$color-accent-hot: #ffb15c;
+$color-navy: #1c2f6e;
+$color-navy-deep: #111d47;
+$color-border: #2a2a32;
+
+$font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-heading: "Anton", Impact, "Arial Narrow", sans-serif;
+$font-script: "Bangers", "Anton", Impact, sans-serif;
+
+$max-width: 72rem;
+$gutter: 1rem;
+
+$glow: 0 0 4px rgba($color-accent, 0.9), 0 0 14px rgba($color-accent, 0.6), 0 0 32px rgba($color-accent, 0.35);
+$glow-box: 0 0 0 2px $color-accent, 0 0 18px rgba($color-accent, 0.45), inset 0 0 18px rgba($color-accent, 0.15);

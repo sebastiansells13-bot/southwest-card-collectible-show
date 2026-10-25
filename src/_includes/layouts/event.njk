@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+---
+<section class="page-hero wrapper">
+  <p class="kicker">{{ kind }}</p>
+  <h1 class="glow">{{ title }}</h1>
+</section>
+<div class="wrapper event-detail">
+  <div class="arch arch--flyer">
+    {% if flyer %}<img src="{{ flyer | url }}" alt="{{ title }} flyer">{% endif %}
+  </div>
+  <div class="event-detail__info">
+    <dl class="facts">
+      <div><dt>Date</dt><dd>{{ page.date | longDate }}</dd></div>
+      <div><dt>Time</dt><dd>{{ time }}</dd></div>
+      <div><dt>Where</dt><dd>{{ venue }}<br><span class="muted">{{ address }}</span></dd></div>
+      {% if tables %}<div><dt>Tables</dt><dd>{{ tables }}</dd></div>{% endif %}
+      <div><dt>Entry</dt><dd class="fire">Free</dd></div>
+    </dl>
+    {% if highlights %}
+    <ul class="checklist">{% for h in highlights %}<li>{{ h }}</li>{% endfor %}</ul>
+    {% endif %}
+    <div class="prose">{{ content | safe }}</div>
+    <p class="actions">
+      {% if mapLink %}<a class="btn" href="{{ mapLink }}" rel="noopener">Get directions</a>{% endif %}
+      <a class="btn btn--ghost" href="{{ '/shows/' | url }}">All shows</a>
+    </p>
+  </div>
+</div>

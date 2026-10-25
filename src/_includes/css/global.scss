@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  font-family: $font-body;
+  color: $color-text;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba($color-accent, 0.16), transparent 70%),
+    $color-bg;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: $color-accent-hot;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid $color-accent-hot;
+  outline-offset: 3px;
+}
+
+.wrapper {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $gutter;
+
+  @media (min-width: 48rem) {
+    padding: 0 1.5rem;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $font-heading;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0.5rem;
+  background: $color-accent;
+  color: #000;
+  padding: 0.5rem 1rem;
+  z-index: 10;
+
+  &:focus {
+    left: 0.5rem;
+  }
+}
+
+.muted {
+  color: $color-muted;
+}
+
+.center {
+  text-align: center;
+}

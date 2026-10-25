@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{ metadata.language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title and title != "Home" %}{{ title }} · {% endif %}{{ business.name or metadata.title }}</title>
+  <meta name="description" content="{{ description or metadata.description }}">
+  <meta name="theme-color" content="#0a0a0c">
+  <meta property="og:title" content="{{ title if title and title != 'Home' else business.name }}">
+  <meta property="og:description" content="{{ description or metadata.description }}">
+  <meta property="og:image" content="{{ metadata.url }}{{ (image or '/img/posts/october-show-flyer.jpg') }}">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="{{ '/img/brand/logo.jpg' | url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ assetPaths.stylesheet | url }}">
+  <link rel="alternate" href="{{ '/feed.xml' | url }}" type="application/atom+xml" title="{{ business.name }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include "components/header.njk" %}
+  <main id="main">
+    {{ content | safe }}
+  </main>
+  {% include "components/footer.njk" %}
+  <script>
+    const t = document.querySelector(".nav-toggle");
+    t && t.addEventListener("click", () => {
+      const open = document.body.classList.toggle("nav-open");
+      t.setAttribute("aria-expanded", open);
+    });
+  </script>
+</body>
+</html>

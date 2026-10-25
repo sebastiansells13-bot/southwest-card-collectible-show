@@ -1,0 +1,882 @@
+// ---------- Buttons, labels ----------
+.btn {
+  display: inline-block;
+  font-family: $font-heading;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1.05rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: $color-accent;
+  color: #120800;
+  text-decoration: none;
+  box-shadow: 0 0 18px rgba($color-accent, 0.45);
+  transition: transform 0.15s, box-shadow 0.15s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 28px rgba($color-accent, 0.7);
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-accent-hot;
+    box-shadow: inset 0 0 0 2px $color-accent;
+  }
+
+  &--small {
+    font-size: 0.9rem;
+    padding: 0.45rem 1rem;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 1.5rem 0 0;
+}
+
+.kicker {
+  font-family: $font-heading;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: $color-accent-hot;
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+}
+
+.tag {
+  @extend .kicker;
+  margin: 0;
+}
+
+.glow {
+  color: $color-accent;
+  text-shadow: $glow;
+}
+
+.script {
+  font-family: $font-script;
+  color: $color-accent;
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
+  letter-spacing: 0.04em;
+  transform: rotate(-4deg);
+  text-shadow: 3px 3px 0 #000, $glow;
+  margin: 0.5rem 0 0;
+}
+
+.fire {
+  color: $color-accent;
+  font-weight: 800;
+}
+
+.lede {
+  font-size: 1.15rem;
+  max-width: 44rem;
+  margin: 0 auto;
+  text-align: center;
+  color: $color-text;
+}
+
+// ---------- Ribbon banner (navy, from the flyer footer) ----------
+.ribbon {
+  display: flex;
+  justify-content: center;
+  padding: 0 $gutter;
+
+  span {
+    display: inline-block;
+    background: linear-gradient($color-navy, $color-navy-deep);
+    color: #fff;
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: clamp(0.85rem, 2.8vw, 1.15rem);
+    padding: 0.55rem 1.6rem;
+    border: 2px solid $color-accent;
+    border-radius: 0.4rem;
+    text-align: center;
+
+    &::before,
+    &::after {
+      content: "✦";
+      color: $color-accent;
+      margin: 0 0.6rem;
+    }
+  }
+
+  &--inset {
+    margin-top: 2rem;
+  }
+}
+
+// ---------- Arch frame (the rounded-top flyer panel) ----------
+.arch {
+  border-radius: 999px 999px 1.25rem 1.25rem / 14rem 14rem 1.25rem 1.25rem;
+  box-shadow: $glow-box;
+  background: $color-surface;
+  overflow: hidden;
+
+  &--hero {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: clamp(3rem, 9vw, 5.5rem) clamp(1rem, 5vw, 3rem) 2rem;
+    text-align: center;
+    background:
+      radial-gradient(circle at 18% 62%, rgba(#ff6a1a, 0.35) 0 3.5rem, transparent 3.6rem),
+      linear-gradient(180deg, #121217 0%, #1d0f08 70%, #2a1206 100%);
+    border-radius: 50% 50% 1.5rem 1.5rem / 18rem 18rem 1.5rem 1.5rem;
+  }
+
+  &--flyer img,
+  &--logo img {
+    width: 100%;
+  }
+}
+
+// ---------- Neon sign logo ----------
+.neon-logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: $font-heading;
+  text-transform: uppercase;
+  color: #ffe2c4;
+  text-shadow: $glow;
+  line-height: 0.95;
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.6rem 1.2rem 0.8rem;
+  border: 3px solid $color-accent;
+  border-radius: 0.6rem;
+  box-shadow: $glow-box;
+  transform: skewX(-8deg);
+
+  &__top {
+    font-size: clamp(1.4rem, 5.2vw, 2.4rem);
+    letter-spacing: 0.03em;
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: clamp(2.6rem, 11vw, 4.6rem);
+  }
+
+  &__bars {
+    display: inline-flex;
+    gap: 0.25rem;
+
+    i {
+      display: block;
+      width: 0.5em;
+      height: 0.55em;
+      border: 3px solid $color-accent;
+      border-radius: 0.1em;
+      box-shadow: 0 0 10px rgba($color-accent, 0.7);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: flicker 6s infinite;
+  }
+}
+
+@keyframes flicker {
+  0%, 92%, 96%, 100% { opacity: 1; }
+  93%, 95% { opacity: 0.55; }
+}
+
+// ---------- Header ----------
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba($color-bg, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid $color-border;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4rem;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a:not(.btn) {
+    text-decoration: none;
+    color: $color-text;
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    &:hover,
+    &.is-active {
+      color: $color-accent;
+      text-shadow: $glow;
+    }
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: $color-text;
+  min-width: 0;
+
+  img {
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px $color-accent;
+    flex: none;
+  }
+
+  &__text {
+    font-family: $font-heading;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    line-height: 1.05;
+    letter-spacing: 0.04em;
+
+    b {
+      display: block;
+      font-weight: 400;
+      color: $color-accent;
+    }
+  }
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 2px solid $color-accent;
+  border-radius: 0.4rem;
+  width: 2.75rem;
+  height: 2.5rem;
+  cursor: pointer;
+
+  &__bars,
+  &__bars::before,
+  &__bars::after {
+    display: block;
+    width: 1.3rem;
+    height: 2px;
+    background: $color-accent;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  &__bars::before,
+  &__bars::after {
+    content: "";
+    position: absolute;
+  }
+
+  &__bars::before { top: -6px; }
+  &__bars::after { top: 6px; }
+}
+
+@media (max-width: 56rem) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .site-header nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: $color-bg;
+    border-bottom: 2px solid $color-accent;
+    padding: 1rem $gutter 1.5rem;
+  }
+
+  .nav-open .site-header nav {
+    display: block;
+  }
+
+  .site-header nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    a:not(.btn) {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// ---------- Hero ----------
+.hero {
+  padding: 2.5rem 0 1rem;
+
+  &__when p {
+    margin: 0;
+  }
+
+  &__venue {
+    font-family: $font-heading;
+    text-transform: uppercase;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    line-height: 1.2;
+
+    span {
+      font-size: 0.8em;
+      color: $color-muted;
+    }
+  }
+
+  &__date {
+    font-family: $font-heading;
+    text-transform: uppercase;
+    color: $color-accent;
+    text-shadow: $glow;
+    font-size: clamp(1.4rem, 5.5vw, 2.3rem);
+    margin-top: 0.6rem !important;
+  }
+
+  &__time span {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-family: $font-heading;
+    font-size: clamp(1.3rem, 5vw, 2rem);
+    letter-spacing: 0.05em;
+    padding: 0 1rem;
+    border-top: 2px solid $color-text;
+    border-bottom: 2px solid $color-text;
+  }
+
+  &__intro {
+    color: $color-muted;
+  }
+}
+
+// ---------- Sections ----------
+.section {
+  padding: 3rem 0;
+
+  &--band {
+    background: linear-gradient(180deg, transparent, rgba($color-navy-deep, 0.55), transparent);
+  }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  margin: 0 0 2rem;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $color-accent);
+  }
+
+  &::after {
+    background: linear-gradient(90deg, $color-accent, transparent);
+  }
+
+  span {
+    color: $color-text;
+  }
+}
+
+.page-hero {
+  text-align: center;
+  padding: 3rem $gutter 1rem;
+
+  h1 {
+    font-size: clamp(2.4rem, 9vw, 4.5rem);
+    margin: 0 0 1rem;
+  }
+}
+
+.perks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.perk {
+  border: 1px solid $color-border;
+  border-top: 3px solid $color-accent;
+  background: $color-surface;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+
+  h3 {
+    margin: 0 0 0.4rem;
+    color: $color-accent;
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin: 0;
+    color: $color-muted;
+  }
+}
+
+.tally {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+
+  li {
+    text-align: center;
+    padding: 1.1rem 0.5rem;
+    border-radius: 0.75rem;
+    background: rgba($color-navy, 0.35);
+    border: 1px solid rgba($color-accent, 0.35);
+  }
+
+  b {
+    display: block;
+    font-family: $font-heading;
+    font-weight: 400;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: $color-accent;
+    text-shadow: $glow;
+  }
+
+  span {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+}
+
+// ---------- Events ----------
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1.5rem;
+}
+
+.event-card {
+  position: relative;
+  background: $color-surface;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid $color-border;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: $glow-box;
+  }
+
+  &__flyer img {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &__body {
+    position: relative;
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+
+  h3 {
+    margin: 0.25rem 0 0.5rem;
+    font-size: 1.4rem;
+    padding-right: 3.5rem;
+
+    a {
+      color: $color-text;
+      text-decoration: none;
+    }
+  }
+
+  &__meta {
+    margin: 0;
+    color: $color-muted;
+    font-size: 0.95rem;
+  }
+
+  &--past {
+    opacity: 0.7;
+
+    .event-card__flyer img {
+      filter: grayscale(0.6);
+    }
+  }
+}
+
+.date-badge {
+  position: absolute;
+  right: 1rem;
+  top: -2rem;
+  width: 3.75rem;
+  text-align: center;
+  background: $color-bg;
+  border: 2px solid $color-accent;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 14px rgba($color-accent, 0.5);
+  font-family: $font-heading;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0.4rem 0;
+
+  span {
+    display: block;
+    font-size: 0.8rem;
+    color: $color-accent-hot;
+  }
+
+  b {
+    font-weight: 400;
+    font-size: 1.7rem;
+  }
+}
+
+.event-detail,
+.post__grid,
+.cause,
+.about {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+
+  @media (min-width: 48rem) {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 3rem;
+  }
+}
+
+.cause h2 {
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  margin: 0 0 1rem;
+}
+
+.about .arch--logo {
+  max-width: 22rem;
+  margin: 0 auto;
+}
+
+.facts {
+  margin: 0 0 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+
+  div {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid $color-border;
+  }
+
+  dt {
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-accent-hot;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+
+  li {
+    padding: 0.35rem 0 0.35rem 1.8rem;
+    position: relative;
+
+    &::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: $color-accent;
+    }
+  }
+}
+
+.event-detail .actions,
+.post > .actions {
+  justify-content: flex-start;
+}
+
+.prose {
+  font-size: 1.05rem;
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  strong {
+    color: $color-accent-hot;
+  }
+}
+
+// ---------- Instagram-style feed grid ----------
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-bottom: 2rem;
+
+  @media (max-width: 36rem) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.feed-tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: $color-surface;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+
+  &__caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 2.5rem 0.75rem 0.75rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.92));
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    line-height: 1.3;
+
+    time {
+      display: block;
+      font-size: 0.75rem;
+      color: $color-accent-hot;
+      font-weight: 400;
+    }
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+  }
+}
+
+// ---------- CTA panel ----------
+.cta-panel {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, $color-navy, $color-navy-deep);
+  border: 2px solid $color-accent;
+  box-shadow: 0 0 30px rgba($color-accent, 0.25);
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.7rem, 6vw, 2.4rem);
+  }
+
+  p {
+    max-width: 36rem;
+    margin: 0 auto 1.25rem;
+  }
+
+  .actions {
+    margin-top: 0;
+  }
+}
+
+// ---------- Vendors ----------
+.status-pill {
+  display: inline-block;
+  margin: 0 0 1.25rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: rgba($color-accent, 0.15);
+  border: 1px solid $color-accent;
+  color: $color-accent-hot;
+  font-weight: 600;
+}
+
+.map {
+  margin: 0;
+
+  img {
+    border-radius: 0.75rem;
+    box-shadow: $glow-box;
+    margin: 0 auto;
+  }
+
+  figcaption {
+    text-align: center;
+    color: $color-muted;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+.faq {
+  max-width: 48rem;
+  margin: 0 auto;
+
+  details {
+    border: 1px solid $color-border;
+    border-radius: 0.75rem;
+    background: $color-surface;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0.75rem 0 0;
+    color: $color-muted;
+  }
+}
+
+// ---------- Sponsors ----------
+.sponsor-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 1rem;
+}
+
+.sponsor {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+
+  img {
+    max-height: 4.5rem;
+    width: auto;
+  }
+
+  a,
+  span {
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 1.2rem;
+    color: $color-text;
+  }
+
+  small {
+    color: $color-accent-hot;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+  }
+}
+
+// ---------- Post ----------
+.post {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+
+  h1 {
+    font-size: clamp(2rem, 7vw, 3.4rem);
+    margin: 0 0 2rem;
+  }
+}
+
+// ---------- Footer ----------
+.site-footer {
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid $color-border;
+
+  .ribbon {
+    transform: translateY(-50%);
+  }
+
+  &__grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  &__logo {
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px $color-accent, 0 0 20px rgba($color-accent, 0.4);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    color: $color-accent;
+    margin: 0 0 0.75rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+  }
+
+  a {
+    color: $color-text;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  p {
+    color: $color-muted;
+    margin: 0;
+  }
+
+  &__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: $color-muted;
+    font-size: 0.85rem;
+    border-top: 1px solid $color-border;
+    padding-top: 1.25rem;
+  }
+}

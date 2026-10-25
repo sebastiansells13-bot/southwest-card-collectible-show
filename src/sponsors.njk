@@ -1,0 +1,35 @@
+---
+layout: layouts/page.njk
+title: Sponsors
+description: The local shops and businesses that power the Southwest Card & Collectible Show.
+permalink: /sponsors/
+---
+<section class="page-hero wrapper">
+  <p class="kicker">Powered by {{ sponsors.poweredBy }}</p>
+  <h1 class="glow">Sponsors</h1>
+  <p class="lede">{{ sponsors.intro }}</p>
+</section>
+<section class="wrapper section">
+  <ul class="sponsor-grid">
+    {% for s in sponsors.list %}
+    <li class="sponsor">
+      {% if s.logo %}<img src="{{ s.logo | url }}" alt="" loading="lazy">{% endif %}
+      {% if s.link %}<a href="{{ s.link }}" rel="noopener">{{ s.name }}</a>{% else %}<span>{{ s.name }}</span>{% endif %}
+      <small>{{ s.tier }}</small>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+<section class="wrapper section">
+  <h2 class="section-title"><span>Sponsor flyers</span></h2>
+  <div class="feed-grid">
+    {% for f in sponsors.flyers %}
+    <a class="feed-tile" href="{{ f.image | url }}"><img src="{{ f.image | url }}" alt="{{ f.alt }}" loading="lazy"></a>
+    {% endfor %}
+  </div>
+  <div class="cta-panel">
+    <h2>Want to sponsor a show?</h2>
+    <p>Get your shop in front of thousands of Southwest collectors — and help fund the giveaways.</p>
+    <a class="btn" href="{{ business.social.instagram }}" rel="noopener">Message us</a>
+  </div>
+</section>

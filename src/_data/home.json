@@ -1,0 +1,23 @@
+{
+  "kicker": "Made for collectors · By collectors",
+  "intro": "Buy, sell and trade with 145+ tables of sports cards, Pokémon, TCG, comics, Hot Wheels, signed memorabilia, action figures, Funko Pops and more. Free entry, free giveaways all day.",
+  "categories": [
+    { "label": "Sports Cards", "count": "54" },
+    { "label": "Pokémon", "count": "52" },
+    { "label": "Other TCG", "count": "13" },
+    { "label": "Comics", "count": "8" },
+    { "label": "Hot Wheels", "count": "5" },
+    { "label": "Clothing & Memorabilia", "count": "5" },
+    { "label": "Toys & Other Collectibles", "count": "9" }
+  ],
+  "perks": [
+    { "title": "Free Entry", "text": "No ticket, no cover. Bring your binder and walk right in." },
+    { "title": "Giveaways All Day", "text": "Packs, slabs, shirts, stickers and collector kits from our sponsors." },
+    { "title": "Buy · Sell · Trade", "text": "Hunt for your next grail, move your duplicates, meet the local hobby." }
+  ],
+  "cause": {
+    "title": "Collectibles for a Cause",
+    "text": "We team up with ACTion Programs for Animals (APA) for an animal drive at the show. Bring canned or dry pet food, pet toys or blankets — every item donated earns a raffle ticket, and three winners get a $50 voucher to spend at the show.",
+    "image": "/img/posts/animal-drive.jpg"
+  }
+}

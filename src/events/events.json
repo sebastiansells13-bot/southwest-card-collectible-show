@@ -1,0 +1,4 @@
+{
+  "layout": "layouts/event.njk",
+  "permalink": "/shows/{{ page.fileSlug }}/"
+}

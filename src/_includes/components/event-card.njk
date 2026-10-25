@@ -1,0 +1,11 @@
+<article class="event-card{% if past %} event-card--past{% endif %}">
+  <a class="event-card__flyer" href="{{ event.url | url }}">
+    {% if event.data.flyer %}<img src="{{ event.data.flyer | url }}" alt="{{ event.data.title }} flyer" loading="lazy">{% endif %}
+  </a>
+  <div class="event-card__body">
+    <div class="date-badge"><span>{{ event.date | monthShort }}</span><b>{{ event.date | dayNum }}</b></div>
+    <p class="tag">{{ event.data.kind }}</p>
+    <h3><a href="{{ event.url | url }}">{{ event.data.title }}</a></h3>
+    <p class="event-card__meta">{{ event.date | longDate }} · {{ event.data.time }}<br>{{ event.data.venue }}</p>
+  </div>
+</article>

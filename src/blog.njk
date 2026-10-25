@@ -1,0 +1,20 @@
+---
+layout: layouts/page.njk
+title: News
+description: Announcements, show recaps and updates from the Southwest Card & Collectible Show.
+permalink: /news/
+---
+<section class="page-hero wrapper">
+  <p class="kicker">From the feed</p>
+  <h1 class="glow">News</h1>
+</section>
+<section class="wrapper section">
+  <div class="feed-grid">
+    {% for post in collections.posts | reverse %}
+    <a class="feed-tile" href="{{ post.url | url }}">
+      {% if post.data.image %}<img src="{{ post.data.image | url }}" alt="" loading="lazy">{% endif %}
+      <span class="feed-tile__caption"><time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>{{ post.data.title }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
