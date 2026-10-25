@@ -62,12 +62,14 @@ module.exports = function (eleventyConfig) {
     DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("d")
   );
 
-  // Shows and trade days, soonest first. "Upcoming" includes today so a
-  // show stays featured through show day. Pages rebuild on every CMS save.
+  // Shows and trade days, soonest first. "Upcoming" includes today (in Las
+  // Cruces time) so a show stays featured through show day. Event dates are
+  // UTC midnight, so compare against today's date in UTC terms.
   eleventyConfig.addCollection("events", (api) =>
     api.getFilteredByGlob("src/events/*.md").sort((a, b) => a.date - b.date)
   );
-  const startOfToday = () => DateTime.utc().startOf("day").toJSDate();
+  const startOfToday = () =>
+    DateTime.fromISO(DateTime.now().setZone("America/Denver").toISODate(), { zone: "utc" }).toJSDate();
   eleventyConfig.addFilter("upcoming", (events) => events.filter((e) => e.date >= startOfToday()));
   eleventyConfig.addFilter("past", (events) =>
     events.filter((e) => e.date < startOfToday()).reverse()

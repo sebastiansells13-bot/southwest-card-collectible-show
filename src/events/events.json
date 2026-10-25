@@ -1,4 +1,4 @@
 {
   "layout": "layouts/event.njk",
-  "permalink": "/shows/{{ page.fileSlug }}/"
+  "permalink": "/shows/{{ page.date | htmlDateString }}-{{ page.fileSlug }}/"
 }

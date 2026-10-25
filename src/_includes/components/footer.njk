@@ -2,7 +2,7 @@
   <div class="ribbon"><span>Southwest Card &amp; Collectible Show</span></div>
   <div class="wrapper site-footer__grid">
     <div>
-      <img class="site-footer__logo" src="{{ '/img/brand/logo.jpg' | url }}" alt="" width="96" height="96">
+      <img class="site-footer__logo" src="{{ '/img/brand/logo.jpg' }}" alt="" width="96" height="96">
       <p>{{ business.tagline }}</p>
     </div>
     <div>
@@ -17,7 +17,7 @@
     <div>
       <h2>Explore</h2>
       <ul>
-        {% for item in navigation %}<li><a href="{{ item.url | url }}">{{ item.text }}</a></li>{% endfor %}
+        {% for item in navigation %}<li><a href="{{ item.url }}">{{ item.text }}</a></li>{% endfor %}
       </ul>
     </div>
   </div>

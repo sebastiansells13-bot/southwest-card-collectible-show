@@ -7,7 +7,7 @@ layout: layouts/base.njk
 </section>
 <div class="wrapper event-detail">
   <div class="arch arch--flyer">
-    {% if flyer %}<img src="{{ flyer | url }}" alt="{{ title }} flyer">{% endif %}
+    {% if flyer %}<img src="{{ flyer }}" alt="{{ title }} flyer">{% endif %}
   </div>
   <div class="event-detail__info">
     <dl class="facts">
@@ -23,7 +23,7 @@ layout: layouts/base.njk
     <div class="prose">{{ content | safe }}</div>
     <p class="actions">
       {% if mapLink %}<a class="btn" href="{{ mapLink }}" rel="noopener">Get directions</a>{% endif %}
-      <a class="btn btn--ghost" href="{{ '/shows/' | url }}">All shows</a>
+      <a class="btn btn--ghost" href="{{ '/shows/' }}">All shows</a>
     </p>
   </div>
 </div>

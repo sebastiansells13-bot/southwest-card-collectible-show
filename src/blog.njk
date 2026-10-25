@@ -11,8 +11,8 @@ permalink: /news/
 <section class="wrapper section">
   <div class="feed-grid">
     {% for post in collections.posts | reverse %}
-    <a class="feed-tile" href="{{ post.url | url }}">
-      {% if post.data.image %}<img src="{{ post.data.image | url }}" alt="" loading="lazy">{% endif %}
+    <a class="feed-tile" href="{{ post.url }}">
+      {% if post.data.image %}<img src="{{ post.data.image }}" alt="" loading="lazy">{% endif %}
       <span class="feed-tile__caption"><time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>{{ post.data.title }}</span>
     </a>
     {% endfor %}

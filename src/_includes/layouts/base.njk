@@ -10,12 +10,12 @@
   <meta property="og:description" content="{{ description or metadata.description }}">
   <meta property="og:image" content="{{ metadata.url }}{{ (image or '/img/posts/october-show-flyer.jpg') }}">
   <meta property="og:type" content="website">
-  <link rel="icon" href="{{ '/img/brand/logo.jpg' | url }}">
+  <link rel="icon" href="{{ '/img/brand/logo.jpg' }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ assetPaths.stylesheet | url }}">
-  <link rel="alternate" href="{{ '/feed.xml' | url }}" type="application/atom+xml" title="{{ business.name }}">
+  <link rel="stylesheet" href="{{ assetPaths.stylesheet }}">
+  <link rel="alternate" href="{{ '/feed.xml' }}" type="application/atom+xml" title="{{ business.name }}">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
