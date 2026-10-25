@@ -124,10 +124,15 @@
     margin: 0 auto;
     padding: clamp(3rem, 9vw, 5.5rem) clamp(1rem, 5vw, 3rem) 2rem;
     text-align: center;
-    background:
-      radial-gradient(circle at 18% 62%, rgba(#ff6a1a, 0.35) 0 3.5rem, transparent 3.6rem),
-      linear-gradient(180deg, #121217 0%, #1d0f08 70%, #2a1206 100%);
-    border-radius: 50% 50% 1.5rem 1.5rem / 18rem 18rem 1.5rem 1.5rem;
+    background: linear-gradient(180deg, #121217 0%, #1d0f08 70%, #2a1206 100%);
+    border-radius: 50% 50% 1.5rem 1.5rem / 8rem 8rem 1.5rem 1.5rem;
+
+    @media (min-width: 48rem) {
+      border-radius: 50% 50% 1.5rem 1.5rem / 18rem 18rem 1.5rem 1.5rem;
+      background:
+        radial-gradient(circle at 16% 58%, rgba(#ff6a1a, 0.35) 0 3.5rem, transparent 3.6rem),
+        linear-gradient(180deg, #121217 0%, #1d0f08 70%, #2a1206 100%);
+    }
   }
 
   &--flyer img,
@@ -440,7 +445,7 @@
   padding: 0;
   margin: 0 0 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
   gap: 0.75rem;
 
   li {

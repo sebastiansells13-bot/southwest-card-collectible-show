@@ -3,6 +3,7 @@ layout: layouts/page.njk
 title: Home
 ---
 {% set next = collections.events | upcoming | first %}
+{% set recent = collections.events | past | first %}
 <section class="hero">
   <div class="wrapper">
     <div class="arch arch--hero">
@@ -17,8 +18,18 @@ title: Home
         <p class="script">Free Entry!</p>
       </div>
       <p class="actions">
-        <a class="btn" href="{{ next.url | url }}">Show details</a>
+        <a class="btn" href="{{ next.url }}">Show details</a>
         <a class="btn btn--ghost" href="{{ business.social.discord }}" rel="noopener">Join the Discord</a>
+      </p>
+      {% elif recent %}
+      <div class="hero__when">
+        <p class="hero__venue">Thank you for coming out to<br><span>{{ recent.data.venue }} · {{ recent.date | longDate }}</span></p>
+        <p class="hero__date">Next show date dropping soon</p>
+        <p class="script">Stay Tuned!</p>
+      </div>
+      <p class="actions">
+        <a class="btn" href="{{ business.social.discord }}" rel="noopener">Join the Discord</a>
+        <a class="btn btn--ghost" href="{{ business.social.instagram }}" rel="noopener">Follow on Instagram</a>
       </p>
       {% else %}
       <p class="hero__intro">Next show date coming soon — follow along on Instagram and Discord.</p>
@@ -46,7 +57,7 @@ title: Home
       <li><b>{{ c.count }}</b><span>{{ c.label }}</span></li>
       {% endfor %}
     </ul>
-    <p class="center"><a class="btn btn--ghost" href="{{ '/vendors/' | url }}">See the vendor map</a></p>
+    <p class="center"><a class="btn btn--ghost" href="{{ '/vendors/' }}">See the vendor map</a></p>
   </div>
 </section>
 
@@ -59,7 +70,7 @@ title: Home
 </section>
 
 <section class="wrapper section cause">
-  <div class="arch arch--flyer"><img src="{{ home.cause.image | url }}" alt="{{ home.cause.title }} flyer" loading="lazy"></div>
+  <div class="arch arch--flyer"><img src="{{ home.cause.image }}" alt="{{ home.cause.title }} flyer" loading="lazy"></div>
   <div>
     <p class="kicker">Giving back</p>
     <h2 class="glow">{{ home.cause.title }}</h2>
@@ -71,8 +82,8 @@ title: Home
   <h2 class="section-title"><span>Latest from the feed</span></h2>
   <div class="feed-grid">
     {% for post in collections.posts | reverse | head(6) %}
-    <a class="feed-tile" href="{{ post.url | url }}">
-      <img src="{{ post.data.image | url }}" alt="" loading="lazy">
+    <a class="feed-tile" href="{{ post.url }}">
+      <img src="{{ post.data.image }}" alt="" loading="lazy">
       <span class="feed-tile__caption">{{ post.data.title }}</span>
     </a>
     {% endfor %}
