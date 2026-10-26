@@ -1,23 +1,93 @@
 {
   "intro": "These shops and businesses make the show — and the free giveaways — possible. Show them some love.",
+  "introEs": "Estos negocios hacen posible el show — y los regalos gratis. Apóyalos.",
   "poweredBy": "Hidden Gems",
   "list": [
-    { "name": "Hidden Gems", "tier": "Presenting", "link": "", "logo": "" },
-    { "name": "Duke City Collectibles", "tier": "Sponsor", "link": "", "logo": "" },
-    { "name": "Geek Shack", "tier": "Sponsor", "link": "", "logo": "" },
-    { "name": "Kool Kardz", "tier": "Sponsor", "link": "", "logo": "" },
-    { "name": "Cardboard Collex", "tier": "Sponsor", "link": "", "logo": "" },
-    { "name": "Squad Plus", "tier": "Sponsor", "link": "", "logo": "" },
-    { "name": "Card Grails", "tier": "Sponsor", "link": "", "logo": "" },
-    { "name": "Casual Collectibles", "tier": "Sponsor", "link": "", "logo": "" },
-    { "name": "Back Naked Vintage", "tier": "Sponsor", "link": "", "logo": "" },
-    { "name": "Cross Town Cards", "tier": "Giveaway Sponsor", "link": "", "logo": "" },
-    { "name": "Excalibur Collectibles", "tier": "Giveaway Sponsor", "link": "", "logo": "" },
-    { "name": "Vintage Cavern", "tier": "Giveaway Sponsor", "link": "", "logo": "" }
+    {
+      "name": "Hidden Gems",
+      "tier": "Presenting",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Duke City Collectibles",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Geek Shack",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Kool Kardz",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Cardboard Collex",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Squad Plus",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Card Grails",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Casual Collectibles",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Back Naked Vintage",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Cross Town Cards",
+      "tier": "Giveaway Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Excalibur Collectibles",
+      "tier": "Giveaway Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Vintage Cavern",
+      "tier": "Giveaway Sponsor",
+      "link": "",
+      "logo": ""
+    }
   ],
   "flyers": [
-    { "image": "/img/posts/sponsors.jpg", "alt": "Sponsors flyer for the October 24 show" },
-    { "image": "/img/posts/giveaway-sponsors.jpg", "alt": "Giveaway sponsors flyer" },
-    { "image": "/img/posts/more-giveaways.jpg", "alt": "More giveaway sponsors flyer" }
+    {
+      "image": "/img/posts/sponsors.jpg",
+      "alt": "Sponsors flyer for the October 24 show"
+    },
+    {
+      "image": "/img/posts/giveaway-sponsors.jpg",
+      "alt": "Giveaway sponsors flyer"
+    },
+    {
+      "image": "/img/posts/more-giveaways.jpg",
+      "alt": "More giveaway sponsors flyer"
+    }
   ]
 }

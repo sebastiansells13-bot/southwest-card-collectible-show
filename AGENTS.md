@@ -26,6 +26,16 @@ the site diverges from the template.
   non-open tables. The form posts to `booking.formEndpoint` (Formspree-compatible, JSON
   `Accept`); with no endpoint it falls back to a copy-and-DM summary. Spots are
   confirmed by the organizer, never auto-reserved — there's no backend.
+- **Spanish toggle**: same contract as julia-ketsaa-remax. `src/_includes/js/i18n.js`
+  + `i18n-runtime.js` (passthrough-copied to `/js/`) swap `data-i18n` keys from
+  `src/_data/i18n.json` (inlined as `#i18n-data`), plus `data-i18n-attr`,
+  `data-i18n-placeholder`, `data-i18n-date` and `data-i18n-title-es`. CMS content uses
+  optional `…Es` fields rendered with `macros/bilingual.njk` (`data-i18n-lang`). Any new
+  visitor-facing string needs a key in `i18n.json` or an `Es` field. The choice is
+  stored in localStorage; `base.njk` hides the page (`i18n-pending`) until Spanish is
+  applied so there's no English flash. Client-side only, so no Spanish SEO.
+- **Booking on/off**: `booking.open` (CMS "Taking Vendor Requests") decides whether
+  `vendors.njk` includes the picker at all; when off it shows `closedMessage` instead.
 - **Page copy**: `src/_data/{home,vendors,sponsors,about,business}.json`, all editable
   in the CMS.
 - **Images**: flyers from Instagram live in `src/_includes/img/posts/`; sponsor logos go

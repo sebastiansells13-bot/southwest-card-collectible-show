@@ -1,29 +1,32 @@
 ---
 layout: layouts/base.njk
 ---
+{% from "macros/bilingual.njk" import bilingual %}
 <section class="page-hero wrapper">
-  <p class="kicker">{{ kind }}</p>
-  <h1 class="glow">{{ title }}</h1>
+  <p class="kicker" data-i18n="kind.{{ kind | slugify }}">{{ kind }}</p>
+  <h1 class="glow">{{ bilingual(title, titleEs) }}</h1>
 </section>
 <div class="wrapper event-detail">
   <div class="arch arch--flyer">
-    {% if flyer %}<img src="{{ flyer }}" alt="{{ title }} flyer">{% endif %}
+    {% if flyer %}<img src="{{ flyer }}" alt="" data-i18n-attr="alt:event.flyerAlt">{% endif %}
   </div>
   <div class="event-detail__info">
     <dl class="facts">
-      <div><dt>Date</dt><dd>{{ page.date | longDate }}</dd></div>
-      <div><dt>Time</dt><dd>{{ time }}</dd></div>
-      <div><dt>Where</dt><dd>{{ venue }}<br><span class="muted">{{ address }}</span></dd></div>
-      {% if tables %}<div><dt>Tables</dt><dd>{{ tables }}</dd></div>{% endif %}
-      <div><dt>Entry</dt><dd class="fire">Free</dd></div>
+      <div><dt data-i18n="event.date">Date</dt><dd><time datetime="{{ page.date | htmlDateString }}" data-i18n-date="long">{{ page.date | longDate }}</time></dd></div>
+      <div><dt data-i18n="event.time">Time</dt><dd>{{ time }}</dd></div>
+      <div><dt data-i18n="event.where">Where</dt><dd>{{ venue }}<br><span class="muted">{{ address }}</span></dd></div>
+      {% if tables %}<div><dt data-i18n="event.tables">Tables</dt><dd>{{ tables }}</dd></div>{% endif %}
+      <div><dt data-i18n="event.entry">Entry</dt><dd class="fire" data-i18n="event.free">Free</dd></div>
     </dl>
     {% if highlights %}
-    <ul class="checklist">{% for h in highlights %}<li>{{ h }}</li>{% endfor %}</ul>
+    <ul class="checklist"{% if highlightsEs and highlightsEs.length %} data-i18n-lang="en"{% endif %}>{% for h in highlights %}<li>{{ h }}</li>{% endfor %}</ul>
+    {% if highlightsEs and highlightsEs.length %}<ul class="checklist" data-i18n-lang="es" hidden>{% for h in highlightsEs %}<li>{{ h }}</li>{% endfor %}</ul>{% endif %}
     {% endif %}
-    <div class="prose">{{ content | safe }}</div>
+    <div class="prose"{% if bodyEs %} data-i18n-lang="en"{% endif %}>{{ content | safe }}</div>
+    {% if bodyEs %}<div class="prose" data-i18n-lang="es" hidden>{{ bodyEs | safe }}</div>{% endif %}
     <p class="actions">
-      {% if mapLink %}<a class="btn" href="{{ mapLink }}" rel="noopener">Get directions</a>{% endif %}
-      <a class="btn btn--ghost" href="{{ '/shows/' }}">All shows</a>
+      {% if mapLink %}<a class="btn" href="{{ mapLink }}" rel="noopener" data-i18n="event.directions">Get directions</a>{% endif %}
+      <a class="btn btn--ghost" href="/shows/" data-i18n="event.allShows">All shows</a>
     </p>
   </div>
 </div>

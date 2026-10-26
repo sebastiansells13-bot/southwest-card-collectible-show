@@ -130,7 +130,7 @@
     @media (min-width: 48rem) {
       border-radius: 50% 50% 1.5rem 1.5rem / 18rem 18rem 1.5rem 1.5rem;
       background:
-        radial-gradient(circle at 16% 58%, rgba(#ff6a1a, 0.35) 0 3.5rem, transparent 3.6rem),
+        radial-gradient(circle at 11% 30%, rgba(#ff6a1a, 0.35) 0 2.6rem, transparent 2.7rem),
         linear-gradient(180deg, #121217 0%, #1d0f08 70%, #2a1206 100%);
     }
   }
@@ -235,6 +235,50 @@
   }
 }
 
+.site-header__tools {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  order: 3;
+  flex: none;
+}
+
+.site-header nav {
+  order: 2;
+  margin-left: auto;
+}
+
+.lang-toggle {
+  display: flex;
+  border: 2px solid $color-accent;
+  border-radius: 999px;
+  overflow: hidden;
+
+  &__btn {
+    border: 0;
+    background: transparent;
+    color: $color-text;
+    font-family: $font-heading;
+    letter-spacing: 0.06em;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba($color-accent, 0.2);
+    }
+
+    &[aria-pressed="true"] {
+      background: $color-accent;
+      color: #120800;
+    }
+
+    &:focus-visible {
+      outline-offset: -3px;
+    }
+  }
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -294,7 +338,8 @@
   &__bars::after { top: 6px; }
 }
 
-@media (max-width: 56rem) {
+// Breakpoint fits the longer Spanish nav labels with the EN/ES toggle.
+@media (max-width: 68rem) {
   .nav-toggle {
     display: block;
   }

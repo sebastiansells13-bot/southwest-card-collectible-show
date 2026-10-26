@@ -1,8 +1,122 @@
+# Fields ending in "(Spanish)" are optional: they're shown when a visitor
+# switches the site to ES. Leave one blank and the English shows in both
+# languages.
 media:
   input: src/_includes/img
   output: /img
 
 content:
+  - name: booking
+    label: Table Booking (Pick-a-Table)
+    type: file
+    path: src/_data/booking.json
+    fields:
+      - name: open
+        label: Taking Vendor Requests
+        type: boolean
+        description: "ON: the Pick-a-Table floor map and request form show on the Vendors page. OFF: they're hidden and vendors see the \"opening soon\" message below instead."
+      - name: openStatus
+        label: Banner While Open
+        type: string
+        description: Shown at the top of the Vendors page while requests are on.
+      - name: openStatusEs
+        label: Banner While Open (Spanish)
+        type: string
+      - name: closedStatus
+        label: Banner While Closed
+        type: string
+        description: Optional, e.g. "Tables are SOLD OUT". Leave blank for no banner.
+      - name: closedStatusEs
+        label: Banner While Closed (Spanish)
+        type: string
+      - name: closedMessage
+        label: Message While Closed
+        type: text
+      - name: closedMessageEs
+        label: Message While Closed (Spanish)
+        type: text
+      - name: showName
+        label: Show Name
+        type: string
+      - name: showNameEs
+        label: Show Name (Spanish)
+        type: string
+      - name: showDate
+        label: Show Date
+        type: string
+        description: e.g. "Saturday, February 6, 2027" or "Date announced soon"
+      - name: showDateEs
+        label: Show Date (Spanish)
+        type: string
+        description: e.g. "Sábado 6 de febrero de 2027"
+      - name: venue
+        label: Venue
+        type: string
+      - name: intro
+        label: Intro Text
+        type: text
+      - name: introEs
+        label: Intro Text (Spanish)
+        type: text
+      - name: maxTables
+        label: Max Tables Per Vendor
+        type: number
+      - name: pricing
+        label: Table Prices
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.label} {fields.price}"
+        fields:
+          - { name: label, label: Table Type, type: string, description: "e.g. 6 ft table, Corner table" }
+          - { name: labelEs, label: Table Type (Spanish), type: string, description: "e.g. Mesa de 6 pies" }
+          - { name: price, label: Price, type: string, description: "e.g. $75" }
+      - name: tables
+        label: Reserved Tables
+        description: Only list tables that are NOT open. Every table not listed here shows as open on the map. Clear this list to start a new show with a blank map.
+        type: object
+        list:
+          collapsible:
+            summary: "Table {fields.number} · {fields.status} · {fields.vendor}"
+        fields:
+          - { name: number, label: Table Number, type: number, required: true }
+          - name: status
+            label: Status
+            type: select
+            default: Taken
+            options:
+              values: [Taken, Pending, Not available]
+          - { name: vendor, label: Vendor Name, type: string, description: "Read out to screen readers on the map. Optional." }
+      - name: categories
+        label: '"What You Sell" Options'
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.label}"
+        fields:
+          - { name: label, label: Option, type: string, required: true }
+          - { name: labelEs, label: Option (Spanish), type: string }
+      - name: confirmNote
+        label: Confirmation Message
+        type: text
+      - name: confirmNoteEs
+        label: Confirmation Message (Spanish)
+        type: text
+      - name: formEndpoint
+        label: Form Endpoint (developer setting)
+        type: string
+        description: Formspree form URL that emails you each request. If blank, vendors get a copy-and-DM summary instead.
+      - name: paymentLink
+        label: Payment Link
+        type: string
+        description: Optional Stripe/Square payment link shown after a request is sent.
+      - name: paymentNote
+        label: Payment Link Text
+        type: string
+      - name: paymentNoteEs
+        label: Payment Link Text (Spanish)
+        type: string
+
   - name: events
     label: Shows & Trade Days
     type: collection
@@ -18,13 +132,15 @@ content:
         label: Event Name
         type: string
         required: true
+      - name: titleEs
+        label: Event Name (Spanish)
+        type: string
       - name: kind
         label: Type
         type: select
         default: Show
         options:
           values: [Show, Trade Day]
-          creatable: true
       - name: date
         label: Date
         type: date
@@ -62,8 +178,15 @@ content:
         type: string
         list: true
         description: Short bullet points — giveaways, food, raffles, etc.
+      - name: highlightsEs
+        label: Highlights (Spanish)
+        type: string
+        list: true
       - name: body
         label: Description
+        type: rich-text
+      - name: bodyEs
+        label: Description (Spanish)
         type: rich-text
 
   - name: posts
@@ -81,11 +204,19 @@ content:
         label: Title
         type: string
         required: true
+      - name: titleEs
+        label: Title (Spanish)
+        type: string
       - name: description
         label: Short Summary
         type: string
         required: true
         description: One sentence, shown in link previews. Max 160 characters.
+        options:
+          maxlength: 160
+      - name: descriptionEs
+        label: Short Summary (Spanish)
+        type: string
         options:
           maxlength: 160
       - name: date
@@ -111,18 +242,20 @@ content:
       - name: body
         label: Body
         type: rich-text
+      - name: bodyEs
+        label: Body (Spanish)
+        type: rich-text
+        description: If you edit the English body, please update this too.
 
   - name: home
     label: Home Page
     type: file
     path: src/_data/home.json
     fields:
-      - name: kicker
-        label: Small Text Above Logo
-        type: string
-      - name: intro
-        label: Intro Paragraph
-        type: text
+      - { name: kicker, label: Small Text Above Logo, type: string }
+      - { name: kickerEs, label: Small Text Above Logo (Spanish), type: string }
+      - { name: intro, label: Intro Paragraph, type: text }
+      - { name: introEs, label: Intro Paragraph (Spanish), type: text }
       - name: perks
         label: Perks
         type: object
@@ -131,7 +264,9 @@ content:
             summary: "{fields.title}"
         fields:
           - { name: title, label: Title, type: string }
+          - { name: titleEs, label: Title (Spanish), type: string }
           - { name: text, label: Text, type: text }
+          - { name: textEs, label: Text (Spanish), type: text }
       - name: categories
         label: Table Breakdown
         type: object
@@ -140,108 +275,41 @@ content:
             summary: "{fields.count} {fields.label}"
         fields:
           - { name: label, label: Category, type: string }
+          - { name: labelEs, label: Category (Spanish), type: string }
           - { name: count, label: Number of Tables, type: string }
       - name: cause
         label: Giving Back Section
         type: object
         fields:
           - { name: title, label: Title, type: string }
+          - { name: titleEs, label: Title (Spanish), type: string }
           - { name: text, label: Text, type: text }
+          - { name: textEs, label: Text (Spanish), type: text }
           - name: image
             label: Image
             type: image
             options:
               path: posts
 
-  - name: booking
-    label: Table Booking (Floor Map)
-    type: file
-    path: src/_data/booking.json
-    fields:
-      - name: open
-        label: Accepting Table Requests
-        type: boolean
-        description: Turn off to lock the map (vendors can still see it).
-      - name: showName
-        label: Show Name
-        type: string
-      - name: showDate
-        label: Show Date
-        type: string
-        description: e.g. "Saturday, February 6, 2027" or "Date announced soon"
-      - name: venue
-        label: Venue
-        type: string
-      - name: intro
-        label: Intro Text
-        type: text
-      - name: maxTables
-        label: Max Tables Per Vendor
-        type: number
-      - name: pricing
-        label: Table Prices
-        type: object
-        list:
-          collapsible:
-            summary: "{fields.label} {fields.price}"
-        fields:
-          - { name: label, label: Table Type, type: string, description: "e.g. 6 ft table, Corner table" }
-          - { name: price, label: Price, type: string, description: "e.g. $75" }
-      - name: tables
-        label: Reserved Tables
-        description: Only list tables that are NOT open. Every table not listed here shows as open on the map.
-        type: object
-        list:
-          collapsible:
-            summary: "Table {fields.number} · {fields.status} · {fields.vendor}"
-        fields:
-          - { name: number, label: Table Number, type: number, required: true }
-          - name: status
-            label: Status
-            type: select
-            default: Taken
-            options:
-              values: [Taken, Pending, Not available]
-          - { name: vendor, label: Vendor Name, type: string, description: "Shown when someone hovers the table. Optional." }
-      - name: categories
-        label: '"What You Sell" Options'
-        type: string
-        list: true
-      - name: confirmNote
-        label: Confirmation Message
-        type: text
-      - name: formEndpoint
-        label: Form Endpoint (developer setting)
-        type: string
-        description: Formspree form URL that emails you each request. If blank, vendors get a copy-and-DM summary instead.
-      - name: paymentLink
-        label: Payment Link
-        type: string
-        description: Optional Stripe/Square payment link shown after a request is sent.
-      - name: paymentNote
-        label: Payment Link Text
-        type: string
-
   - name: vendors
     label: Vendors Page
     type: file
     path: src/_data/vendors.json
     fields:
-      - name: status
-        label: Table Status Banner
-        type: string
-        description: e.g. "Tables are SOLD OUT" or "Tables now available!" Leave blank to hide.
       - name: intro
         label: Intro
         type: text
+      - name: introEs
+        label: Intro (Spanish)
+        type: text
       - name: map
-        label: Vendor Map Image
+        label: Last Show's Vendor Map Image
         type: image
+        description: Shown below the Pick-a-Table map for reference. Remove it to hide that section.
         options:
           path: posts
-      - name: mapCaption
-        label: Map Caption
-        type: string
+      - { name: mapCaption, label: Map Caption, type: string }
+      - { name: mapCaptionEs, label: Map Caption (Spanish), type: string }
       - name: faqs
         label: FAQ
         type: object
@@ -250,19 +318,18 @@ content:
             summary: "{fields.q}"
         fields:
           - { name: q, label: Question, type: string }
+          - { name: qEs, label: Question (Spanish), type: string }
           - { name: a, label: Answer, type: text }
+          - { name: aEs, label: Answer (Spanish), type: text }
 
   - name: sponsors
     label: Sponsors
     type: file
     path: src/_data/sponsors.json
     fields:
-      - name: intro
-        label: Intro
-        type: text
-      - name: poweredBy
-        label: Presenting Sponsor
-        type: string
+      - { name: intro, label: Intro, type: text }
+      - { name: introEs, label: Intro (Spanish), type: text }
+      - { name: poweredBy, label: Presenting Sponsor, type: string }
       - name: list
         label: Sponsors
         type: object
@@ -276,7 +343,6 @@ content:
             type: select
             options:
               values: [Presenting, Sponsor, Giveaway Sponsor]
-              creatable: true
           - { name: link, label: Website or Instagram Link, type: string }
           - name: logo
             label: Logo
@@ -300,9 +366,8 @@ content:
     type: file
     path: src/_data/about.json
     fields:
-      - name: body
-        label: Our Story
-        type: rich-text
+      - { name: body, label: Our Story, type: rich-text }
+      - { name: bodyEs, label: Our Story (Spanish), type: rich-text }
 
   - name: business
     label: Contact & Social Links
@@ -311,6 +376,7 @@ content:
     fields:
       - { name: name, label: Show Name, type: string }
       - { name: tagline, label: Tagline, type: string }
+      - { name: taglineEs, label: Tagline (Spanish), type: string }
       - { name: email, label: Email (optional), type: string }
       - { name: phone, label: Phone (optional), type: string }
       - { name: address, label: City / Area, type: string }

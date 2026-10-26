@@ -89,3 +89,13 @@ h3 {
 .center {
   text-align: center;
 }
+
+// Set by the inline script in base.njk for returning Spanish visitors and
+// removed by i18n.js once the Spanish copy is in place.
+.i18n-pending body {
+  visibility: hidden;
+}
+
+[hidden] {
+  display: none !important;
+}

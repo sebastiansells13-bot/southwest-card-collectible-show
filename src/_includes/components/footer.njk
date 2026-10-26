@@ -1,23 +1,24 @@
+{% from "macros/bilingual.njk" import bilingual %}
 <footer class="site-footer">
   <div class="ribbon"><span>Southwest Card &amp; Collectible Show</span></div>
   <div class="wrapper site-footer__grid">
     <div>
-      <img class="site-footer__logo" src="{{ '/img/brand/logo.jpg' }}" alt="" width="96" height="96">
-      <p>{{ business.tagline }}</p>
+      <img class="site-footer__logo" src="/img/brand/logo.jpg" alt="" width="96" height="96">
+      <p>{{ bilingual(business.tagline, business.taglineEs) }}</p>
     </div>
     <div>
-      <h2>Follow along</h2>
+      <h2 data-i18n="footer.follow">Follow along</h2>
       <ul>
         <li><a href="{{ business.social.instagram }}" rel="noopener">Instagram {{ business.social.instagramHandle }}</a></li>
-        <li><a href="{{ business.social.discord }}" rel="noopener">Discord community</a></li>
+        <li><a href="{{ business.social.discord }}" rel="noopener" data-i18n="footer.discord">Discord community</a></li>
         {% if business.social.facebook %}<li><a href="{{ business.social.facebook }}" rel="noopener">Facebook</a></li>{% endif %}
         {% if business.email %}<li><a href="mailto:{{ business.email }}">{{ business.email }}</a></li>{% endif %}
       </ul>
     </div>
     <div>
-      <h2>Explore</h2>
+      <h2 data-i18n="footer.explore">Explore</h2>
       <ul>
-        {% for item in navigation %}<li><a href="{{ item.url }}">{{ item.text }}</a></li>{% endfor %}
+        {% for item in navigation %}<li><a href="{{ item.url }}" data-i18n="{{ item.key }}">{{ item.text }}</a></li>{% endfor %}
       </ul>
     </div>
   </div>

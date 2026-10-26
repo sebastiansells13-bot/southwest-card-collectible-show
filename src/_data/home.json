@@ -1,23 +1,70 @@
 {
   "kicker": "Made for collectors · By collectors",
+  "kickerEs": "Hecho para coleccionistas · Por coleccionistas",
   "intro": "Buy, sell and trade with 145+ tables of sports cards, Pokémon, TCG, comics, Hot Wheels, signed memorabilia, action figures, Funko Pops and more. Free entry, free giveaways all day.",
+  "introEs": "Compra, vende e intercambia en más de 145 mesas de cartas deportivas, Pokémon, TCG, cómics, Hot Wheels, memorabilia firmada, figuras de acción, Funko Pops y mucho más. Entrada gratis y regalos todo el día.",
   "categories": [
-    { "label": "Sports Cards", "count": "54" },
-    { "label": "Pokémon", "count": "52" },
-    { "label": "Other TCG", "count": "13" },
-    { "label": "Comics", "count": "8" },
-    { "label": "Hot Wheels", "count": "5" },
-    { "label": "Clothing & Memorabilia", "count": "5" },
-    { "label": "Toys & Other Collectibles", "count": "9" }
+    {
+      "label": "Sports Cards",
+      "count": "54",
+      "labelEs": "Cartas deportivas"
+    },
+    {
+      "label": "Pokémon",
+      "count": "52",
+      "labelEs": "Pokémon"
+    },
+    {
+      "label": "Other TCG",
+      "count": "13",
+      "labelEs": "Otros TCG"
+    },
+    {
+      "label": "Comics",
+      "count": "8",
+      "labelEs": "Cómics"
+    },
+    {
+      "label": "Hot Wheels",
+      "count": "5",
+      "labelEs": "Hot Wheels"
+    },
+    {
+      "label": "Clothing & Memorabilia",
+      "count": "5",
+      "labelEs": "Ropa y memorabilia"
+    },
+    {
+      "label": "Toys & Other Collectibles",
+      "count": "9",
+      "labelEs": "Juguetes y otros coleccionables"
+    }
   ],
   "perks": [
-    { "title": "Free Entry", "text": "No ticket, no cover. Bring your binder and walk right in." },
-    { "title": "Giveaways All Day", "text": "Packs, slabs, shirts, stickers and collector kits from our sponsors." },
-    { "title": "Buy · Sell · Trade", "text": "Hunt for your next grail, move your duplicates, meet the local hobby." }
+    {
+      "title": "Free Entry",
+      "text": "No ticket, no cover. Bring your binder and walk right in.",
+      "titleEs": "Entrada gratis",
+      "textEs": "Sin boleto ni cover. Trae tu carpeta y pásale."
+    },
+    {
+      "title": "Giveaways All Day",
+      "text": "Packs, slabs, shirts, stickers and collector kits from our sponsors.",
+      "titleEs": "Regalos todo el día",
+      "textEs": "Sobres, cartas graduadas, playeras, stickers y kits de coleccionista de nuestros patrocinadores."
+    },
+    {
+      "title": "Buy · Sell · Trade",
+      "text": "Hunt for your next grail, move your duplicates, meet the local hobby.",
+      "titleEs": "Compra · Vende · Intercambia",
+      "textEs": "Busca tu próximo grial, mueve tus repetidas y conoce a la comunidad local."
+    }
   ],
   "cause": {
     "title": "Collectibles for a Cause",
     "text": "We team up with ACTion Programs for Animals (APA) for an animal drive at the show. Bring canned or dry pet food, pet toys or blankets — every item donated earns a raffle ticket, and three winners get a $50 voucher to spend at the show.",
-    "image": "/img/posts/animal-drive.jpg"
+    "image": "/img/posts/animal-drive.jpg",
+    "titleEs": "Coleccionables con causa",
+    "textEs": "Nos unimos a ACTion Programs for Animals (APA) para una colecta de ayuda para animales en el show. Trae comida para mascotas en lata o seca, juguetes o cobijas — cada artículo donado te da un boleto para la rifa, y tres ganadores reciben un vale de $50 para gastar en el show."
   }
 }

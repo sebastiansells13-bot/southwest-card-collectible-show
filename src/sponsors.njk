@@ -1,13 +1,15 @@
 ---
 layout: layouts/page.njk
 title: Sponsors
+titleEs: Patrocinadores
 description: The local shops and businesses that power the Southwest Card & Collectible Show.
 permalink: /sponsors/
 ---
+{% from "macros/bilingual.njk" import bilingual %}
 <section class="page-hero wrapper">
-  <p class="kicker">Powered by {{ sponsors.poweredBy }}</p>
-  <h1 class="glow">Sponsors</h1>
-  <p class="lede">{{ sponsors.intro }}</p>
+  <p class="kicker"><span data-i18n="sponsors.poweredBy">Powered by</span> {{ sponsors.poweredBy }}</p>
+  <h1 class="glow" data-i18n="nav.sponsors">Sponsors</h1>
+  <p class="lede">{{ bilingual(sponsors.intro, sponsors.introEs) }}</p>
 </section>
 <section class="wrapper section">
   <ul class="sponsor-grid">
@@ -15,21 +17,21 @@ permalink: /sponsors/
     <li class="sponsor">
       {% if s.logo %}<img src="{{ s.logo }}" alt="" loading="lazy">{% endif %}
       {% if s.link %}<a href="{{ s.link }}" rel="noopener">{{ s.name }}</a>{% else %}<span>{{ s.name }}</span>{% endif %}
-      <small>{{ s.tier }}</small>
+      <small data-i18n="tier.{{ s.tier | slugify }}">{{ s.tier }}</small>
     </li>
     {% endfor %}
   </ul>
 </section>
 <section class="wrapper section">
-  <h2 class="section-title"><span>Sponsor flyers</span></h2>
+  <h2 class="section-title"><span data-i18n="sponsors.flyers">Sponsor flyers</span></h2>
   <div class="feed-grid">
     {% for f in sponsors.flyers %}
     <a class="feed-tile" href="{{ f.image }}"><img src="{{ f.image }}" alt="{{ f.alt }}" loading="lazy"></a>
     {% endfor %}
   </div>
   <div class="cta-panel">
-    <h2>Want to sponsor a show?</h2>
-    <p>Get your shop in front of thousands of Southwest collectors — and help fund the giveaways.</p>
-    <a class="btn" href="{{ business.social.instagram }}" rel="noopener">Message us</a>
+    <h2 data-i18n="sponsors.ctaTitle">Want to sponsor a show?</h2>
+    <p data-i18n="sponsors.ctaText">Get your shop in front of thousands of Southwest collectors — and help fund the giveaways.</p>
+    <a class="btn" href="{{ business.social.instagram }}" rel="noopener" data-i18n="sponsors.ctaButton">Message us</a>
   </div>
 </section>
