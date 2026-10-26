@@ -885,3 +885,299 @@
     padding-top: 1.25rem;
   }
 }
+
+// ---------- Table picker ----------
+.booking-show {
+  text-align: center;
+  font-family: $font-heading;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color-muted;
+  margin: 0 0 1rem;
+
+  b {
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: $color-accent;
+    text-shadow: $glow;
+  }
+}
+
+.pricing {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+
+  li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    padding: 0.5rem 1rem;
+    border: 1px solid $color-accent;
+    border-radius: 999px;
+  }
+
+  b {
+    color: $color-accent;
+  }
+}
+
+.floor-legend {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+}
+
+.swatch {
+  display: inline-block;
+  width: 1.4rem;
+  height: 0.9rem;
+  border-radius: 0.2rem;
+
+  &--open { box-shadow: inset 0 0 0 2px $color-accent; background: rgba($color-accent, 0.08); }
+  &--selected { background: $color-accent; box-shadow: 0 0 10px rgba($color-accent, 0.8); }
+  &--pending { background: repeating-linear-gradient(135deg, #6b5a1f 0 4px, #3a3216 4px 8px); }
+  &--taken { background: #34343c; }
+}
+
+.floor-scroll {
+  overflow-x: auto;
+  border-radius: 1rem;
+  box-shadow: $glow-box;
+  background: #0e0e12;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 2rem;
+}
+
+.floor {
+  position: relative;
+  min-width: 56rem;
+  margin: 0 auto;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 100% 5%,
+    #0e0e12;
+
+  &__landmark {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #4a4a55;
+    border-radius: 0.5rem;
+    color: #8a8a96;
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    text-align: center;
+
+    &--muted {
+      background: rgba($color-accent, 0.15);
+      border: 0;
+      font-size: 0.6rem;
+    }
+
+    &--entrance {
+      border: 0;
+      border-top: 3px solid $color-accent;
+      border-radius: 0;
+      color: $color-accent-hot;
+      font-size: 1rem;
+    }
+  }
+
+  &__table {
+    position: absolute;
+    padding: 0;
+    border: 0;
+    border-radius: 0.25rem;
+    font: 600 0.72rem/1 $font-body;
+    color: $color-text;
+    background: rgba($color-accent, 0.08);
+    box-shadow: inset 0 0 0 2px $color-accent;
+    cursor: pointer;
+    transition: background 0.12s, box-shadow 0.12s, transform 0.12s;
+
+    &:hover:not(:disabled) {
+      background: rgba($color-accent, 0.3);
+      transform: scale(1.06);
+      z-index: 1;
+    }
+
+    &:focus-visible {
+      outline-offset: 1px;
+      z-index: 2;
+    }
+
+    &.is-selected {
+      background: $color-accent;
+      color: #120800;
+      box-shadow: 0 0 14px rgba($color-accent, 0.9);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      box-shadow: none;
+      color: #7d7d88;
+    }
+
+    &.is-taken,
+    &.is-not-available {
+      background: #2a2a31;
+    }
+
+    &.is-pending {
+      background: repeating-linear-gradient(135deg, #6b5a1f 0 4px, #3a3216 4px 8px);
+      color: #e8d9a8;
+    }
+  }
+}
+
+.floor-hint {
+  text-align: center;
+  color: $color-muted;
+  font-size: 0.85rem;
+  margin: -1.25rem 0 2rem;
+
+  @media (min-width: 60rem) {
+    display: none;
+  }
+}
+
+.booking-form,
+.booking-done {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-top: 3px solid $color-accent;
+  border-radius: 1rem;
+}
+
+.booking-form {
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  small {
+    font-weight: 400;
+    color: $color-muted;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    font: inherit;
+    font-weight: 400;
+    color: $color-text;
+    background: $color-bg;
+    border: 1px solid #3a3a44;
+    border-radius: 0.5rem;
+    padding: 0.65rem 0.8rem;
+    width: 100%;
+
+    &:focus {
+      outline: 2px solid $color-accent;
+      border-color: transparent;
+    }
+  }
+
+  #tables-input {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: $color-accent-hot;
+  }
+
+  &__msg {
+    min-height: 1.2em;
+    margin: 0.35rem 0 1.25rem;
+    font-size: 0.85rem;
+    color: $color-accent-hot;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+  }
+
+  &__cats {
+    border: 0;
+    padding: 0;
+    margin: 1.5rem 0;
+
+    legend {
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    label {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 400;
+      margin: 0 1rem 0.5rem 0;
+    }
+
+    input {
+      accent-color: $color-accent;
+      width: 1.05rem;
+      height: 1.05rem;
+    }
+  }
+
+  &__fine {
+    color: $color-muted;
+    font-size: 0.85rem;
+  }
+
+  &__error {
+    color: #ff8f8f;
+    font-weight: 600;
+  }
+}
+
+.booking-done {
+  text-align: center;
+
+  &:focus {
+    outline: none;
+  }
+
+  h3 {
+    font-size: 2rem;
+    margin: 0 0 1rem;
+  }
+
+  textarea {
+    width: 100%;
+    font: 0.9rem/1.5 ui-monospace, Menlo, monospace;
+    color: $color-text;
+    background: $color-bg;
+    border: 1px solid #3a3a44;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+  }
+}

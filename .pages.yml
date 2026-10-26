@@ -153,6 +153,75 @@ content:
             options:
               path: posts
 
+  - name: booking
+    label: Table Booking (Floor Map)
+    type: file
+    path: src/_data/booking.json
+    fields:
+      - name: open
+        label: Accepting Table Requests
+        type: boolean
+        description: Turn off to lock the map (vendors can still see it).
+      - name: showName
+        label: Show Name
+        type: string
+      - name: showDate
+        label: Show Date
+        type: string
+        description: e.g. "Saturday, February 6, 2027" or "Date announced soon"
+      - name: venue
+        label: Venue
+        type: string
+      - name: intro
+        label: Intro Text
+        type: text
+      - name: maxTables
+        label: Max Tables Per Vendor
+        type: number
+      - name: pricing
+        label: Table Prices
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.label} {fields.price}"
+        fields:
+          - { name: label, label: Table Type, type: string, description: "e.g. 6 ft table, Corner table" }
+          - { name: price, label: Price, type: string, description: "e.g. $75" }
+      - name: tables
+        label: Reserved Tables
+        description: Only list tables that are NOT open. Every table not listed here shows as open on the map.
+        type: object
+        list:
+          collapsible:
+            summary: "Table {fields.number} · {fields.status} · {fields.vendor}"
+        fields:
+          - { name: number, label: Table Number, type: number, required: true }
+          - name: status
+            label: Status
+            type: select
+            default: Taken
+            options:
+              values: [Taken, Pending, Not available]
+          - { name: vendor, label: Vendor Name, type: string, description: "Shown when someone hovers the table. Optional." }
+      - name: categories
+        label: '"What You Sell" Options'
+        type: string
+        list: true
+      - name: confirmNote
+        label: Confirmation Message
+        type: text
+      - name: formEndpoint
+        label: Form Endpoint (developer setting)
+        type: string
+        description: Formspree form URL that emails you each request. If blank, vendors get a copy-and-DM summary instead.
+      - name: paymentLink
+        label: Payment Link
+        type: string
+        description: Optional Stripe/Square payment link shown after a request is sent.
+      - name: paymentNote
+        label: Payment Link Text
+        type: string
+
   - name: vendors
     label: Vendors Page
     type: file

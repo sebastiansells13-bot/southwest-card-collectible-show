@@ -16,6 +16,12 @@ You can update the Southwest Card & Collectible Show website yourself — no cod
   title, short summary, date, image and text.
 - **Home Page** — the intro paragraph, the three perks, the table-by-table breakdown and
   the "Giving back" section.
+- **Table Booking (Floor Map)** — vendors pick open tables on the Vendors page map
+  and send you a request. When you confirm someone, add their table under **Reserved
+  Tables** (number, status "Taken", vendor name) and it greys out on the map. Use
+  "Pending" while you're waiting on payment. For a new show, update the show name and
+  date and clear the Reserved Tables list to start with a blank map. Turn off
+  "Accepting Table Requests" to close booking.
 - **Vendors Page** — the table status banner (e.g. "SOLD OUT"), vendor map image and FAQ.
 - **Sponsors** — add, remove or reorder sponsors, with an optional logo and link.
 - **About Page** — your story.
@@ -33,7 +39,7 @@ it yet.
 ## 4. Tips
 
 - **Announcing a new show?** Add it under Shows & Trade Days, then add a News post with
-  the flyer. Update the Vendors status banner when tables sell out.
+  the flyer. Update the Vendors status banner when tables sell out, and turn off table requests.
 - **Images**: use the upload button. Your Instagram flyers work great as-is. Keep files
   under ~1MB — the site compresses them further when it publishes.
 
