@@ -1,21 +1,23 @@
 ---
 layout: layouts/page.njk
 title: About
+titleEs: Nosotros
 description: Built for collectors, by collectors — the story behind the Southwest Card & Collectible Show.
 permalink: /about/
 ---
+{% from "macros/bilingual.njk" import bilingual %}
 <section class="page-hero wrapper">
-  <p class="kicker">Made for collectors · By collectors</p>
-  <h1 class="glow">About SWCCS</h1>
+  <p class="kicker" data-i18n="about.kicker">Made for collectors · By collectors</p>
+  <h1 class="glow" data-i18n="about.title">About SWCCS</h1>
 </section>
 <div class="wrapper section about">
-  <div class="arch arch--logo"><img src="{{ '/img/brand/logo.jpg' }}" alt="Southwest Card & Collectible Show logo"></div>
-  <div class="prose">{{ about.body | safe }}</div>
+  <div class="arch arch--logo"><img src="/img/brand/logo.jpg" alt="Southwest Card & Collectible Show logo" data-i18n-attr="alt:about.logoAlt"></div>
+  <div class="prose">{{ bilingual(about.body, about.bodyEs, "div", true) }}</div>
 </div>
 <section class="wrapper section">
   <div class="cta-panel">
-    <h2>Get in touch</h2>
-    <p>Questions about tables, sponsorships or the next show? The fastest way to reach us is a DM on Instagram or a message in our Discord.</p>
+    <h2 data-i18n="about.contactTitle">Get in touch</h2>
+    <p data-i18n="about.contactText">Questions about tables, sponsorships or the next show? The fastest way to reach us is a DM on Instagram or a message in our Discord.</p>
     <p class="actions">
       <a class="btn" href="{{ business.social.instagram }}" rel="noopener">Instagram</a>
       <a class="btn btn--ghost" href="{{ business.social.discord }}" rel="noopener">Discord</a>

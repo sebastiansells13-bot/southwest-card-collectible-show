@@ -1,35 +1,54 @@
 ---
 layout: layouts/page.njk
 title: Vendors
+titleEs: Vendedores
 description: Get a table at the Southwest Card & Collectible Show, and see the official vendor map.
 permalink: /vendors/
 ---
+{% from "macros/bilingual.njk" import bilingual %}
 <section class="page-hero wrapper">
-  <p class="kicker">Sell at SWCCS</p>
-  <h1 class="glow">Vendors</h1>
-  {% if vendors.status %}<p class="status-pill">{{ vendors.status }}</p>{% endif %}
-  <p class="lede">{{ vendors.intro }}</p>
+  <p class="kicker" data-i18n="vendors.kicker">Sell at SWCCS</p>
+  <h1 class="glow" data-i18n="nav.vendors">Vendors</h1>
+  {% if booking.open %}
+  <p class="status-pill">{{ bilingual(booking.openStatus, booking.openStatusEs) }}</p>
+  {% elif booking.closedStatus %}
+  <p class="status-pill">{{ bilingual(booking.closedStatus, booking.closedStatusEs) }}</p>
+  {% endif %}
+  <p class="lede">{{ bilingual(vendors.intro, vendors.introEs) }}</p>
   <p class="actions">
-    {% if booking.open %}<a class="btn" href="#pick-a-table">Pick your table</a>{% endif %}
-    <a class="btn{% if booking.open %} btn--ghost{% endif %}" href="{{ business.social.discord }}" rel="noopener">Join the Discord</a>
-    <a class="btn btn--ghost" href="{{ business.social.instagram }}" rel="noopener">DM us on Instagram</a>
+    {% if booking.open %}<a class="btn" href="#pick-a-table" data-i18n="vendors.pickTable">Pick your table</a>{% endif %}
+    <a class="btn{% if booking.open %} btn--ghost{% endif %}" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
+    <a class="btn btn--ghost" href="{{ business.social.instagram }}" rel="noopener" data-i18n="vendors.dm">DM us on Instagram</a>
   </p>
 </section>
+
+{% if booking.open %}
 {% include "components/table-picker.njk" %}
+{% else %}
+<section class="wrapper section">
+  <div class="cta-panel">
+    <h2 data-i18n="vendors.closedTitle">Table requests open soon</h2>
+    <p>{{ bilingual(booking.closedMessage, booking.closedMessageEs) }}</p>
+    <a class="btn" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
+  </div>
+</section>
+{% endif %}
+
 {% if vendors.map %}
 <section class="wrapper section">
-  <h2 class="section-title"><span>Last show's vendor map</span></h2>
+  <h2 class="section-title"><span data-i18n="vendors.lastMap">Last show's vendor map</span></h2>
   <figure class="map">
-    <a href="{{ vendors.map }}"><img src="{{ vendors.map }}" alt="Vendor floor map from the last show" loading="lazy"></a>
-    <figcaption>{{ vendors.mapCaption }}</figcaption>
+    <a href="{{ vendors.map }}"><img src="{{ vendors.map }}" alt="Vendor floor map from the last show" data-i18n-attr="alt:vendors.lastMapAlt" loading="lazy"></a>
+    <figcaption>{{ bilingual(vendors.mapCaption, vendors.mapCaptionEs) }}</figcaption>
   </figure>
 </section>
 {% endif %}
+
 <section class="wrapper section">
-  <h2 class="section-title"><span>Vendor FAQ</span></h2>
+  <h2 class="section-title"><span data-i18n="vendors.faq">Vendor FAQ</span></h2>
   <div class="faq">
     {% for f in vendors.faqs %}
-    <details><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+    <details><summary>{{ bilingual(f.q, f.qEs) }}</summary><p>{{ bilingual(f.a, f.aEs) }}</p></details>
     {% endfor %}
   </div>
 </section>

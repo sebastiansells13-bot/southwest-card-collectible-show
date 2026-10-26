@@ -1,17 +1,23 @@
 <header class="site-header">
   <div class="wrapper">
-    <a class="brand" href="{{ '/' }}">
-      <img src="{{ '/img/brand/logo.jpg' }}" alt="" width="44" height="44">
+    <a class="brand" href="/">
+      <img src="/img/brand/logo.jpg" alt="" width="44" height="44">
       <span class="brand__text">Southwest <b>Card &amp; Collectible</b> Show</span>
     </a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Menu</span><span class="nav-toggle__bars" aria-hidden="true"></span></button>
-    <nav id="site-nav" aria-label="Main">
+    <div class="site-header__tools">
+      <div class="lang-toggle" role="group" aria-label="Language" data-i18n-attr="aria-label:nav.languageLabel">
+        <button type="button" class="lang-toggle__btn" data-lang-toggle="en" aria-pressed="true" lang="en" title="English">EN</button>
+        <button type="button" class="lang-toggle__btn" data-lang-toggle="es" aria-pressed="false" lang="es" title="Español">ES</button>
+      </div>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav"><span class="sr-only" data-i18n="nav.menu">Menu</span><span class="nav-toggle__bars" aria-hidden="true"></span></button>
+    </div>
+    <nav id="site-nav" aria-label="Main" data-i18n-attr="aria-label:nav.mainLabel">
       <ul>
         {% for item in navigation %}
         {% set active = (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url)) %}
-        <li><a href="{{ item.url }}"{% if active %} class="is-active" aria-current="page"{% endif %}>{{ item.text }}</a></li>
+        <li><a href="{{ item.url }}" data-i18n="{{ item.key }}"{% if active %} class="is-active" aria-current="page"{% endif %}>{{ item.text }}</a></li>
         {% endfor %}
-        <li><a class="btn btn--small" href="{{ business.social.discord }}" rel="noopener">Join Discord</a></li>
+        <li><a class="btn btn--small" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscordShort">Join Discord</a></li>
       </ul>
     </nav>
   </div>

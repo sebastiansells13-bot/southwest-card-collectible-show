@@ -104,6 +104,7 @@ module.exports = function (eleventyConfig) {
     [assetFiles.stylesheet]: assetPaths.stylesheet.slice(1),
   });
   eleventyConfig.addPassthroughCopy({ "src/_includes/favicons": "favicons" });
+  eleventyConfig.addPassthroughCopy({ "src/_includes/js": "js" });
   
   eleventyConfig.addPassthroughCopy(".nojekyll");
 

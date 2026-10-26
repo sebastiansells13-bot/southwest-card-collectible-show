@@ -1,0 +1,14 @@
+{#
+  Renders `en` alone when `es` is empty (the honest default — no Spanish
+  version yet, so just show what's actually there). When `es` is set,
+  renders both as sibling elements tagged data-i18n-lang="en"/"es" and lets
+  src/_includes/js/i18n.js's language toggle show/hide the matching one —
+  used for business.json content (bio, tagline, disclaimer) a client can
+  optionally translate through the CMS, so a Spanish version never has to
+  be kept in sync with a second copy of the English text living in code.
+
+  `tag` picks the wrapping element (default "span"; pass "p" for a
+  standalone paragraph). `isSafe` marks `en`/`es` as already-safe HTML
+  (e.g. business.bio, a rich-text CMS field) so it isn't re-escaped.
+#}
+{% macro bilingual(en, es, tag="span", isSafe=false) %}{% if es %}<{{ tag }} data-i18n-lang="en">{{ (en | safe) if isSafe else en }}</{{ tag }}><{{ tag }} data-i18n-lang="es" hidden>{{ (es | safe) if isSafe else es }}</{{ tag }}>{% else %}{{ (en | safe) if isSafe else en }}{% endif %}{% endmacro %}

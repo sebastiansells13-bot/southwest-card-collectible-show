@@ -1,11 +1,27 @@
 {
-  "status": "Table requests are open for the next show",
-  "intro": "Want a table at the next Southwest Card & Collectible Show? Pick your spot on the floor map below and send us a request. We're always working on ways to add more tables so more vendors can be part of SWCCS.",
+  "intro": "Want a table at the next Southwest Card & Collectible Show? When table requests are open, pick your spot on the floor map below and send us a request. We're always working on ways to add more tables so more vendors can be part of SWCCS.",
+  "introEs": "¿Quieres una mesa en el próximo Southwest Card & Collectible Show? Cuando la reserva de mesas esté abierta, elige tu lugar en el mapa y envíanos tu solicitud. Siempre buscamos agregar más mesas para que más vendedores formen parte de SWCCS.",
   "map": "/img/posts/vendor-map.jpg",
   "mapCaption": "Official vendor map, October 24 show — Las Cruces Convention Center.",
+  "mapCaptionEs": "Mapa oficial de vendedores, show del 24 de octubre — Las Cruces Convention Center.",
   "faqs": [
-    { "q": "How do I reserve a table?", "a": "Pick open tables on the floor map, fill in the short form and send your request. We confirm every spot ourselves, so nobody gets double-booked. Table sales are also announced on Instagram and in our Discord first." },
-    { "q": "What can I sell?", "a": "Sports cards, Pokémon and other TCG, comics, Hot Wheels, memorabilia, toys and collectibles. If collectors want it, it probably fits." },
-    { "q": "Is there public seating for trading?", "a": "Trade Days include public seating so collectors can trade without a table. Shows are vendor tables only." }
+    {
+      "q": "How do I reserve a table?",
+      "a": "Pick open tables on the floor map, fill in the short form and send your request. We confirm every spot ourselves, so nobody gets double-booked. Table sales are also announced on Instagram and in our Discord first.",
+      "qEs": "¿Cómo reservo una mesa?",
+      "aEs": "Elige mesas disponibles en el mapa, llena el formulario y envía tu solicitud. Nosotros confirmamos cada lugar personalmente, así nadie queda con la misma mesa. La venta de mesas también se anuncia primero en Instagram y en nuestro Discord."
+    },
+    {
+      "q": "What can I sell?",
+      "a": "Sports cards, Pokémon and other TCG, comics, Hot Wheels, memorabilia, toys and collectibles. If collectors want it, it probably fits.",
+      "qEs": "¿Qué puedo vender?",
+      "aEs": "Cartas deportivas, Pokémon y otros TCG, cómics, Hot Wheels, memorabilia, juguetes y coleccionables. Si a los coleccionistas les interesa, seguro tiene lugar."
+    },
+    {
+      "q": "Is there public seating for trading?",
+      "a": "Trade Days include public seating so collectors can trade without a table. Shows are vendor tables only.",
+      "qEs": "¿Hay asientos para intercambiar?",
+      "aEs": "Los Trade Days tienen asientos para el público, así los coleccionistas pueden intercambiar sin mesa. En los shows solo hay mesas de vendedores."
+    }
   ]
 }

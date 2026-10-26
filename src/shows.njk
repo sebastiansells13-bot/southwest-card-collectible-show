@@ -1,27 +1,28 @@
 ---
 layout: layouts/page.njk
 title: Shows
+titleEs: Shows
 description: Upcoming and past Southwest Card & Collectible Shows and Trade Days in Las Cruces and Mesilla, NM.
 permalink: /shows/
 ---
 <section class="page-hero wrapper">
-  <p class="kicker">Free entry · Every time</p>
-  <h1 class="glow">Shows &amp; Trade Days</h1>
-  <p class="lede">Big convention-center shows with 145+ tables, plus laid-back Trade Days with public seating, raffles and pizza.</p>
+  <p class="kicker" data-i18n="shows.kicker">Free entry · Every time</p>
+  <h1 class="glow" data-i18n="shows.title">Shows &amp; Trade Days</h1>
+  <p class="lede" data-i18n="shows.lede">Big convention-center shows with 145+ tables, plus laid-back Trade Days with public seating, raffles and pizza.</p>
 </section>
 <section class="wrapper section">
-  <h2 class="section-title"><span>Upcoming</span></h2>
+  <h2 class="section-title"><span data-i18n="shows.upcoming">Upcoming</span></h2>
   {% set up = collections.events | upcoming %}
   {% if up.length %}
   <div class="event-grid">{% for event in up %}{% include "components/event-card.njk" %}{% endfor %}</div>
   {% else %}
-  <p class="center">Next date coming soon — <a href="{{ business.social.discord }}">join the Discord</a> to hear first.</p>
+  <p class="center"><span data-i18n="shows.none">Next date coming soon —</span> <a href="{{ business.social.discord }}" data-i18n="shows.joinToHear">join the Discord to hear first.</a></p>
   {% endif %}
 </section>
 {% set old = collections.events | past %}
 {% if old.length %}
 <section class="wrapper section">
-  <h2 class="section-title"><span>Past events</span></h2>
+  <h2 class="section-title"><span data-i18n="shows.past">Past events</span></h2>
   <div class="event-grid">{% for event in old %}{% set past = true %}{% include "components/event-card.njk" %}{% endfor %}</div>
 </section>
 {% endif %}

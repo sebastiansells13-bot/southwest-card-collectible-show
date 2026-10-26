@@ -2,38 +2,39 @@
 layout: layouts/page.njk
 title: Home
 ---
+{% from "macros/bilingual.njk" import bilingual %}
 {% set next = collections.events | upcoming | first %}
 {% set recent = collections.events | past | first %}
 <section class="hero">
   <div class="wrapper">
     <div class="arch arch--hero">
       <h1 class="sr-only">{{ business.name }}</h1>
-      <p class="kicker">{{ home.kicker }}</p>
+      <p class="kicker">{{ bilingual(home.kicker, home.kickerEs) }}</p>
       {% include "components/neon-logo.njk" %}
       {% if next %}
       <div class="hero__when">
         <p class="hero__venue">{{ next.data.venue }}<br><span>{{ next.data.address }}</span></p>
-        <p class="hero__date">{{ next.date | longDate }}</p>
+        <p class="hero__date"><time datetime="{{ next.date | htmlDateString }}" data-i18n-date="long">{{ next.date | longDate }}</time></p>
         <p class="hero__time"><span>{{ next.data.time }}</span></p>
-        <p class="script">Free Entry!</p>
+        <p class="script" data-i18n="hero.freeEntry">Free Entry!</p>
       </div>
       <p class="actions">
-        <a class="btn" href="{{ next.url }}">Show details</a>
-        <a class="btn btn--ghost" href="{{ business.social.discord }}" rel="noopener">Join the Discord</a>
+        <a class="btn" href="{{ next.url }}" data-i18n="hero.showDetails">Show details</a>
+        <a class="btn btn--ghost" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
       </p>
       {% elif recent %}
       <div class="hero__when">
-        <p class="hero__venue">Thank you for coming out to<br><span>{{ recent.data.venue }} · {{ recent.date | longDate }}</span></p>
-        <p class="hero__date">Next show date dropping soon</p>
-        <p class="script">Stay Tuned!</p>
+        <p class="hero__venue"><span data-i18n="hero.thanks">Thank you for coming out to</span><br><span>{{ recent.data.venue }} · <time datetime="{{ recent.date | htmlDateString }}" data-i18n-date="long">{{ recent.date | longDate }}</time></span></p>
+        <p class="hero__date" data-i18n="hero.nextSoon">Next show date dropping soon</p>
+        <p class="script" data-i18n="hero.stayTuned">Stay Tuned!</p>
       </div>
       <p class="actions">
-        <a class="btn" href="{{ business.social.discord }}" rel="noopener">Join the Discord</a>
-        <a class="btn btn--ghost" href="{{ business.social.instagram }}" rel="noopener">Follow on Instagram</a>
+        <a class="btn" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
+        <a class="btn btn--ghost" href="{{ business.social.instagram }}" rel="noopener" data-i18n="cta.followInstagram">Follow on Instagram</a>
       </p>
       {% else %}
-      <p class="hero__intro">Next show date coming soon — follow along on Instagram and Discord.</p>
-      <p class="actions"><a class="btn" href="{{ business.social.instagram }}" rel="noopener">Follow on Instagram</a></p>
+      <p class="hero__intro" data-i18n="hero.comingSoon">Next show date coming soon — follow along on Instagram and Discord.</p>
+      <p class="actions"><a class="btn" href="{{ business.social.instagram }}" rel="noopener" data-i18n="cta.followInstagram">Follow on Instagram</a></p>
       {% endif %}
       <div class="ribbon ribbon--inset"><span>{{ business.name }}</span></div>
     </div>
@@ -41,28 +42,28 @@ title: Home
 </section>
 
 <section class="wrapper section">
-  <p class="lede">{{ home.intro }}</p>
+  <p class="lede">{{ bilingual(home.intro, home.introEs) }}</p>
   <div class="perks">
     {% for perk in home.perks %}
-    <div class="perk"><h3>{{ perk.title }}</h3><p>{{ perk.text }}</p></div>
+    <div class="perk"><h3>{{ bilingual(perk.title, perk.titleEs) }}</h3><p>{{ bilingual(perk.text, perk.textEs) }}</p></div>
     {% endfor %}
   </div>
 </section>
 
 <section class="section section--band">
   <div class="wrapper">
-    <h2 class="section-title"><span>What's on the floor</span></h2>
+    <h2 class="section-title"><span data-i18n="home.onTheFloor">What's on the floor</span></h2>
     <ul class="tally">
       {% for c in home.categories %}
-      <li><b>{{ c.count }}</b><span>{{ c.label }}</span></li>
+      <li><b>{{ c.count }}</b><span>{{ bilingual(c.label, c.labelEs) }}</span></li>
       {% endfor %}
     </ul>
-    <p class="center"><a class="btn btn--ghost" href="{{ '/vendors/' }}">See the vendor map</a></p>
+    <p class="center">{% if booking.open %}<a class="btn btn--ghost" href="/vendors/#pick-a-table" data-i18n="home.pickTable">Pick a vendor table</a>{% else %}<a class="btn btn--ghost" href="/vendors/" data-i18n="home.vendorInfo">Vendor info</a>{% endif %}</p>
   </div>
 </section>
 
 <section class="wrapper section">
-  <h2 class="section-title"><span>Shows &amp; Trade Days</span></h2>
+  <h2 class="section-title"><span data-i18n="home.showsTitle">Shows &amp; Trade Days</span></h2>
   <div class="event-grid">
     {% for event in collections.events | upcoming %}{% include "components/event-card.njk" %}{% endfor %}
     {% for event in collections.events | past | head(2) %}{% set past = true %}{% include "components/event-card.njk" %}{% endfor %}
@@ -70,31 +71,31 @@ title: Home
 </section>
 
 <section class="wrapper section cause">
-  <div class="arch arch--flyer"><img src="{{ home.cause.image }}" alt="{{ home.cause.title }} flyer" loading="lazy"></div>
+  <div class="arch arch--flyer"><img src="{{ home.cause.image }}" alt="" loading="lazy"></div>
   <div>
-    <p class="kicker">Giving back</p>
-    <h2 class="glow">{{ home.cause.title }}</h2>
-    <p>{{ home.cause.text }}</p>
+    <p class="kicker" data-i18n="home.givingBack">Giving back</p>
+    <h2 class="glow">{{ bilingual(home.cause.title, home.cause.titleEs) }}</h2>
+    <p>{{ bilingual(home.cause.text, home.cause.textEs) }}</p>
   </div>
 </section>
 
 <section class="wrapper section">
-  <h2 class="section-title"><span>Latest from the feed</span></h2>
+  <h2 class="section-title"><span data-i18n="home.latest">Latest from the feed</span></h2>
   <div class="feed-grid">
     {% for post in collections.posts | reverse | head(6) %}
     <a class="feed-tile" href="{{ post.url }}">
       <img src="{{ post.data.image }}" alt="" loading="lazy">
-      <span class="feed-tile__caption">{{ post.data.title }}</span>
+      <span class="feed-tile__caption">{{ bilingual(post.data.title, post.data.titleEs) }}</span>
     </a>
     {% endfor %}
   </div>
-  <p class="center"><a class="btn" href="{{ business.social.instagram }}" rel="noopener">Follow {{ business.social.instagramHandle }}</a></p>
+  <p class="center"><a class="btn" href="{{ business.social.instagram }}" rel="noopener"><span data-i18n="cta.follow">Follow</span> {{ business.social.instagramHandle }}</a></p>
 </section>
 
 <section class="wrapper section">
   <div class="cta-panel">
-    <h2>Never miss a drop</h2>
-    <p>Show dates, table sales, giveaways and trade nights hit our Discord first.</p>
-    <a class="btn" href="{{ business.social.discord }}" rel="noopener">Join the Discord</a>
+    <h2 data-i18n="home.neverMiss">Never miss a drop</h2>
+    <p data-i18n="home.neverMissText">Show dates, table sales, giveaways and trade nights hit our Discord first.</p>
+    <a class="btn" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
   </div>
 </section>
