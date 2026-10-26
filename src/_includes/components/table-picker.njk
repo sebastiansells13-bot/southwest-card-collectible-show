@@ -1,0 +1,185 @@
+{% set reserved = booking.tables | byTableNumber %}
+{% set W = floorLayout.width %}{% set H = floorLayout.height %}
+<section class="wrapper section" id="pick-a-table">
+  <h2 class="section-title"><span>Pick your table</span></h2>
+  <p class="booking-show"><b>{{ booking.showName }}</b><br>{{ booking.showDate }} · {{ booking.venue }}</p>
+  <p class="lede">{{ booking.intro }}</p>
+
+  {% if booking.pricing.length %}
+  <ul class="pricing">
+    {% for p in booking.pricing %}<li><span>{{ p.label }}</span><b>{{ p.price }}</b></li>{% endfor %}
+  </ul>
+  {% endif %}
+
+  <ul class="floor-legend" aria-label="Map key">
+    <li><i class="swatch swatch--open"></i>Open</li>
+    <li><i class="swatch swatch--selected"></i>Your pick</li>
+    <li><i class="swatch swatch--pending"></i>Requested</li>
+    <li><i class="swatch swatch--taken"></i>Taken</li>
+  </ul>
+
+  <div class="floor-scroll" tabindex="0" aria-label="Floor map, scrolls sideways">
+    <div class="floor" style="aspect-ratio: {{ W }} / {{ H }}">
+      {% for l in floorLayout.landmarks %}
+      <div class="floor__landmark{% if l.muted %} floor__landmark--muted{% endif %}{% if l.entrance %} floor__landmark--entrance{% endif %}" style="left:{{ floorLayout.pct(l.x, W) }};top:{{ floorLayout.pct(l.y, H) }};width:{{ floorLayout.pct(l.w, W) }};height:{{ floorLayout.pct(l.h, H) }}" aria-hidden="true"><span>{{ l.label }}</span></div>
+      {% endfor %}
+      {% for t in floorLayout.tables %}
+      {% set r = reserved[t.n] %}
+      {% set status = (r.status | slugify) if r else "open" %}
+      <button type="button" class="floor__table is-{{ status }}" data-table="{{ t.n }}" style="left:{{ floorLayout.pct(t.x, W) }};top:{{ floorLayout.pct(t.y, H) }};width:{{ floorLayout.pct(t.w, W) }};height:{{ floorLayout.pct(t.h, H) }}"
+        {% if r or not booking.open %}disabled{% else %}aria-pressed="false"{% endif %}
+        aria-label="Table {{ t.n }}, {{ r.status if r else 'open' }}{% if r.vendor %}, {{ r.vendor }}{% endif %}"
+        title="Table {{ t.n }}{% if r %} · {{ r.status }}{% if r.vendor %} · {{ r.vendor }}{% endif %}{% endif %}">{{ t.n }}</button>
+      {% endfor %}
+    </div>
+  </div>
+  <p class="floor-hint">On a phone? Scroll the map sideways, or just type table numbers in the form.</p>
+
+  {% if booking.open %}
+  <form class="booking-form" id="booking-form" method="POST"{% if booking.formEndpoint %} action="{{ booking.formEndpoint }}"{% endif %} data-endpoint="{{ booking.formEndpoint }}" data-max="{{ booking.maxTables }}" novalidate>
+    <input type="hidden" name="_subject" value="Table request: {{ booking.showName }}">
+    <input type="hidden" name="show" value="{{ booking.showName }} ({{ booking.showDate }})">
+    <div class="booking-form__tables">
+      <label for="tables-input">Tables you want <small>(up to {{ booking.maxTables }})</small></label>
+      <input id="tables-input" name="tables" type="text" inputmode="numeric" placeholder="Tap tables on the map, or type e.g. 42, 43" autocomplete="off" required>
+      <p class="booking-form__msg" id="tables-msg" aria-live="polite"></p>
+    </div>
+    <div class="booking-form__grid">
+      <label>Your name<input name="name" type="text" autocomplete="name" required></label>
+      <label>Business / shop name<input name="business" type="text" autocomplete="organization"></label>
+      <label>Email<input name="email" type="email" autocomplete="email" required></label>
+      <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+      <label>Instagram handle<input name="instagram" type="text" placeholder="@yourshop"></label>
+    </div>
+    <fieldset class="booking-form__cats">
+      <legend>What you'll be selling</legend>
+      {% for c in booking.categories %}
+      <label><input type="checkbox" name="selling" value="{{ c }}"> {{ c }}</label>
+      {% endfor %}
+    </fieldset>
+    <label class="booking-form__notes">Anything else? <small>(power, neighbors you'd like, a backup table choice)</small><textarea name="notes" rows="3"></textarea></label>
+    <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <p class="booking-form__fine">{{ booking.confirmNote }}</p>
+    <p class="booking-form__error" id="form-error" role="alert" hidden></p>
+    <button class="btn" type="submit">Request my tables</button>
+  </form>
+
+  <div class="booking-done" id="booking-done" hidden tabindex="-1">
+    <h3 class="glow">Request ready!</h3>
+    <div id="done-sent" hidden>
+      <p>Thanks — we got your request for <b data-done-tables></b>. {{ booking.confirmNote }}</p>
+      {% if booking.paymentLink %}
+      <p>{{ booking.paymentNote or "Lock it in faster by paying your table fee now:" }}</p>
+      <p class="actions"><a class="btn" href="{{ booking.paymentLink }}" rel="noopener">Pay table fee</a></p>
+      {% endif %}
+    </div>
+    <div id="done-manual" hidden>
+      <p>Copy your request below and send it to us on Instagram or Discord. We'll confirm <b data-done-tables></b> for you.</p>
+      <textarea id="done-summary" rows="8" readonly></textarea>
+      <p class="actions">
+        <button class="btn" type="button" id="copy-summary">Copy request</button>
+        <a class="btn btn--ghost" href="{{ business.social.instagram }}" rel="noopener">Open Instagram</a>
+        <a class="btn btn--ghost" href="{{ business.social.discord }}" rel="noopener">Open Discord</a>
+      </p>
+    </div>
+  </div>
+  {% else %}
+  <p class="center status-pill">Table requests for the next show aren't open yet — check back soon.</p>
+  {% endif %}
+</section>
+
+{% if booking.open %}
+<script>
+(() => {
+  const form = document.getElementById("booking-form");
+  const input = document.getElementById("tables-input");
+  const msg = document.getElementById("tables-msg");
+  const max = Number(form.dataset.max) || 4;
+  const buttons = new Map([...document.querySelectorAll(".floor__table")].map((b) => [b.dataset.table, b]));
+  let picked = [];
+
+  const isOpen = (n) => buttons.has(n) && !buttons.get(n).disabled;
+
+  function render() {
+    buttons.forEach((b, n) => {
+      if (b.disabled) return;
+      const on = picked.includes(n);
+      b.classList.toggle("is-selected", on);
+      b.setAttribute("aria-pressed", on);
+    });
+    input.value = picked.join(", ");
+    msg.textContent = picked.length ? `${picked.length} table${picked.length > 1 ? "s" : ""} selected` : "";
+  }
+
+  buttons.forEach((b, n) => {
+    if (b.disabled) return;
+    b.addEventListener("click", () => {
+      if (picked.includes(n)) picked = picked.filter((p) => p !== n);
+      else if (picked.length >= max) { msg.textContent = `You can request up to ${max} tables — tap one to remove it first.`; return; }
+      else picked.push(n);
+      picked.sort((a, b) => a - b);
+      render();
+    });
+  });
+
+  input.addEventListener("change", () => {
+    const typed = [...new Set(input.value.match(/\d+/g) || [])];
+    const bad = typed.filter((n) => !isOpen(n));
+    picked = typed.filter(isOpen).slice(0, max).sort((a, b) => a - b);
+    render();
+    if (bad.length) msg.textContent = `Not available: ${bad.join(", ")}. Pick an open table on the map.`;
+  });
+
+  function summary(data) {
+    const line = (k, label) => (data.get(k) ? `${label}: ${data.get(k)}\n` : "");
+    return `TABLE REQUEST — ${data.get("show")}\nTables: ${picked.join(", ")}\n` +
+      line("name", "Name") + line("business", "Business") + line("email", "Email") +
+      line("phone", "Phone") + line("instagram", "Instagram") +
+      (data.getAll("selling").length ? `Selling: ${data.getAll("selling").join(", ")}\n` : "") +
+      line("notes", "Notes");
+  }
+
+  function done(sent, data) {
+    form.hidden = true;
+    const box = document.getElementById("booking-done");
+    box.hidden = false;
+    box.querySelectorAll("[data-done-tables]").forEach((el) => (el.textContent = (picked.length > 1 ? "tables " : "table ") + picked.join(", ")));
+    document.getElementById(sent ? "done-sent" : "done-manual").hidden = false;
+    if (!sent) document.getElementById("done-summary").value = summary(data);
+    box.focus();
+  }
+
+  document.getElementById("copy-summary").addEventListener("click", async (e) => {
+    const area = document.getElementById("done-summary");
+    try { await navigator.clipboard.writeText(area.value); } catch { area.select(); document.execCommand("copy"); }
+    e.target.textContent = "Copied!";
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    input.dispatchEvent(new Event("change"));
+    const err = document.getElementById("form-error");
+    const missing = [...form.querySelectorAll("[required]")].filter((f) => !f.value.trim() || !f.checkValidity());
+    if (!picked.length || missing.length) {
+      err.textContent = !picked.length ? "Pick at least one open table." : "Please add your name and a valid email.";
+      err.hidden = false;
+      (missing[0] || input).focus();
+      return;
+    }
+    err.hidden = true;
+    const data = new FormData(form);
+    data.set("tables", picked.join(", "));
+    if (!form.dataset.endpoint) return done(false, data);
+    try {
+      const res = await fetch(form.dataset.endpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
+      if (!res.ok) throw new Error(res.status);
+      done(true, data);
+    } catch {
+      err.textContent = "Something went wrong sending your request — you can copy it and DM us instead.";
+      err.hidden = false;
+      done(false, data);
+    }
+  });
+})();
+</script>
+{% endif %}

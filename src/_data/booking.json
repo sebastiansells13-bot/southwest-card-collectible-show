@@ -1,0 +1,15 @@
+{
+  "open": true,
+  "showName": "Next Southwest Card & Collectible Show",
+  "showDate": "Date announced soon",
+  "venue": "Las Cruces Convention Center",
+  "intro": "Pick the table (or tables) you want on the floor map, then send us your request. We'll confirm your spot, and the map updates once it's locked in.",
+  "maxTables": 4,
+  "pricing": [],
+  "categories": ["Sports Cards", "Pokémon", "Other TCG", "Comics", "Hot Wheels", "Clothing & Memorabilia", "Toys & Other Collectibles"],
+  "formEndpoint": "",
+  "paymentLink": "",
+  "paymentNote": "",
+  "confirmNote": "We review every request and confirm by email or Instagram DM, usually within a couple of days. Your table isn't reserved until we confirm it.",
+  "tables": []
+}

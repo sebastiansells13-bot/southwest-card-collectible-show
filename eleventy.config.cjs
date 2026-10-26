@@ -75,6 +75,12 @@ module.exports = function (eleventyConfig) {
     events.filter((e) => e.date < startOfToday()).reverse()
   );
 
+  // booking.json lists only tables that aren't open; key them by number so
+  // the floor map can look each table up.
+  eleventyConfig.addFilter("byTableNumber", (list) =>
+    Object.fromEntries((list || []).map((t) => [String(t.number), t]))
+  );
+
   eleventyConfig.addFilter("head", (array, n) => {
     if (n < 0) return array.slice(n);
     return array.slice(0, n);

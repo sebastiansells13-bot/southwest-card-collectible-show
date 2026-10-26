@@ -20,6 +20,12 @@ the site diverges from the template.
   hero. Each event gets a page at `/shows/<file-slug>/`.
 - **News**: `src/posts/*.md`, served at `/news/<file-slug>/`, shown as an
   Instagram-style grid.
+- **Table picker**: `/vendors/#pick-a-table`. Floor geometry is in
+  `src/_data/floorLayout.js` (traced from the October 2026 vendor map, 141 tables);
+  which tables are taken lives in `booking.json` (CMS "Table Booking"), which lists only
+  non-open tables. The form posts to `booking.formEndpoint` (Formspree-compatible, JSON
+  `Accept`); with no endpoint it falls back to a copy-and-DM summary. Spots are
+  confirmed by the organizer, never auto-reserved — there's no backend.
 - **Page copy**: `src/_data/{home,vendors,sponsors,about,business}.json`, all editable
   in the CMS.
 - **Images**: flyers from Instagram live in `src/_includes/img/posts/`; sponsor logos go
