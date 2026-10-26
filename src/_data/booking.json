@@ -1,9 +1,7 @@
 {
-  "open": true,
+  "open": false,
   "openStatus": "Table requests are open for the next show",
   "openStatusEs": "La reserva de mesas para el próximo show está abierta",
-  "closedStatus": "",
-  "closedStatusEs": "",
   "closedMessage": "We're not taking table requests for the next show just yet. Join the Discord or follow us on Instagram — we announce it there first.",
   "closedMessageEs": "Todavía no estamos recibiendo solicitudes de mesas para el próximo show. Únete al Discord o síguenos en Instagram — ahí lo anunciamos primero.",
   "showName": "Next Southwest Card & Collectible Show",
@@ -14,7 +12,6 @@
   "intro": "Pick the table (or tables) you want on the floor map, then send us your request. We'll confirm your spot, and the map updates once it's locked in.",
   "introEs": "Elige la mesa (o mesas) que quieras en el mapa y envíanos tu solicitud. Confirmamos tu lugar y el mapa se actualiza en cuanto quede apartado.",
   "maxTables": 4,
-  "pricing": [],
   "categories": [
     {
       "label": "Sports Cards",
@@ -46,10 +43,5 @@
     }
   ],
   "confirmNote": "We review every request and confirm by email or Instagram DM, usually within a couple of days. Your table isn't reserved until we confirm it.",
-  "confirmNoteEs": "Revisamos cada solicitud y confirmamos por correo o mensaje de Instagram, normalmente en un par de días. Tu mesa no está apartada hasta que la confirmemos.",
-  "formEndpoint": "",
-  "paymentLink": "",
-  "paymentNote": "",
-  "paymentNoteEs": "",
-  "tables": []
+  "confirmNoteEs": "Revisamos cada solicitud y confirmamos por correo o mensaje de Instagram, normalmente en un par de días. Tu mesa no está apartada hasta que la confirmemos."
 }
