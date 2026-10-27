@@ -38,21 +38,21 @@
   </div>
   <p class="floor-hint" data-i18n="picker.hint">On a phone? Scroll the map sideways, or just type table numbers in the form.</p>
 
-  <form class="booking-form" id="booking-form" method="POST"{% if booking.formEndpoint %} action="{{ booking.formEndpoint }}"{% endif %} data-endpoint="{{ booking.formEndpoint }}" data-max="{{ booking.maxTables }}" novalidate>
+  <form class="booking-form" id="booking-form" method="POST"{% set endpoint = booking.formEndpoint | safeUrl({ httpsOnly: true }) %}{% if endpoint %} action="{{ endpoint }}"{% endif %} data-endpoint="{{ endpoint }}" data-max="{{ booking.maxTables }}" novalidate>
     <input type="hidden" name="_subject" value="Table request: {{ booking.showName }}">
     <input type="hidden" name="show" value="{{ booking.showName }} ({{ booking.showDate }})">
     <input type="hidden" name="language" value="en">
     <div class="booking-form__tables">
       <label for="tables-input"><span data-i18n="picker.tablesLabel">Tables you want</span> <small data-i18n="picker.upTo" data-i18n-vars="{{ { max: booking.maxTables } | dump }}">(up to {{ booking.maxTables }})</small></label>
-      <input id="tables-input" name="tables" type="text" inputmode="numeric" placeholder="Tap tables on the map, or type e.g. 42, 43" data-i18n-placeholder="picker.tablesPlaceholder" autocomplete="off" required>
+      <input id="tables-input" name="tables" type="text" inputmode="numeric" maxlength="40" placeholder="Tap tables on the map, or type e.g. 42, 43" data-i18n-placeholder="picker.tablesPlaceholder" autocomplete="off" required>
       <p class="booking-form__msg" id="tables-msg" aria-live="polite"></p>
     </div>
     <div class="booking-form__grid">
-      <label><span data-i18n="form.name">Your name</span><input name="name" type="text" autocomplete="name" required></label>
-      <label><span data-i18n="form.business">Business / shop name</span><input name="business" type="text" autocomplete="organization"></label>
-      <label><span data-i18n="form.email">Email</span><input name="email" type="email" autocomplete="email" required></label>
-      <label><span data-i18n="form.phone">Phone</span><input name="phone" type="tel" autocomplete="tel"></label>
-      <label><span data-i18n="form.instagram">Instagram handle</span><input name="instagram" type="text" placeholder="@yourshop" data-i18n-placeholder="form.instagramPlaceholder"></label>
+      <label><span data-i18n="form.name">Your name</span><input name="name" type="text" autocomplete="name" maxlength="100" required></label>
+      <label><span data-i18n="form.business">Business / shop name</span><input name="business" type="text" autocomplete="organization" maxlength="120"></label>
+      <label><span data-i18n="form.email">Email</span><input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+      <label><span data-i18n="form.phone">Phone</span><input name="phone" type="tel" autocomplete="tel" maxlength="30"></label>
+      <label><span data-i18n="form.instagram">Instagram handle</span><input name="instagram" type="text" maxlength="60" placeholder="@yourshop" data-i18n-placeholder="form.instagramPlaceholder"></label>
     </div>
     <fieldset class="booking-form__cats">
       <legend data-i18n="form.selling">What you'll be selling</legend>
@@ -60,9 +60,10 @@
       <label><input type="checkbox" name="selling" value="{{ c.label }}"> {{ bilingual(c.label, c.labelEs) }}</label>
       {% endfor %}
     </fieldset>
-    <label class="booking-form__notes"><span><span data-i18n="form.notes">Anything else?</span> <small data-i18n="form.notesHint">(power, neighbors you'd like, a backup table choice)</small></span><textarea name="notes" rows="3"></textarea></label>
+    <label class="booking-form__notes"><span><span data-i18n="form.notes">Anything else?</span> <small data-i18n="form.notesHint">(power, neighbors you'd like, a backup table choice)</small></span><textarea name="notes" rows="3" maxlength="1000"></textarea></label>
     <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
     <p class="booking-form__fine">{{ bilingual(booking.confirmNote, booking.confirmNoteEs) }}</p>
+    <p class="booking-form__fine" data-i18n="form.privacy{{ 'Sent' if endpoint else 'Local' }}">{% if endpoint %}We only use these details to arrange your table. They're emailed to the show organizers through our form service and never sold or shared.{% else %}Nothing is sent from this page: you'll copy your request and send it to us yourself. We only use your details to arrange your table.{% endif %}</p>
     <p class="booking-form__error" id="form-error" role="alert" hidden></p>
     <button class="btn" type="submit" data-i18n="form.submit">Request my tables</button>
   </form>
@@ -73,7 +74,7 @@
       <p><span data-i18n="done.thanks">Thanks — we got your request for</span> <b data-done-tables></b>. {{ bilingual(booking.confirmNote, booking.confirmNoteEs) }}</p>
       {% if booking.paymentLink %}
       <p>{% if booking.paymentNote %}{{ bilingual(booking.paymentNote, booking.paymentNoteEs) }}{% else %}<span data-i18n="done.payNote">Lock it in faster by paying your table fee now:</span>{% endif %}</p>
-      <p class="actions"><a class="btn" href="{{ booking.paymentLink }}" rel="noopener" data-i18n="done.pay">Pay table fee</a></p>
+      <p class="actions"><a class="btn" href="{{ booking.paymentLink | safeUrl }}" rel="noopener" data-i18n="done.pay">Pay table fee</a></p>
       {% endif %}
     </div>
     <div id="done-manual" hidden>
@@ -81,8 +82,8 @@
       <textarea id="done-summary" rows="8" readonly aria-label="Your request" data-i18n-attr="aria-label:done.summaryLabel"></textarea>
       <p class="actions">
         <button class="btn" type="button" id="copy-summary" data-i18n="done.copy">Copy request</button>
-        <a class="btn btn--ghost" href="{{ business.social.instagram }}" rel="noopener" data-i18n="done.openInstagram">Open Instagram</a>
-        <a class="btn btn--ghost" href="{{ business.social.discord }}" rel="noopener" data-i18n="done.openDiscord">Open Discord</a>
+        <a class="btn btn--ghost" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="done.openInstagram">Open Instagram</a>
+        <a class="btn btn--ghost" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="done.openDiscord">Open Discord</a>
       </p>
     </div>
   </div>

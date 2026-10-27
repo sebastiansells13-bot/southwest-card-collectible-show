@@ -19,8 +19,8 @@ description: Get a vendor table at the Southwest Card & Collectible Show in Las 
   <p class="lede">{{ bilingual(vendors.intro, vendors.introEs) }}</p>
   <p class="actions">
     {% if booking.open %}<a class="btn" href="#pick-a-table" data-i18n="vendors.pickTable">Pick your table</a>{% endif %}
-    <a class="btn{% if booking.open %} btn--ghost{% endif %}" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
-    <a class="btn btn--ghost" href="{{ business.social.instagram }}" rel="noopener" data-i18n="vendors.dm">DM us on Instagram</a>
+    <a class="btn{% if booking.open %} btn--ghost{% endif %}" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
+    <a class="btn btn--ghost" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="vendors.dm">DM us on Instagram</a>
   </p>
 </section>
 
@@ -31,7 +31,7 @@ description: Get a vendor table at the Southwest Card & Collectible Show in Las 
   <div class="cta-panel">
     <h2 data-i18n="vendors.closedTitle">Table requests open soon</h2>
     <p>{{ bilingual(booking.closedMessage, booking.closedMessageEs) }}</p>
-    <a class="btn" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
+    <a class="btn" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
   </div>
 </section>
 {% endif %}
@@ -40,7 +40,7 @@ description: Get a vendor table at the Southwest Card & Collectible Show in Las 
 <section class="wrapper section">
   <h2 class="section-title"><span data-i18n="vendors.lastMap">Last show's vendor map</span></h2>
   <figure class="map">
-    <a href="{{ vendors.map }}"><img src="{{ vendors.map }}" alt="Vendor floor map from the last show" data-i18n-attr="alt:vendors.lastMapAlt" loading="lazy"></a>
+    <a href="{{ vendors.map | safeUrl }}"><img src="{{ vendors.map }}" alt="Vendor floor map from the last show" data-i18n-attr="alt:vendors.lastMapAlt" loading="lazy"></a>
     <figcaption>{{ bilingual(vendors.mapCaption, vendors.mapCaptionEs) }}</figcaption>
   </figure>
 </section>

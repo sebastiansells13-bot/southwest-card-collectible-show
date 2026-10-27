@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>
-    // Hide the page until i18n.js has swapped in Spanish, so a returning
-    // Spanish visitor never sees an English flash. i18n.js removes the
-    // class; the timeout is a safety net if that script fails to load.
-    try { if (localStorage.getItem("lang") === "es") { document.documentElement.classList.add("i18n-pending"); setTimeout(function () { document.documentElement.classList.remove("i18n-pending"); }, 1500); } } catch (e) {}
-  </script>
+  {#- GitHub Pages can't send response headers, so the CSP lives here. The
+      form endpoint's origin is allowed only when one is set in the CMS. -#}
+  {%- set formOrigin = booking.formEndpoint | safeUrl({ httpsOnly: true }) | urlOrigin %}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'{% if formOrigin %} {{ formOrigin }}{% endif %}; form-action 'self'{% if formOrigin %} {{ formOrigin }}{% endif %}; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script src="/js/lang-early.js"></script>
   {%- set siteName = business.name or metadata.title -%}
   {%- if page.url == "/" -%}
     {%- set pageTitle = metadata.homeTitle -%}{%- set pageTitleEs = metadata.homeTitleEs -%}
@@ -52,15 +52,9 @@
     {{ content | safe }}
   </main>
   {% include "components/footer.njk" %}
-  <script type="application/json" id="i18n-data">{{ i18n | dump | safe }}</script>
+  <script type="application/json" id="i18n-data">{{ i18n | jsonld | safe }}</script>
   <script src="/js/i18n-runtime.js" defer></script>
   <script src="/js/i18n.js" defer></script>
-  <script>
-    const t = document.querySelector(".nav-toggle");
-    t && t.addEventListener("click", () => {
-      const open = document.body.classList.toggle("nav-open");
-      t.setAttribute("aria-expanded", open);
-    });
-  </script>
+  <script src="/js/nav.js" defer></script>
 </body>
 </html>

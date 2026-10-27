@@ -106,8 +106,27 @@ module.exports = function (eleventyConfig) {
     };
   });
 
-  // JSON for a <script type="application/ld+json">; escaping "<" keeps CMS
-  // text from ever closing the script tag.
+  // Links typed into the CMS (social, payment, maps, sponsors) only render if
+  // they're http(s)/mailto/tel or a site path, so a pasted "javascript:" or
+  // "data:" URL can never become a clickable script. Anything else → "#".
+  eleventyConfig.addFilter("safeUrl", (url, { httpsOnly = false } = {}) => {
+    const value = String(url || "").trim();
+    if (!value) return "";
+    if (/^\/(?!\/)/.test(value)) return httpsOnly ? "" : value;
+    const allowed = httpsOnly ? /^https:\/\//i : /^(https?:\/\/|mailto:|tel:)/i;
+    return allowed.test(value) ? value : httpsOnly ? "" : "#";
+  });
+
+  eleventyConfig.addFilter("urlOrigin", (url) => {
+    try {
+      return url ? new URL(url).origin : "";
+    } catch {
+      return "";
+    }
+  });
+
+  // JSON for an inline <script> data block (JSON-LD, the i18n dictionary);
+  // escaping "<" keeps CMS text from ever closing the script tag.
   eleventyConfig.addFilter("jsonld", (obj) => JSON.stringify(obj).replace(/</g, "\\u003c"));
 
   eleventyConfig.addFilter("isoDate", (dateObj) =>

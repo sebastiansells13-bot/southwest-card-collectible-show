@@ -46,6 +46,17 @@ the site diverges from the template.
   prefix; pages with `noindex: true` are left out. `optimize-media.mjs` only rewrites
   `src`/`href` to WebP, so og:image and JSON-LD keep the JPG for link previews.
   `robots.txt` and `llms.txt` only take effect at a domain root.
+- **Security**:
+  - CSP is a `<meta>` in `base.njk` (GitHub Pages can't send headers):
+    `script-src 'self'`, so never add inline `<script>` code; put it in
+    `src/_includes/js/`. JSON data blocks (`application/json`, `ld+json`) are fine and
+    go through the `jsonld` filter, which escapes `<`.
+  - The form endpoint's origin is added to `connect-src`/`form-action` automatically.
+  - Every href that comes from the CMS goes through `safeUrl`, which allows only
+    http(s), mailto, tel or a site path; the form endpoint must be https.
+  - Rich-text CMS fields render as HTML: editors are repo collaborators, so they're
+    trusted, and the CSP blocks any script that slips into that HTML.
+  - Actions are pinned to commit SHAs and Dependabot updates them weekly.
 - **Page copy**: `src/_data/{home,vendors,sponsors,about,business}.json`, all editable
   in the CMS.
 - **Images**: flyers from Instagram live in `src/_includes/img/posts/`; sponsor logos go

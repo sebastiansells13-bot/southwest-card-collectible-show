@@ -9,9 +9,9 @@
     <div>
       <h2 data-i18n="footer.follow">Follow along</h2>
       <ul>
-        <li><a href="{{ business.social.instagram }}" rel="noopener">Instagram {{ business.social.instagramHandle }}</a></li>
-        <li><a href="{{ business.social.discord }}" rel="noopener" data-i18n="footer.discord">Discord community</a></li>
-        {% if business.social.facebook %}<li><a href="{{ business.social.facebook }}" rel="noopener">Facebook</a></li>{% endif %}
+        <li><a href="{{ business.social.instagram | safeUrl }}" rel="noopener">Instagram {{ business.social.instagramHandle }}</a></li>
+        <li><a href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="footer.discord">Discord community</a></li>
+        {% if business.social.facebook %}<li><a href="{{ business.social.facebook | safeUrl }}" rel="noopener">Facebook</a></li>{% endif %}
         {% if business.email %}<li><a href="mailto:{{ business.email }}">{{ business.email }}</a></li>{% endif %}
       </ul>
     </div>

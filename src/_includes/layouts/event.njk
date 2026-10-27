@@ -25,7 +25,7 @@ layout: layouts/base.njk
     <div class="prose"{% if bodyEs %} data-i18n-lang="en"{% endif %}>{{ content | safe }}</div>
     {% if bodyEs %}<div class="prose" data-i18n-lang="es" hidden>{{ bodyEs | safe }}</div>{% endif %}
     <p class="actions">
-      {% if mapLink %}<a class="btn" href="{{ mapLink }}" rel="noopener" data-i18n="event.directions">Get directions</a>{% endif %}
+      {% if mapLink %}<a class="btn" href="{{ mapLink | safeUrl }}" rel="noopener" data-i18n="event.directions">Get directions</a>{% endif %}
       <a class="btn btn--ghost" href="/shows/" data-i18n="event.allShows">All shows</a>
     </p>
   </div>
