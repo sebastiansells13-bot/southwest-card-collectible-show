@@ -40,6 +40,7 @@
 
   <form class="booking-form" id="booking-form" method="POST"{% set endpoint = booking.formEndpoint | safeUrl({ httpsOnly: true }) %}{% if endpoint %} action="{{ endpoint }}"{% endif %} data-endpoint="{{ endpoint }}" data-max="{{ booking.maxTables }}" novalidate>
     <input type="hidden" name="_subject" value="Table request: {{ booking.showName }}">
+    <input type="hidden" name="_template" value="table">
     <input type="hidden" name="show" value="{{ booking.showName }} ({{ booking.showDate }})">
     <input type="hidden" name="language" value="en">
     <div class="booking-form__tables">
@@ -61,7 +62,7 @@
       {% endfor %}
     </fieldset>
     <label class="booking-form__notes"><span><span data-i18n="form.notes">Anything else?</span> <small data-i18n="form.notesHint">(power, neighbors you'd like, a backup table choice)</small></span><textarea name="notes" rows="3" maxlength="1000"></textarea></label>
-    <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
     <p class="booking-form__fine">{{ bilingual(booking.confirmNote, booking.confirmNoteEs) }}</p>
     <p class="booking-form__fine" data-i18n="form.privacy{{ 'Sent' if endpoint else 'Local' }}">{% if endpoint %}We only use these details to arrange your table. They're emailed to the show organizers through our form service and never sold or shared.{% else %}Nothing is sent from this page: you'll copy your request and send it to us yourself. We only use your details to arrange your table.{% endif %}</p>
     <p class="booking-form__error" id="form-error" role="alert" hidden></p>

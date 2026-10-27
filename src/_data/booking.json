@@ -43,5 +43,6 @@
     }
   ],
   "confirmNote": "We review every request and confirm by email or Instagram DM, usually within a couple of days. Your table isn't reserved until we confirm it.",
-  "confirmNoteEs": "Revisamos cada solicitud y confirmamos por correo o mensaje de Instagram, normalmente en un par de días. Tu mesa no está apartada hasta que la confirmemos."
+  "confirmNoteEs": "Revisamos cada solicitud y confirmamos por correo o mensaje de Instagram, normalmente en un par de días. Tu mesa no está apartada hasta que la confirmemos.",
+  "formEndpoint": "https://formsubmit.co/ajax/tables@swccshows.com"
 }

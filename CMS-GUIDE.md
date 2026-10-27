@@ -26,6 +26,9 @@ You can update the Southwest Card & Collectible Show website yourself — no cod
     you're waiting on payment.
   - For a new show, update the show name and date and clear Reserved Tables to start
     with a blank map.
+  - Table requests arrive by email at **tables@swccshows.com**, which forwards to
+    swccshow@gmail.com. Each one lists the tables, the vendor's contact details and what
+    they sell, and replying goes straight to the vendor.
 - **Vendors Page** — the intro, last show's vendor map image and the FAQ.
 - **Sponsors** — add, remove or reorder sponsors, with an optional logo and link.
 - **About Page** — your story.
