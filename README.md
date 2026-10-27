@@ -3,7 +3,7 @@
 Website for the Southwest Card & Collectible Show (SWCCS) — free-entry card and
 collectible shows and Trade Days in Las Cruces, NM. Built for collectors, by collectors.
 
-**Live preview:** https://sebastiansells13-bot.github.io/southwest-card-collectible-show/
+**Live site:** https://swccshows.com
 
 Eleventy (11ty) + Nunjucks, content editing through [Pages CMS](https://pagescms.org),
 deployed to GitHub Pages by GitHub Actions on every push to `main`.
@@ -15,7 +15,7 @@ npm install
 npm start
 ```
 
-Visit http://localhost:8080/southwest-card-collectible-show/.
+Visit http://localhost:8080/.
 
 ## Docs
 

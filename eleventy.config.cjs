@@ -173,8 +173,8 @@ module.exports = function (eleventyConfig) {
 
   return {
     templateFormats: ["md", "njk", "html", "liquid"],
-    // GitHub Pages project URL; set back to "/" once a custom domain is pointed here.
-    pathPrefix: "/southwest-card-collectible-show/",
+    // Served from the root of swccshows.com (custom domain on GitHub Pages).
+    pathPrefix: "/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     dataTemplateEngine: "njk",
