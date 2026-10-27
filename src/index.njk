@@ -8,7 +8,7 @@ title: Home
 <section class="hero">
   <div class="wrapper">
     <div class="arch arch--hero">
-      <h1 class="sr-only">{{ business.name }}</h1>
+      <h1 class="sr-only"><span>{{ business.name }}</span> — <span data-i18n="home.h1">card, Pokémon &amp; collectible show in Las Cruces, NM</span></h1>
       <p class="kicker">{{ bilingual(home.kicker, home.kickerEs) }}</p>
       {% include "components/neon-logo.njk" %}
       {% if next %}
@@ -71,7 +71,7 @@ title: Home
 </section>
 
 <section class="wrapper section cause">
-  <div class="arch arch--flyer"><img src="{{ home.cause.image }}" alt="" loading="lazy"></div>
+  <div class="arch arch--flyer"><img src="{{ home.cause.image }}" alt="{{ home.cause.title }} flyer" data-i18n-attr="alt:img.flyerOf" data-i18n-vars="{{ { name: home.cause.titleEs or home.cause.title } | dump }}" loading="lazy"></div>
   <div>
     <p class="kicker" data-i18n="home.givingBack">Giving back</p>
     <h2 class="glow">{{ bilingual(home.cause.title, home.cause.titleEs) }}</h2>

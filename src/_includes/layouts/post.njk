@@ -6,7 +6,7 @@ layout: layouts/base.njk
   <p class="kicker"><time datetime="{{ page.date | htmlDateString }}" data-i18n-date="readable">{{ page.date | readableDate }}</time></p>
   <h1 class="glow">{{ bilingual(title, titleEs) }}</h1>
   <div class="post__grid">
-    {% if image %}<div class="arch arch--flyer"><img src="{{ image }}" alt=""></div>{% endif %}
+    {% if image %}<div class="arch arch--flyer"><img src="{{ image }}" alt="{{ title }}" data-i18n-attr="alt:img.postImage" data-i18n-vars="{{ { name: titleEs or title } | dump }}"></div>{% endif %}
     <div>
       <div class="prose"{% if bodyEs %} data-i18n-lang="en"{% endif %}>{{ content | safe }}</div>
       {% if bodyEs %}<div class="prose" data-i18n-lang="es" hidden>{{ bodyEs | safe }}</div>{% endif %}

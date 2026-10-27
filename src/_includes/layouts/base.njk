@@ -9,14 +9,36 @@
     // class; the timeout is a safety net if that script fails to load.
     try { if (localStorage.getItem("lang") === "es") { document.documentElement.classList.add("i18n-pending"); setTimeout(function () { document.documentElement.classList.remove("i18n-pending"); }, 1500); } } catch (e) {}
   </script>
-  <title{% if titleEs %} data-i18n-title-es="{{ titleEs }}"{% endif %}>{% if title and title != "Home" %}{{ title }} · {% endif %}{{ business.name or metadata.title }}</title>
-  <meta name="description" content="{{ description or metadata.description }}">
+  {%- set siteName = business.name or metadata.title -%}
+  {%- if page.url == "/" -%}
+    {%- set pageTitle = metadata.homeTitle -%}{%- set pageTitleEs = metadata.homeTitleEs -%}
+  {%- else -%}
+    {#- Short brand suffix keeps inner-page titles near 60 characters. -#}
+    {%- set pageTitle = (seoTitle or title) + " · " + (business.shortName or siteName) -%}{%- set pageTitleEs = seoTitleEs or titleEs -%}
+  {%- endif -%}
+  {%- set pageDescription = description or metadata.description -%}
+  {%- set canonical = metadata.url + page.url -%}
+  {%- set socialImage = metadata.url + (image or flyer or metadata.defaultImage) %}
+  <title{% if pageTitleEs %} data-i18n-title-es="{{ pageTitleEs }}"{% endif %}>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDescription }}">
+  {% if noindex %}<meta name="robots" content="noindex">{% else %}<link rel="canonical" href="{{ canonical }}">{% endif %}
   <meta name="theme-color" content="#0a0a0c">
-  <meta property="og:title" content="{{ title if title and title != 'Home' else business.name }}">
-  <meta property="og:description" content="{{ description or metadata.description }}">
-  <meta property="og:image" content="{{ metadata.url }}{{ (image or flyer or '/img/posts/october-show-flyer.jpg') }}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{{ 'article' if (tags and 'posts' in tags) else 'website' }}">
+  <meta property="og:site_name" content="{{ siteName }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDescription }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image" content="{{ socialImage }}">
+  <meta property="og:image:alt" content="{{ (seoTitle or title) if page.url != '/' else siteName }} flyer">
+  <meta property="og:locale" content="{{ metadata.locale }}">
+  <meta property="og:locale:alternate" content="es_MX">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ pageTitle }}">
+  <meta name="twitter:description" content="{{ pageDescription }}">
+  <meta name="twitter:image" content="{{ socialImage }}">
+  {% include "components/structured-data.njk" %}
   <link rel="icon" href="/img/brand/logo.jpg">
+  <link rel="apple-touch-icon" href="/img/brand/logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">

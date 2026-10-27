@@ -3,4 +3,20 @@ permalink: /sitemap.xml
 layout: null
 eleventyExcludeFromCollections: true
 ---
-{% sitemap collections.all %}
+{#- Hand-rolled so every <loc> carries the GitHub Pages path prefix
+    (metadata.url); the sitemap plugin dropped it. Shows and news posts get
+    their own date as lastmod; other pages change whenever the CMS does, so
+    they leave lastmod out rather than claim a build time. -#}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in collections.all %}
+{%- if item.url and not item.data.noindex %}
+  <url>
+    <loc>{{ metadata.url }}{{ item.url }}</loc>
+    {%- if "/events/" in item.inputPath or "/posts/" in item.inputPath %}
+    <lastmod>{{ item.date | isoDate }}</lastmod>
+    {%- endif %}
+  </url>
+{%- endif %}
+{%- endfor %}
+</urlset>

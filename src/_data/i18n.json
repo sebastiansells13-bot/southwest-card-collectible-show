@@ -27,6 +27,7 @@
   "hero.stayTuned": { "en": "Stay Tuned!", "es": "¡Pendientes!" },
   "hero.comingSoon": { "en": "Next show date coming soon — follow along on Instagram and Discord.", "es": "Muy pronto la fecha del próximo show — síguenos en Instagram y Discord." },
 
+  "home.h1": { "en": "card, Pokémon & collectible show in Las Cruces, NM", "es": "show de cartas, Pokémon y coleccionables en Las Cruces, NM" },
   "home.onTheFloor": { "en": "What's on the floor", "es": "Lo que vas a encontrar" },
   "home.pickTable": { "en": "Pick a vendor table", "es": "Elige tu mesa de vendedor" },
   "home.vendorInfo": { "en": "Vendor info", "es": "Información para vendedores" },
@@ -47,7 +48,6 @@
   "event.free": { "en": "Free", "es": "Gratis" },
   "event.directions": { "en": "Get directions", "es": "Cómo llegar" },
   "event.allShows": { "en": "All shows", "es": "Todos los shows" },
-  "event.flyerAlt": { "en": "Event flyer", "es": "Flyer del evento" },
 
   "post.allNews": { "en": "All news", "es": "Todas las noticias" },
   "news.kicker": { "en": "From the feed", "es": "De nuestras redes" },
@@ -134,6 +134,9 @@
   "about.logoAlt": { "en": "Southwest Card & Collectible Show logo", "es": "Logo de Southwest Card & Collectible Show" },
   "about.contactTitle": { "en": "Get in touch", "es": "Contáctanos" },
   "about.contactText": { "en": "Questions about tables, sponsorships or the next show? The fastest way to reach us is a DM on Instagram or a message in our Discord.", "es": "¿Preguntas sobre mesas, patrocinios o el próximo show? La forma más rápida de contactarnos es por mensaje en Instagram o en nuestro Discord." },
+
+  "img.flyerOf": { "en": "{name} flyer", "es": "Flyer de {name}" },
+  "img.postImage": { "en": "{name}", "es": "{name}" },
 
   "notFound.title": { "en": "Page not found", "es": "Página no encontrada" },
   "notFound.text": { "en": "Sorry, that page doesn't exist.", "es": "Lo sentimos, esa página no existe." },

@@ -8,7 +8,7 @@ layout: layouts/base.njk
 </section>
 <div class="wrapper event-detail">
   <div class="arch arch--flyer">
-    {% if flyer %}<img src="{{ flyer }}" alt="" data-i18n-attr="alt:event.flyerAlt">{% endif %}
+    {% if flyer %}<img src="{{ flyer }}" alt="{{ title }} flyer, {{ page.date | longDate }}, {{ venue }}" data-i18n-attr="alt:img.flyerOf" data-i18n-vars="{{ { name: titleEs or title } | dump }}">{% endif %}
   </div>
   <div class="event-detail__info">
     <dl class="facts">

@@ -54,8 +54,11 @@ async function main() {
   for (const htmlPath of htmlFiles) {
     let html = await readFile(htmlPath, "utf8");
     const before = html;
-    html = html.replace(/(["'])([^"'<>]+?)\.(jpe?g|png)\1/gi, (match, quote, base, ext) => {
-      return `${quote}${base}.webp${quote}`;
+    // Only src/href attributes: og:image / JSON-LD keep pointing at the
+    // original JPG/PNG (still deployed), since some link-preview scrapers
+    // don't handle WebP.
+    html = html.replace(/(\b(?:src|href)=)(["'])([^"'<>]+?)\.(jpe?g|png)\2/gi, (match, attr, quote, base) => {
+      return `${attr}${quote}${base}.webp${quote}`;
     });
     if (html !== before) {
       await writeFile(htmlPath, html, "utf8");

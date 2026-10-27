@@ -1,0 +1,30 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+{#- Plain text, not HTML: every value is marked safe so "&" isn't escaped. -#}
+{%- set next = collections.events | upcoming | first -%}
+# {{ business.name | safe }}
+
+> {{ business.tagline | safe }}
+
+{{ metadata.description | safe }}
+
+- Location: {{ business.address | safe }}
+- Entry: free at every show and Trade Day
+- Instagram: {{ business.social.instagram | safe }}
+- Discord: {{ business.social.discord | safe }}
+{% if next %}
+## Next event
+
+- {{ next.data.title | safe }} ({{ next.data.kind | safe }}) — {{ next.date | longDate }}, {{ next.data.time | safe }}
+- {{ next.data.venue | safe }}, {{ next.data.address | safe }}
+- Details: {{ metadata.url | safe }}{{ next.url | safe }}
+{% endif %}
+## Pages
+
+- [Shows & Trade Days]({{ metadata.url | safe }}/shows/): upcoming and past events
+- [Vendors]({{ metadata.url | safe }}/vendors/): table requests, floor map, vendor FAQ
+- [Sponsors]({{ metadata.url | safe }}/sponsors/): businesses that support the show
+- [News]({{ metadata.url | safe }}/news/): announcements and recaps
+- [About]({{ metadata.url | safe }}/about/): who runs the show and how to reach us

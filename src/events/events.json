@@ -1,4 +1,9 @@
 {
   "layout": "layouts/event.njk",
-  "permalink": "/shows/{{ page.date | htmlDateString }}-{{ page.fileSlug }}/"
+  "permalink": "/shows/{{ page.date | htmlDateString }}-{{ page.fileSlug }}/",
+  "eleventyComputed": {
+    "seoTitle": "{{ title | safe }} – {{ page.date | usDate }}",
+    "seoTitleEs": "{{ (titleEs or title) | safe }} – {{ page.date | usDate }}",
+    "description": "{{ kind | safe }} on {{ page.date | longDate }}, {{ time | safe }}, at {{ venue | safe }}, {{ address | safe }}. Free entry."
+  }
 }
