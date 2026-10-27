@@ -105,7 +105,7 @@ content:
       - name: formEndpoint
         label: Form Endpoint (developer setting)
         type: string
-        description: Formspree form URL that emails you each request. If blank, vendors get a copy-and-DM summary instead.
+        description: "Where requests are emailed. Currently FormSubmit sending to tables@swccshows.com (https://formsubmit.co/ajax/tables@swccshows.com). If blank, vendors get a copy-and-DM summary instead."
       - name: paymentLink
         label: Payment Link
         type: string

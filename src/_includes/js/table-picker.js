@@ -108,7 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
     submit.disabled = true;
     try {
       const res = await fetch(form.dataset.endpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
-      if (!res.ok) throw new Error(res.status);
+      // FormSubmit answers 200 with {"success": "false"} while the inbox
+      // hasn't activated the form yet, so check the body, not just the status.
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok || String(body.success) !== "true") throw new Error(body.message || res.status);
       done(true, data);
     } catch {
       done(false, data);

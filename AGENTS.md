@@ -25,9 +25,13 @@ the site diverges from the template.
 - **Table picker**: `/vendors/#pick-a-table`. Floor geometry is in
   `src/_data/floorLayout.js` (traced from the October 2026 vendor map, 141 tables);
   which tables are taken lives in `booking.json` (CMS "Table Booking"), which lists only
-  non-open tables. The form posts to `booking.formEndpoint` (Formspree-compatible, JSON
-  `Accept`); with no endpoint it falls back to a copy-and-DM summary. Spots are
-  confirmed by the organizer, never auto-reserved — there's no backend.
+  non-open tables. The form posts to `booking.formEndpoint`: FormSubmit's AJAX endpoint for
+  tables@swccshows.com (forwarded by Cloudflare Email Routing to swccshow@gmail.com).
+  A response counts as sent only when its JSON says `success: "true"`, since FormSubmit
+  returns 200 before the inbox has activated the form. `_honey` is FormSubmit's honeypot
+  and `_template=table` formats the email. With no endpoint it falls back to a
+  copy-and-DM summary. Spots are confirmed by the organizer, never auto-reserved —
+  there's no backend.
 - **Spanish toggle**: same contract as julia-ketsaa-remax. `src/_includes/js/i18n.js`
   + `i18n-runtime.js` (passthrough-copied to `/js/`) swap `data-i18n` keys from
   `src/_data/i18n.json` (inlined as `#i18n-data`), plus `data-i18n-attr`,
