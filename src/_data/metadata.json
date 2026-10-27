@@ -1,6 +1,10 @@
 {
   "title": "Southwest Card & Collectible Show",
-  "description": "Sports cards, Pokémon, TCG, comics, Hot Wheels and more. Free-entry card shows and trade days in Las Cruces, NM.",
+  "homeTitle": "Southwest Card & Collectible Show | Card Show in Las Cruces, NM",
+  "homeTitleEs": "Southwest Card & Collectible Show | Show de cartas en Las Cruces, NM",
+  "description": "Free-entry card and collectible shows in Las Cruces, NM: 145+ tables of sports cards, Pokémon, TCG, comics, Hot Wheels and more, plus Trade Days and giveaways.",
   "language": "en",
-  "url": "https://sebastiansells13-bot.github.io/southwest-card-collectible-show"
+  "locale": "en_US",
+  "url": "https://sebastiansells13-bot.github.io/southwest-card-collectible-show",
+  "defaultImage": "/img/posts/october-show-flyer.jpg"
 }

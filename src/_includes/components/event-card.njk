@@ -1,7 +1,7 @@
 {% from "macros/bilingual.njk" import bilingual %}
 <article class="event-card{% if past %} event-card--past{% endif %}">
   <a class="event-card__flyer" href="{{ event.url }}">
-    {% if event.data.flyer %}<img src="{{ event.data.flyer }}" alt="" loading="lazy">{% endif %}
+    {% if event.data.flyer %}<img src="{{ event.data.flyer }}" alt="{{ event.data.title }} flyer, {{ event.date | longDate }}" data-i18n-attr="alt:img.flyerOf" data-i18n-vars="{{ { name: event.data.titleEs or event.data.title } | dump }}" loading="lazy">{% endif %}
   </a>
   <div class="event-card__body">
     <div class="date-badge"><time datetime="{{ event.date | htmlDateString }}" data-i18n-date="month">{{ event.date | monthShort }}</time><b>{{ event.date | dayNum }}</b></div>

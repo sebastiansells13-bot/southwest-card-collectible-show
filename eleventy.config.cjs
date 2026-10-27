@@ -5,7 +5,6 @@ const pluginRss = require("@11ty/eleventy-plugin-rss").default;
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
-const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 
 const isProduction = process.env.ELEVENTY_ENV === "production";
 const outputDirectory = isProduction ? "docs" : "dev";
@@ -27,12 +26,6 @@ const assetPaths = {
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginNavigation);
-  eleventyConfig.addPlugin(sitemap, {
-    sitemap: {
-      // Set this to the client's real production domain before launch.
-      hostname: "https://sebastiansells13-bot.github.io/southwest-card-collectible-show",
-    },
-  });
 
   eleventyConfig.setUseGitIgnore(false);
   eleventyConfig.ignores.add("**/.DS_Store");
@@ -54,6 +47,9 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("longDate", (dateObj) =>
     DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("cccc, LLLL d, yyyy")
+  );
+  eleventyConfig.addFilter("usDate", (dateObj) =>
+    DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("LLL d, yyyy")
   );
   eleventyConfig.addFilter("monthShort", (dateObj) =>
     DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("LLL")
@@ -79,6 +75,43 @@ module.exports = function (eleventyConfig) {
   // the floor map can look each table up.
   eleventyConfig.addFilter("byTableNumber", (list) =>
     Object.fromEntries((list || []).map((t) => [String(t.number), t]))
+  );
+
+  // Structured data helpers for event pages. Hours come from the CMS as text
+  // ("10 AM – 5 PM"); turn them into ISO times in Las Cruces time.
+  eleventyConfig.addFilter("eventTimes", (dateObj, hours) => {
+    const day = DateTime.fromJSDate(dateObj, { zone: "utc" });
+    const times = [...String(hours || "").matchAll(/(\d{1,2})(?::(\d{2}))?\s*([AP])\.?M/gi)].map((m) => {
+      let hour = Number(m[1]) % 12;
+      if (m[3].toUpperCase() === "P") hour += 12;
+      return DateTime.fromObject(
+        { year: day.year, month: day.month, day: day.day, hour, minute: Number(m[2] || 0) },
+        { zone: "America/Denver" }
+      ).toISO({ suppressMilliseconds: true });
+    });
+    return { start: times[0] || day.toISODate(), end: times[1] || times[0] || day.toISODate() };
+  });
+
+  // "680 E University Ave, Las Cruces, NM 88001" → schema.org PostalAddress parts
+  eleventyConfig.addFilter("addressParts", (address) => {
+    const parts = String(address || "").split(",").map((p) => p.trim());
+    const [region, postalCode] = (parts[2] || "NM").split(/\s+/);
+    return {
+      "@type": "PostalAddress",
+      streetAddress: parts[0] || "",
+      addressLocality: parts[1] || "Las Cruces",
+      addressRegion: region,
+      ...(postalCode ? { postalCode } : {}),
+      addressCountry: "US",
+    };
+  });
+
+  // JSON for a <script type="application/ld+json">; escaping "<" keeps CMS
+  // text from ever closing the script tag.
+  eleventyConfig.addFilter("jsonld", (obj) => JSON.stringify(obj).replace(/</g, "\\u003c"));
+
+  eleventyConfig.addFilter("isoDate", (dateObj) =>
+    DateTime.fromJSDate(dateObj, { zone: "utc" }).toISODate()
   );
 
   eleventyConfig.addFilter("head", (array, n) => {

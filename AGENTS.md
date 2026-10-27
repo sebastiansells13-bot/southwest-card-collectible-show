@@ -36,6 +36,16 @@ the site diverges from the template.
   applied so there's no English flash. Client-side only, so no Spanish SEO.
 - **Booking on/off**: `booking.open` (CMS "Taking Vendor Requests") decides whether
   `vendors.njk` includes the picker at all; when off it shows `closedMessage` instead.
+- **SEO**: `base.njk` builds the title (`seoTitle` or `title` + " · SWCCS"; the home page
+  uses `metadata.homeTitle`), description, canonical, Open Graph/Twitter tags and
+  includes `components/structured-data.njk` (Organization on every page, WebSite on
+  home, Event on show pages, BlogPosting on news). Event titles and descriptions come
+  from `eleventyComputed` in `src/events/events.json`; event hours are parsed into ISO
+  times in America/Denver by the `eventTimes` filter, so keep the CMS "Hours" field in
+  the "10 AM – 5 PM" shape. `sitemap.xml.njk` is hand-rolled so URLs keep the path
+  prefix; pages with `noindex: true` are left out. `optimize-media.mjs` only rewrites
+  `src`/`href` to WebP, so og:image and JSON-LD keep the JPG for link previews.
+  `robots.txt` and `llms.txt` only take effect at a domain root.
 - **Page copy**: `src/_data/{home,vendors,sponsors,about,business}.json`, all editable
   in the CMS.
 - **Images**: flyers from Instagram live in `src/_includes/img/posts/`; sponsor logos go

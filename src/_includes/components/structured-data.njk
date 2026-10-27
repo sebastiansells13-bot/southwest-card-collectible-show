@@ -1,0 +1,74 @@
+{#-
+  schema.org JSON-LD. Every page gets the Organization; the home page adds
+  WebSite, event pages add an Event, and news posts add a BlogPosting.
+  Built as objects and run through `jsonld` so CMS text is JSON-escaped
+  and can't close the <script> tag.
+-#}
+{%- set orgId = metadata.url + "/#organization" -%}
+{%- set sameAs = [] -%}
+{%- for link in [business.social.instagram, business.social.discord, business.social.facebook] -%}
+  {%- if link -%}{%- set _ = sameAs.push(link) -%}{%- endif -%}
+{%- endfor -%}
+{%- set graph = [{
+  "@type": "Organization",
+  "@id": orgId,
+  "name": business.name,
+  "alternateName": business.shortName,
+  "url": metadata.url + "/",
+  "logo": metadata.url + "/img/brand/logo.jpg",
+  "description": business.tagline,
+  "slogan": "Built for collectors, by collectors",
+  "areaServed": { "@type": "City", "name": "Las Cruces, New Mexico" },
+  "sameAs": sameAs
+}] -%}
+{%- if page.url == "/" -%}
+  {%- set _ = graph.push({
+    "@type": "WebSite",
+    "@id": metadata.url + "/#website",
+    "name": business.name,
+    "url": metadata.url + "/",
+    "inLanguage": ["en", "es"],
+    "publisher": { "@id": orgId }
+  }) -%}
+{%- endif -%}
+{%- if "/events/" in page.inputPath -%}
+  {%- set times = page.date | eventTimes(time) -%}
+  {%- set _ = graph.push({
+    "@type": "Event",
+    "name": title,
+    "description": description,
+    "startDate": times.start,
+    "endDate": times.end,
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "isAccessibleForFree": true,
+    "image": [metadata.url + (flyer or metadata.defaultImage)],
+    "url": metadata.url + page.url,
+    "location": { "@type": "Place", "name": venue, "address": address | addressParts },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "validFrom": page.date | isoDate,
+      "url": metadata.url + page.url
+    },
+    "organizer": { "@id": orgId },
+    "performer": { "@id": orgId }
+  }) -%}
+{%- endif -%}
+{%- if tags and "posts" in tags -%}
+  {%- set _ = graph.push({
+    "@type": "BlogPosting",
+    "headline": title,
+    "description": description,
+    "datePublished": page.date | isoDate,
+    "image": [metadata.url + (image or metadata.defaultImage)],
+    "url": metadata.url + page.url,
+    "mainEntityOfPage": metadata.url + page.url,
+    "inLanguage": "en",
+    "author": { "@id": orgId },
+    "publisher": { "@id": orgId }
+  }) -%}
+{%- endif %}
+  <script type="application/ld+json">{{ { "@context": "https://schema.org", "@graph": graph } | jsonld | safe }}</script>
