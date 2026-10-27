@@ -3,7 +3,7 @@ permalink: /feed.xml
 eleventyExcludeFromCollections: true
 ---
 {%- set metaTitle = business.name or metadata.title -%}
-{%- set absolutePostUrl = "https://sebastiansells13-bot.github.io" -%}
+{%- set absolutePostUrl = metadata.url -%}
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{{ metaTitle }}</title>

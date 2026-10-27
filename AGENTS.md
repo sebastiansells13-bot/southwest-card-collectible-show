@@ -11,10 +11,12 @@ the site diverges from the template.
   glowing sign type, rounded-top "arch" flyer panels, navy ribbon banners. Fonts are
   Anton (headings), Bangers (the "Free Entry!" script) and Inter (body) from Google Fonts.
   Palette lives in `src/_includes/css/variables.scss`.
-- **Hosting**: GitHub Pages project URL, so `pathPrefix` in `eleventy.config.cjs` is
-  `/southwest-card-collectible-show/`. Every internal link and image goes through the
-  `| url` filter. When a custom domain is added, set `pathPrefix` to `/`, add `CNAME`
-  (and its passthrough copy), and update `metadata.json` `url` and the sitemap hostname.
+- **Hosting**: GitHub Pages at the custom domain https://swccshows.com (registered and
+  DNS on Cloudflare: apex A/AAAA records to GitHub Pages, `www` CNAME to
+  `sebastiansells13-bot.github.io`, DNS only). The site deploys with GitHub Actions, so
+  the custom domain is set in repo Settings → Pages, not by a `CNAME` file.
+  `pathPrefix` is `/`; `metadata.json` `url` is the one place the domain lives in code
+  (canonicals, sitemap, feed, JSON-LD, robots.txt, llms.txt all read it).
 - **Events**: `src/events/*.md` (CMS "Shows & Trade Days"). The `upcoming` / `past`
   filters split them by build date; the soonest upcoming event is featured in the home
   hero. Each event gets a page at `/shows/<file-slug>/`.
