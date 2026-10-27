@@ -18,7 +18,7 @@ description: Upcoming and past Southwest Card & Collectible Shows and Trade Days
   {% if up.length %}
   <div class="event-grid">{% for event in up %}{% include "components/event-card.njk" %}{% endfor %}</div>
   {% else %}
-  <p class="center"><span data-i18n="shows.none">Next date coming soon —</span> <a href="{{ business.social.discord }}" data-i18n="shows.joinToHear">join the Discord to hear first.</a></p>
+  <p class="center"><span data-i18n="shows.none">Next date coming soon —</span> <a href="{{ business.social.discord | safeUrl }}" data-i18n="shows.joinToHear">join the Discord to hear first.</a></p>
   {% endif %}
 </section>
 {% set old = collections.events | past %}

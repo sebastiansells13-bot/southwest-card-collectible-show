@@ -104,6 +104,8 @@
   "form.selling": { "en": "What you'll be selling", "es": "Qué vas a vender" },
   "form.notes": { "en": "Anything else?", "es": "¿Algo más?" },
   "form.notesHint": { "en": "(power, neighbors you'd like, a backup table choice)", "es": "(electricidad, vecinos de mesa que prefieras, una mesa de respaldo)" },
+  "form.privacySent": { "en": "We only use these details to arrange your table. They're emailed to the show organizers through our form service and never sold or shared.", "es": "Solo usamos estos datos para organizar tu mesa. Se envían por correo a los organizadores del show a través de nuestro servicio de formularios y nunca se venden ni se comparten." },
+  "form.privacyLocal": { "en": "Nothing is sent from this page: you'll copy your request and send it to us yourself. We only use your details to arrange your table.", "es": "Esta página no envía nada: tú copias tu solicitud y nos la mandas. Solo usamos tus datos para organizar tu mesa." },
   "form.submit": { "en": "Request my tables", "es": "Solicitar mis mesas" },
   "form.needContact": { "en": "Please add your name and a valid email.", "es": "Agrega tu nombre y un correo válido." },
 

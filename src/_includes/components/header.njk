@@ -17,7 +17,7 @@
         {% set active = (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url)) %}
         <li><a href="{{ item.url }}" data-i18n="{{ item.key }}"{% if active %} class="is-active" aria-current="page"{% endif %}>{{ item.text }}</a></li>
         {% endfor %}
-        <li><a class="btn btn--small" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscordShort">Join Discord</a></li>
+        <li><a class="btn btn--small" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="cta.joinDiscordShort">Join Discord</a></li>
       </ul>
     </nav>
   </div>

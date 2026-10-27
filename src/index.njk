@@ -20,7 +20,7 @@ title: Home
       </div>
       <p class="actions">
         <a class="btn" href="{{ next.url }}" data-i18n="hero.showDetails">Show details</a>
-        <a class="btn btn--ghost" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
+        <a class="btn btn--ghost" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
       </p>
       {% elif recent %}
       <div class="hero__when">
@@ -29,12 +29,12 @@ title: Home
         <p class="script" data-i18n="hero.stayTuned">Stay Tuned!</p>
       </div>
       <p class="actions">
-        <a class="btn" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
-        <a class="btn btn--ghost" href="{{ business.social.instagram }}" rel="noopener" data-i18n="cta.followInstagram">Follow on Instagram</a>
+        <a class="btn" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
+        <a class="btn btn--ghost" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="cta.followInstagram">Follow on Instagram</a>
       </p>
       {% else %}
       <p class="hero__intro" data-i18n="hero.comingSoon">Next show date coming soon — follow along on Instagram and Discord.</p>
-      <p class="actions"><a class="btn" href="{{ business.social.instagram }}" rel="noopener" data-i18n="cta.followInstagram">Follow on Instagram</a></p>
+      <p class="actions"><a class="btn" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="cta.followInstagram">Follow on Instagram</a></p>
       {% endif %}
       <div class="ribbon ribbon--inset"><span>{{ business.name }}</span></div>
     </div>
@@ -89,13 +89,13 @@ title: Home
     </a>
     {% endfor %}
   </div>
-  <p class="center"><a class="btn" href="{{ business.social.instagram }}" rel="noopener"><span data-i18n="cta.follow">Follow</span> {{ business.social.instagramHandle }}</a></p>
+  <p class="center"><a class="btn" href="{{ business.social.instagram | safeUrl }}" rel="noopener"><span data-i18n="cta.follow">Follow</span> {{ business.social.instagramHandle }}</a></p>
 </section>
 
 <section class="wrapper section">
   <div class="cta-panel">
     <h2 data-i18n="home.neverMiss">Never miss a drop</h2>
     <p data-i18n="home.neverMissText">Show dates, table sales, giveaways and trade nights hit our Discord first.</p>
-    <a class="btn" href="{{ business.social.discord }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
+    <a class="btn" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
   </div>
 </section>

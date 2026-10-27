@@ -102,12 +102,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = new FormData(form);
     data.set("tables", picked.join(", "));
     if (!form.dataset.endpoint) return done(false, data);
+    // One request per click: block double submits while it's in flight.
+    const submit = form.querySelector('[type="submit"]');
+    if (submit.disabled) return;
+    submit.disabled = true;
     try {
       const res = await fetch(form.dataset.endpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
       if (!res.ok) throw new Error(res.status);
       done(true, data);
     } catch {
       done(false, data);
+    } finally {
+      submit.disabled = false;
     }
   });
 

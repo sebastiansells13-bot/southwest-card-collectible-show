@@ -18,7 +18,7 @@ description: The local card shops and collectible businesses that sponsor the So
     {% for s in sponsors.list %}
     <li class="sponsor">
       {% if s.logo %}<img src="{{ s.logo }}" alt="" loading="lazy">{% endif %}
-      {% if s.link %}<a href="{{ s.link }}" rel="noopener">{{ s.name }}</a>{% else %}<span>{{ s.name }}</span>{% endif %}
+      {% if s.link %}<a href="{{ s.link | safeUrl }}" rel="noopener">{{ s.name }}</a>{% else %}<span>{{ s.name }}</span>{% endif %}
       <small data-i18n="tier.{{ s.tier | slugify }}">{{ s.tier }}</small>
     </li>
     {% endfor %}
@@ -28,12 +28,12 @@ description: The local card shops and collectible businesses that sponsor the So
   <h2 class="section-title"><span data-i18n="sponsors.flyers">Sponsor flyers</span></h2>
   <div class="feed-grid">
     {% for f in sponsors.flyers %}
-    <a class="feed-tile" href="{{ f.image }}"><img src="{{ f.image }}" alt="{{ f.alt }}" loading="lazy"></a>
+    <a class="feed-tile" href="{{ f.image | safeUrl }}"><img src="{{ f.image }}" alt="{{ f.alt }}" loading="lazy"></a>
     {% endfor %}
   </div>
   <div class="cta-panel">
     <h2 data-i18n="sponsors.ctaTitle">Want to sponsor a show?</h2>
     <p data-i18n="sponsors.ctaText">Get your shop in front of thousands of Southwest collectors — and help fund the giveaways.</p>
-    <a class="btn" href="{{ business.social.instagram }}" rel="noopener" data-i18n="sponsors.ctaButton">Message us</a>
+    <a class="btn" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="sponsors.ctaButton">Message us</a>
   </div>
 </section>
