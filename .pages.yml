@@ -468,6 +468,10 @@ content:
               - { name: perksEs, label: What's Included (Spanish), type: string, list: true }
           - { name: contactNote, label: Contact Text, type: text }
           - { name: contactNoteEs, label: Contact Text (Spanish), type: text }
+          - name: formEndpoint
+            label: Inquiry Form Endpoint (developer setting)
+            type: string
+            description: "Where sponsor inquiries are emailed. Currently FormSubmit sending to tables@swccshows.com. If blank, the Table Booking endpoint is used."
 
   - name: about
     label: About Page

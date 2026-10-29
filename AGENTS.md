@@ -37,7 +37,11 @@ the site diverges from the template.
 - **Other pages**: `/visit/` (`visit.json`), `/vendors/directory/`
   (`vendorDirectory.json`, `js/directory.js` search/filter; specialties reuse
   `booking.categories` for Spanish labels via `toMap`), `/sponsors/packages/`
-  (`sponsors.packages`).
+  (`sponsors.packages`, plus the sponsor inquiry form in
+  `components/sponsor-form.njk` → `js/inquiry-form.js`, posting to
+  `sponsors.packages.formEndpoint` or else `booking.formEndpoint`). The table request
+  form asks for a `directory_link` and the sponsor form for a `sponsor_link`; the
+  organizer copies those into the CMS by hand.
 - **News**: `src/posts/*.md`, served at `/news/<file-slug>/`, shown as an
   Instagram-style grid.
 - **Table picker**: `/vendors/#pick-a-table`. Floor geometry is in

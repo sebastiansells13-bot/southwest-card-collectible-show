@@ -1132,6 +1132,7 @@
   input[type="text"],
   input[type="email"],
   input[type="tel"],
+  select,
   textarea {
     font: inherit;
     font-weight: 400;
@@ -1165,6 +1166,14 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
     gap: 1rem;
+  }
+
+  &__wide {
+    grid-column: 1 / -1;
+  }
+
+  .inquiry-form &__notes {
+    margin-top: 1rem;
   }
 
   &__cats {

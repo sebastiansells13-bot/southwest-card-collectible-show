@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const line = (k, label) => (data.get(k) ? `${label}: ${data.get(k)}\n` : "");
     return `TABLE REQUEST — ${data.get("show")}\nTables: ${picked.join(", ")}\n` +
       line("name", "Name") + line("business", "Business") + line("email", "Email") +
-      line("phone", "Phone") + line("instagram", "Instagram") +
+      line("phone", "Phone") + line("instagram", "Instagram") + line("directory_link", "Directory link") +
       (data.getAll("selling").length ? `Selling: ${data.getAll("selling").join(", ")}\n` : "") +
       line("notes", "Notes") + (data.get("language") === "es" ? "Language: Spanish\n" : "");
   }
