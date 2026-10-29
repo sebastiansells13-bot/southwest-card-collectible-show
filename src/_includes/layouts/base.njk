@@ -57,8 +57,8 @@
   <script src="/js/i18n.js" defer></script>
   <script src="/js/nav.js" defer></script>
   {#- Cloudflare Web Analytics: cookie-free page view counts. The token is
-      public by design. If the Cloudflare proxy is ever turned on, switch the
-      site's Web Analytics setup to manual so the beacon isn't loaded twice. -#}
+      public by design. The site is set to manual setup in Cloudflare so the
+      proxy doesn't inject a second beacon. -#}
   {% if metadata.analyticsToken %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{ { token: metadata.analyticsToken } | dump }}'></script>{% endif %}
 </body>
 </html>
