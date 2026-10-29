@@ -170,12 +170,38 @@ module.exports = function (eleventyConfig) {
   // them into `dev/` on every rebuild. Production media is optimized by
   // the CI pipeline (scripts/optimize-media.mjs) after Eleventy runs.
   eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+  // Gallery thumbnails: `"/img/recaps/a.jpg" | thumb` → "/thumbs/recaps/a.jpg",
+  // generated after each build at THUMB_WIDTH from the source image, so CMS
+  // uploads get thumbnails too. They live outside /img so the dev server
+  // (which serves /img straight from src/) finds them in the output folder.
+  const THUMB_WIDTH = 540;
+  const thumbs = new Set();
+  eleventyConfig.addFilter("thumb", (src) => {
+    if (!src || !String(src).startsWith("/img/")) return src;
+    thumbs.add(src);
+    return "/thumbs/" + src.slice("/img/".length);
+  });
+  eleventyConfig.on("eleventy.after", async ({ dir }) => {
+    const sharp = require("sharp");
+    const { mkdirSync } = require("node:fs");
+    const path = require("node:path");
+    for (const src of thumbs) {
+      const rel = src.slice("/img/".length);
+      const input = path.join("src/_includes/img", rel);
+      const output = path.join(dir.output, "thumbs", rel);
+      if (!existsSync(input) || existsSync(output)) continue;
+      mkdirSync(path.dirname(output), { recursive: true });
+      await sharp(input).resize({ width: THUMB_WIDTH, withoutEnlargement: true }).jpeg({ quality: 78 }).toFile(output);
+    }
+  });
+
   eleventyConfig.addPassthroughCopy({ "src/_includes/img": "img" });
   eleventyConfig.addPassthroughCopy({
     [assetFiles.stylesheet]: assetPaths.stylesheet.slice(1),
   });
   eleventyConfig.addPassthroughCopy({ "src/_includes/favicons": "favicons" });
   eleventyConfig.addPassthroughCopy({ "src/_includes/js": "js" });
+  eleventyConfig.addPassthroughCopy({ "src/_includes/fonts": "fonts" });
   
   eleventyConfig.addPassthroughCopy(".nojekyll");
 

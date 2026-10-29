@@ -6,7 +6,7 @@
   {% for p in shown %}
   <li>
     <a href="{{ p.image }}" class="gallery__item" data-gallery-item>
-      <img src="{{ p.image }}" alt="{{ p.alt }}"{% if p.altEs %} data-i18n-attr="alt:img.altEs" data-i18n-vars="{{ { text: p.altEs } | dump }}"{% endif %} loading="lazy" width="1080" height="1350">
+      <img src="{{ p.image | thumb }}" alt="{{ p.alt }}"{% if p.altEs %} data-i18n-attr="alt:img.altEs" data-i18n-vars="{{ { text: p.altEs } | dump }}"{% endif %} loading="lazy" width="540" height="675">
     </a>
   </li>
   {% endfor %}
