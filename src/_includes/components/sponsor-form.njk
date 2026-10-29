@@ -1,0 +1,45 @@
+{#- Sponsor inquiry on /sponsors/packages/. Sends through the same form
+    service as table requests (sponsors.packages.formEndpoint, falling back to
+    booking.formEndpoint); js/inquiry-form.js handles sending and the
+    copy-and-DM fallback. -#}
+{% from "macros/bilingual.njk" import bilingual %}
+{% set pk = sponsors.packages %}
+{% set endpoint = (pk.formEndpoint or booking.formEndpoint) | safeUrl({ httpsOnly: true }) %}
+<form class="booking-form inquiry-form" id="sponsor-form" method="POST"{% if endpoint %} action="{{ endpoint }}"{% endif %} data-inquiry-form data-endpoint="{{ endpoint }}" data-summary-title="SPONSOR INQUIRY" novalidate>
+  <input type="hidden" name="_subject" value="Sponsor inquiry: {{ business.name }}">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="language" value="en">
+  <div class="booking-form__grid">
+    <label><span data-i18n="form.name">Your name</span><input name="name" type="text" autocomplete="name" maxlength="100" required></label>
+    <label><span data-i18n="form.business">Business / shop name</span><input name="business" type="text" autocomplete="organization" maxlength="120" required></label>
+    <label><span data-i18n="form.email">Email</span><input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+    <label><span data-i18n="form.phone">Phone</span><input name="phone" type="tel" autocomplete="tel" maxlength="30"></label>
+    <label class="booking-form__wide"><span data-i18n="sponsorForm.package">Package you're interested in</span>
+      <select name="package">
+        {% for tier in pk.tiers %}<option value="{{ tier.name }}">{{ tier.name }}{% if tier.nameEs %} / {{ tier.nameEs }}{% endif %}</option>{% endfor %}
+        <option value="Not sure yet" data-i18n="sponsorForm.notSure">Not sure yet</option>
+      </select>
+    </label>
+    <label class="booking-form__wide"><span><span data-i18n="sponsorForm.link">Link for your Sponsors page listing</span> <small data-i18n="form.directoryLinkHint">(website, Instagram or online shop — optional)</small></span><input name="sponsor_link" type="text" inputmode="url" autocomplete="url" maxlength="300" placeholder="https://" data-i18n-placeholder="form.linkPlaceholder"></label>
+  </div>
+  <label class="booking-form__notes"><span><span data-i18n="form.notes">Anything else?</span> <small data-i18n="sponsorForm.notesHint">(giveaway ideas, which show, questions)</small></span><textarea name="notes" rows="3" maxlength="1000"></textarea></label>
+  <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <p class="booking-form__fine" data-i18n="sponsorForm.logoNote">We'll ask for your logo by email once we've talked.</p>
+  <p class="booking-form__fine" data-i18n="sponsorForm.privacy{{ 'Sent' if endpoint else 'Local' }}">{% if endpoint %}We only use these details to talk with you about sponsoring. They're emailed to the show organizers through our form service and never sold or shared.{% else %}Nothing is sent from this page: you'll copy your inquiry and send it to us yourself. We only use your details to talk with you about sponsoring.{% endif %}</p>
+  <p class="booking-form__error" data-form-error role="alert" hidden></p>
+  <button class="btn" type="submit" data-i18n="sponsorForm.submit">Send sponsor inquiry</button>
+</form>
+<div class="booking-done" data-form-done hidden tabindex="-1">
+  <h3 class="glow" data-i18n="sponsorForm.doneTitle">Thanks!</h3>
+  <p data-form-sent hidden>{{ bilingual(pk.contactNote, pk.contactNoteEs) }}</p>
+  <div data-form-manual hidden>
+    <p data-i18n="sponsorForm.copyIntro">Copy your inquiry below and send it to us on Instagram or by email.</p>
+    <textarea data-form-summary rows="8" readonly aria-label="Your request" data-i18n-attr="aria-label:done.summaryLabel"></textarea>
+    <p class="actions">
+      <button class="btn" type="button" data-form-copy data-i18n="done.copy">Copy request</button>
+      <a class="btn btn--ghost" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="done.openInstagram">Open Instagram</a>
+      <a class="btn btn--ghost" href="mailto:tables@swccshows.com" data-i18n="packages.email">Email us</a>
+    </p>
+  </div>
+</div>
+<script src="/js/inquiry-form.js" defer></script>

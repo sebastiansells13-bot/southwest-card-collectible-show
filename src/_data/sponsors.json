@@ -167,6 +167,7 @@
       }
     ],
     "contactNote": "Tell us about your shop and which package you're interested in, and we'll send details for the next show.",
-    "contactNoteEs": "Cuéntanos de tu negocio y qué paquete te interesa, y te mandamos los detalles para el próximo show."
+    "contactNoteEs": "Cuéntanos de tu negocio y qué paquete te interesa, y te mandamos los detalles para el próximo show.",
+    "formEndpoint": "https://formsubmit.co/ajax/tables@swccshows.com"
   }
 }

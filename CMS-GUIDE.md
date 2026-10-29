@@ -31,15 +31,20 @@ You can update the Southwest Card & Collectible Show website yourself — no cod
   - For a new show, update the show name and date and clear Reserved Tables to start
     with a blank map.
   - Table requests arrive by email at **tables@swccshows.com**, which forwards to
-    swccshow@gmail.com. Each one lists the tables, the vendor's contact details and what
-    they sell, and replying goes straight to the vendor.
+    swccshow@gmail.com. Each one lists the tables, the vendor's contact details, what
+    they sell and the link they'd like on their **Vendor Directory** listing; replying
+    goes straight to the vendor. Copy that link into the vendor's Instagram or Website
+    field under Vendor Directory.
 - **Vendors Page** — the intro, last show's vendor map image and the FAQ.
 - **Vendor Directory** — the shops that set up at your shows, with their specialty,
   Instagram and website. Add new vendors as they book; the page has search and filters.
 - **Plan Your Visit Page** — the "What to bring" list and the visitor FAQ.
 - **Sponsors** — add, remove or reorder sponsors, with an optional logo and link. The
   **Sponsor Packages Page** section sets the packages, prices and perks shown at
-  /sponsors/packages/ (prices say "Contact us" until you fill them in).
+  /sponsors/packages/ (prices say "Contact us" until you fill them in). That page has
+  a sponsor inquiry form: inquiries also arrive at tables@swccshows.com, with the
+  package they want and the link for their Sponsors page listing (add it as the
+  sponsor's Website or Instagram Link).
 - **About Page** — your story.
 - **Contact & Social Links** — Instagram, Discord, and optional email/phone.
 

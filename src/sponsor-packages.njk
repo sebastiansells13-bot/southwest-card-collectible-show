@@ -13,6 +13,7 @@ permalink: /sponsors/packages/
   <p class="kicker" data-i18n="packages.kicker">Sponsorship</p>
   <h1 class="glow" data-i18n="packages.title">Become a Sponsor</h1>
   <p class="lede">{{ bilingual(pk.intro, pk.introEs) }}</p>
+  <p class="actions"><a class="btn" href="#sponsor-form-section" data-i18n="sponsorForm.cta">Send a sponsor inquiry</a></p>
 </section>
 <section class="wrapper section">
   <ul class="tally tally--stats">
@@ -38,9 +39,13 @@ permalink: /sponsors/packages/
     <h2 data-i18n="sponsors.ctaTitle">Want to sponsor a show?</h2>
     <p>{{ bilingual(pk.contactNote, pk.contactNoteEs) }}</p>
     <p class="actions">
-      <a class="btn" href="mailto:tables@swccshows.com?subject={{ 'Sponsorship – Southwest Card & Collectible Show' | urlencode }}" data-i18n="packages.email">Email us</a>
       <a class="btn btn--ghost" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="vendors.dm">DM us on Instagram</a>
+      <a class="btn btn--ghost" href="mailto:tables@swccshows.com?subject={{ 'Sponsorship – Southwest Card & Collectible Show' | urlencode }}" data-i18n="packages.email">Email us</a>
     </p>
   </div>
+</section>
+<section class="wrapper section" id="sponsor-form-section">
+  <h2 class="section-title"><span data-i18n="sponsorForm.title">Sponsor inquiry</span></h2>
+  {% include "components/sponsor-form.njk" %}
   <p class="center"><a href="/sponsors/" data-i18n="packages.current">See our current sponsors</a></p>
 </section>

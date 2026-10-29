@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {#- GitHub Pages can't send response headers, so the CSP lives here. The form endpoint's origin is allowed only when one
-      is set in the CMS; cloudflareinsights.com is Cloudflare Web Analytics
-      (the beacon at the end of <body>). -#}
-  {%- set formOrigin = booking.formEndpoint | safeUrl({ httpsOnly: true }) | urlOrigin %}
+  {#- The CSP ships in the HTML so it applies with or without the Cloudflare
+      proxy. The form endpoints' origins (table requests, sponsor inquiries)
+      are allowed only when set in the CMS; cloudflareinsights.com is
+      Cloudflare Web Analytics (the beacon at the end of <body>). -#}
+  {%- set formOrigin = booking.formEndpoint | safeUrl({ httpsOnly: true }) | urlOrigin -%}
+  {%- set sponsorOrigin = sponsors.packages.formEndpoint | safeUrl({ httpsOnly: true }) | urlOrigin -%}
+  {%- if sponsorOrigin and sponsorOrigin != formOrigin -%}{%- set formOrigin = (formOrigin + " " + sponsorOrigin) | trim -%}{%- endif %}
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com{% if formOrigin %} {{ formOrigin }}{% endif %}; form-action 'self'{% if formOrigin %} {{ formOrigin }}{% endif %}; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <script src="/js/lang-early.js"></script>
