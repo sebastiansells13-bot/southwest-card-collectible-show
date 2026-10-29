@@ -6,5 +6,6 @@
   "language": "en",
   "locale": "en_US",
   "url": "https://swccshows.com",
-  "defaultImage": "/img/posts/october-show-flyer.jpg"
+  "defaultImage": "/img/posts/october-show-flyer.jpg",
+  "analyticsToken": "35c27ab1615847f0b2e5ecbc177ee5d4"
 }

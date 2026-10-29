@@ -1,0 +1,55 @@
+---
+layout: layouts/page.njk
+title: Vendor Directory
+titleEs: Directorio de vendedores
+seoTitle: Vendor Directory – Card Shops & Collectors
+seoTitleEs: Directorio de vendedores
+description: Card shops, Pokémon and TCG sellers, comics, Hot Wheels and collectibles vendors who set up at the Southwest Card & Collectible Show in Las Cruces, NM.
+permalink: /vendors/directory/
+---
+{% from "macros/bilingual.njk" import bilingual %}
+{#- Specialty labels come from the booking form's categories so both lists
+    translate the same way. -#}
+{%- set specialtyEs = booking.categories | toMap("label", "labelEs") -%}
+<section class="page-hero wrapper">
+  <p class="kicker" data-i18n="directory.kicker">Who sets up at SWCCS</p>
+  <h1 class="glow" data-i18n="directory.title">Vendor Directory</h1>
+  <p class="lede">{{ bilingual(vendorDirectory.intro, vendorDirectory.introEs) }}</p>
+</section>
+<section class="wrapper section">
+  <div class="directory-tools">
+    <label class="sr-only" for="directory-search" data-i18n="directory.searchLabel">Search vendors</label>
+    <input id="directory-search" type="search" placeholder="Search vendors" data-i18n-placeholder="directory.searchLabel" autocomplete="off">
+    <div class="directory-filters" role="group" aria-label="Filter by specialty" data-i18n-attr="aria-label:directory.filterLabel">
+      <button type="button" class="chip is-active" data-filter="" aria-pressed="true" data-i18n="directory.all">All</button>
+      {% for c in booking.categories %}
+      <button type="button" class="chip" data-filter="{{ c.label }}" aria-pressed="false">{{ bilingual(c.label, c.labelEs) }}</button>
+      {% endfor %}
+    </div>
+  </div>
+  <ul class="directory" id="directory">
+    {% for v in vendorDirectory.list %}
+    <li class="directory__item" data-name="{{ v.name | lower }}" data-specialty="{{ v.specialty }}">
+      {% if v.logo %}<img src="{{ v.logo }}" alt="" loading="lazy">{% endif %}
+      <h2>{{ v.name }}</h2>
+      {% if v.specialty %}<p class="tag">{{ bilingual(v.specialty, specialtyEs[v.specialty]) }}</p>{% endif %}
+      {% if v.instagram or v.website %}
+      <p class="directory__links">
+        {% if v.instagram %}<a href="{{ v.instagram | safeUrl }}" rel="noopener">Instagram</a>{% endif %}
+        {% if v.website %}<a href="{{ v.website | safeUrl }}" rel="noopener" data-i18n="directory.website">Website</a>{% endif %}
+      </p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  <p class="center" id="directory-empty" hidden data-i18n="directory.none">No vendors match that search.</p>
+  <div class="cta-panel">
+    <h2 data-i18n="directory.ctaTitle">Want to be listed?</h2>
+    <p data-i18n="directory.ctaText">Every vendor at our shows can be in the directory. Send us your shop name, Instagram and what you sell.</p>
+    <p class="actions">
+      <a class="btn" href="/vendors/" data-i18n="directory.ctaButton">Vendor info</a>
+      <a class="btn btn--ghost" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="vendors.dm">DM us on Instagram</a>
+    </p>
+  </div>
+</section>
+<script src="/js/directory.js" defer></script>

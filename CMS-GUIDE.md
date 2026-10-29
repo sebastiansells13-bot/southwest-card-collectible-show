@@ -12,6 +12,10 @@ You can update the Southwest Card & Collectible Show website yourself — no cod
 - **Shows & Trade Days** — add each new show or trade day: name, date, hours, venue,
   address, flyer and a few highlight bullets. The next upcoming event is featured on the
   home page automatically, and past events move to "Past events" on their own.
+  After a show, add **Recap Photos** (and a photo credit) to it: they appear on the
+  show page, and the most recent show's photos appear on the home page too. Upcoming
+  shows get "Add to calendar" buttons and a countdown on the home page automatically,
+  as long as Hours looks like "10 AM – 5 PM".
 - **News** — announcements and recaps (basically your Instagram posts). Each one has a
   title, short summary, date, image and text.
 - **Home Page** — the intro paragraph, the three perks, the table-by-table breakdown and
@@ -30,7 +34,12 @@ You can update the Southwest Card & Collectible Show website yourself — no cod
     swccshow@gmail.com. Each one lists the tables, the vendor's contact details and what
     they sell, and replying goes straight to the vendor.
 - **Vendors Page** — the intro, last show's vendor map image and the FAQ.
-- **Sponsors** — add, remove or reorder sponsors, with an optional logo and link.
+- **Vendor Directory** — the shops that set up at your shows, with their specialty,
+  Instagram and website. Add new vendors as they book; the page has search and filters.
+- **Plan Your Visit Page** — the "What to bring" list and the visitor FAQ.
+- **Sponsors** — add, remove or reorder sponsors, with an optional logo and link. The
+  **Sponsor Packages Page** section sets the packages, prices and perks shown at
+  /sponsors/packages/ (prices say "Contact us" until you fill them in).
 - **About Page** — your story.
 - **Contact & Social Links** — Instagram, Discord, and optional email/phone.
 

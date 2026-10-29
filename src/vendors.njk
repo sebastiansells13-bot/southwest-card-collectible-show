@@ -21,6 +21,7 @@ description: Get a vendor table at the Southwest Card & Collectible Show in Las 
     {% if booking.open %}<a class="btn" href="#pick-a-table" data-i18n="vendors.pickTable">Pick your table</a>{% endif %}
     <a class="btn{% if booking.open %} btn--ghost{% endif %}" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
     <a class="btn btn--ghost" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="vendors.dm">DM us on Instagram</a>
+    <a class="btn btn--ghost" href="/vendors/directory/" data-i18n="directory.title">Vendor Directory</a>
   </p>
 </section>
 

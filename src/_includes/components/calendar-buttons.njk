@@ -1,0 +1,13 @@
+{#- "Add to calendar" for one show. Expects `ev` (an events collection item).
+    Google Calendar gets a prefilled link; Apple/Outlook get the .ics file
+    from shows-ics.njk. -#}
+{%- set times = ev.date | eventTimes(ev.data.time) -%}
+{%- set gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + (ev.data.title | urlencode)
+  + "&dates=" + (times.start | utcStamp) + "/" + (times.end | utcStamp)
+  + "&location=" + ((ev.data.venue + ", " + ev.data.address) | urlencode)
+  + "&details=" + (("Free entry. " + metadata.url + ev.url) | urlencode) -%}
+<div class="cal-buttons" role="group" aria-label="Add to calendar" data-i18n-attr="aria-label:cal.label">
+  <span class="cal-buttons__label" data-i18n="cal.label">Add to calendar</span>
+  <a class="btn btn--small btn--ghost" href="{{ gcal }}" rel="noopener" data-i18n="cal.google">Google</a>
+  <a class="btn btn--small btn--ghost" href="/shows/{{ ev.date | htmlDateString }}-{{ ev.fileSlug }}.ics" download data-i18n="cal.apple">Apple / Outlook</a>
+</div>

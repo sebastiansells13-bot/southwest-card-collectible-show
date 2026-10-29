@@ -1,0 +1,28 @@
+---
+pagination:
+  data: collections.events
+  size: 1
+  alias: show
+permalink: "/shows/{{ show.date | htmlDateString }}-{{ show.fileSlug }}.ics"
+eleventyExcludeFromCollections: true
+---
+{#- One calendar file per show, for the "Add to calendar" buttons. Times come
+    from the CMS "Hours" field via the same eventTimes filter the JSON-LD uses. -#}
+{%- set times = show.date | eventTimes(show.data.time) -%}
+{%- set url = metadata.url + show.url -%}
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//{{ business.name | icsText | safe }}//Shows//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:{{ show.date | htmlDateString }}-{{ show.fileSlug }}@swccshows.com
+DTSTAMP:{{ times.start | utcStamp }}
+DTSTART:{{ times.start | utcStamp }}
+DTEND:{{ times.end | utcStamp }}
+SUMMARY:{{ show.data.title | icsText | safe }}
+LOCATION:{{ (show.data.venue + ", " + show.data.address) | icsText | safe }}
+DESCRIPTION:{{ ("Free entry. " + url) | icsText | safe }}
+URL:{{ url }}
+END:VEVENT
+END:VCALENDAR

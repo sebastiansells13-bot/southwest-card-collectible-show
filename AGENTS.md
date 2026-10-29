@@ -11,15 +11,33 @@ the site diverges from the template.
   glowing sign type, rounded-top "arch" flyer panels, navy ribbon banners. Fonts are
   Anton (headings), Bangers (the "Free Entry!" script) and Inter (body) from Google Fonts.
   Palette lives in `src/_includes/css/variables.scss`.
-- **Hosting**: GitHub Pages at the custom domain https://swccshows.com (registered and
-  DNS on Cloudflare: apex A/AAAA records to GitHub Pages, `www` CNAME to
-  `sebastiansells13-bot.github.io`, DNS only). The site deploys with GitHub Actions, so
+- **Hosting**: GitHub Pages at the custom domain https://swccshows.com, behind the
+  Cloudflare proxy (registered and DNS on Cloudflare: apex A/AAAA records to GitHub
+  Pages and a `www` CNAME to `sebastiansells13-bot.github.io`, all proxied).
+  - SSL/TLS is **Full, not Full (strict)**, so the site keeps working even if GitHub's
+    own certificate fails to renew behind the proxy (GitHub's cert expires
+    2027-01-24; check Settings → Pages around then).
+  - Always Use HTTPS is on, and the "Add security headers" Managed Transform adds
+    X-Frame-Options, X-Content-Type-Options and a referrer policy. HSTS is off on
+    purpose (it's sticky); turn it on only if the site will stay HTTPS-only.
+  - To roll back, set the records to DNS only. The site deploys with GitHub Actions, so
   the custom domain is set in repo Settings → Pages, not by a `CNAME` file.
   `pathPrefix` is `/`; `metadata.json` `url` is the one place the domain lives in code
   (canonicals, sitemap, feed, JSON-LD, robots.txt, llms.txt all read it).
 - **Events**: `src/events/*.md` (CMS "Shows & Trade Days"). The `upcoming` / `past`
   filters split them by build date; the soonest upcoming event is featured in the home
   hero. Each event gets a page at `/shows/<file-slug>/`.
+- **Show recaps**: events take `gallery` (`image`, `alt`, `altEs`) and `galleryCredit`;
+  `components/gallery.njk` renders them and `js/gallery.js` adds the lightbox. The
+  `thumb` filter maps `/img/...` to `/thumbs/...` and an `eleventy.after` hook builds
+  540px thumbnails with sharp (outside `/img` so the dev server finds them).
+- **Calendar + countdown**: `shows-ics.njk` paginates events into
+  `/shows/<slug>.ics`; `components/calendar-buttons.njk` adds Google Calendar and .ics
+  links on upcoming shows (`isUpcoming` filter). `js/countdown.js` runs on the home hero.
+- **Other pages**: `/visit/` (`visit.json`), `/vendors/directory/`
+  (`vendorDirectory.json`, `js/directory.js` search/filter; specialties reuse
+  `booking.categories` for Spanish labels via `toMap`), `/sponsors/packages/`
+  (`sponsors.packages`).
 - **News**: `src/posts/*.md`, served at `/news/<file-slug>/`, shown as an
   Instagram-style grid.
 - **Table picker**: `/vendors/#pick-a-table`. Floor geometry is in
@@ -63,6 +81,13 @@ the site diverges from the template.
   - Rich-text CMS fields render as HTML: editors are repo collaborators, so they're
     trusted, and the CSP blocks any script that slips into that HTML.
   - Actions are pinned to commit SHAs and Dependabot updates them weekly.
+  - Fonts are self-hosted in `src/_includes/fonts/` (Latin subset), so `font-src` is
+    `'self'`. The only third parties in the CSP are Cloudflare Web Analytics and the
+    form endpoint.
+- **Analytics**: Cloudflare Web Analytics beacon in `base.njk`, token in
+  `metadata.json` `analyticsToken` (public by design). The Web Analytics site is set to
+  manual ("JS Snippet installation") so Cloudflare's proxy doesn't inject a second
+  beacon; keep it that way.
 - **Page copy**: `src/_data/{home,vendors,sponsors,about,business}.json`, all editable
   in the CMS.
 - **Images**: flyers from Instagram live in `src/_includes/img/posts/`; sponsor logos go
