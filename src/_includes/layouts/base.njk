@@ -3,10 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {#- The CSP lives here so it ships with the HTML (Cloudflare adds the other
-      security headers). The form endpoint's origin is allowed only when one
-      is set in the CMS; cloudflareinsights.com is Cloudflare Web Analytics,
-      whose beacon Cloudflare injects into proxied pages. -#}
+  {#- GitHub Pages can't send response headers, so the CSP lives here. The form endpoint's origin is allowed only when one
+      is set in the CMS; cloudflareinsights.com is Cloudflare Web Analytics
+      (the beacon at the end of <body>). -#}
   {%- set formOrigin = booking.formEndpoint | safeUrl({ httpsOnly: true }) | urlOrigin %}
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com{% if formOrigin %} {{ formOrigin }}{% endif %}; form-action 'self'{% if formOrigin %} {{ formOrigin }}{% endif %}; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -57,5 +56,9 @@
   <script src="/js/i18n-runtime.js" defer></script>
   <script src="/js/i18n.js" defer></script>
   <script src="/js/nav.js" defer></script>
+  {#- Cloudflare Web Analytics: cookie-free page view counts. The token is
+      public by design. If the Cloudflare proxy is ever turned on, switch the
+      site's Web Analytics setup to manual so the beacon isn't loaded twice. -#}
+  {% if metadata.analyticsToken %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{ { token: metadata.analyticsToken } | dump }}'></script>{% endif %}
 </body>
 </html>
