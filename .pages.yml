@@ -188,6 +188,25 @@ content:
       - name: bodyEs
         label: Description (Spanish)
         type: rich-text
+      - name: gallery
+        label: Recap Photos
+        description: Photos from the show, shown on the show page and (for the most recent past show) on the home page. Portrait photos look best.
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.alt}"
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            options:
+              path: recaps
+          - { name: alt, label: Description, type: string, description: "What's in the photo, for screen readers, e.g. \"Collectors at the Cardboard Collex booth\"" }
+          - { name: altEs, label: Description (Spanish), type: string }
+      - name: galleryCredit
+        label: Photo Credit
+        type: string
+        description: e.g. @_gabryella.photography_
 
   - name: posts
     label: News
@@ -291,6 +310,62 @@ content:
             options:
               path: posts
 
+  - name: visit
+    label: Plan Your Visit Page
+    type: file
+    path: src/_data/visit.json
+    fields:
+      - { name: intro, label: Intro, type: text }
+      - { name: introEs, label: Intro (Spanish), type: text }
+      - name: bring
+        label: What to Bring
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.item}"
+        fields:
+          - { name: item, label: Item, type: string }
+          - { name: itemEs, label: Item (Spanish), type: string }
+      - name: faqs
+        label: Visitor FAQ
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.q}"
+        fields:
+          - { name: q, label: Question, type: string }
+          - { name: qEs, label: Question (Spanish), type: string }
+          - { name: a, label: Answer, type: text }
+          - { name: aEs, label: Answer (Spanish), type: text }
+
+  - name: vendorDirectory
+    label: Vendor Directory
+    type: file
+    path: src/_data/vendorDirectory.json
+    fields:
+      - { name: intro, label: Intro, type: text }
+      - { name: introEs, label: Intro (Spanish), type: text }
+      - name: list
+        label: Vendors
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.name}"
+        fields:
+          - { name: name, label: Shop or Vendor Name, type: string, required: true }
+          - name: specialty
+            label: Specialty
+            type: select
+            options:
+              values: ["Sports Cards", "Pokémon", "Other TCG", "Comics", "Hot Wheels", "Clothing & Memorabilia", "Toys & Other Collectibles"]
+          - { name: instagram, label: Instagram Link, type: string }
+          - { name: website, label: Website, type: string }
+          - name: logo
+            label: Logo
+            type: image
+            options:
+              path: vendors
+
   - name: vendors
     label: Vendors Page
     type: file
@@ -360,6 +435,39 @@ content:
             options:
               path: posts
           - { name: alt, label: Description, type: string }
+      - name: packages
+        label: Sponsor Packages Page
+        type: object
+        fields:
+          - { name: intro, label: Intro, type: text }
+          - { name: introEs, label: Intro (Spanish), type: text }
+          - name: stats
+            label: Stats
+            type: object
+            list:
+              collapsible:
+                summary: "{fields.value} {fields.label}"
+            fields:
+              - { name: value, label: Number, type: string, description: "e.g. 145+" }
+              - { name: valueEs, label: Number (Spanish), type: string, description: "Only if it's a word, e.g. Gratis" }
+              - { name: label, label: Label, type: string }
+              - { name: labelEs, label: Label (Spanish), type: string }
+          - name: tiers
+            label: Packages
+            type: object
+            list:
+              collapsible:
+                summary: "{fields.name}"
+            fields:
+              - { name: name, label: Package Name, type: string }
+              - { name: nameEs, label: Package Name (Spanish), type: string }
+              - { name: price, label: Price, type: string, description: "e.g. $250 or Contact us" }
+              - { name: priceEs, label: Price (Spanish), type: string }
+              - { name: featured, label: Highlight This Package, type: boolean }
+              - { name: perks, label: What's Included, type: string, list: true }
+              - { name: perksEs, label: What's Included (Spanish), type: string, list: true }
+          - { name: contactNote, label: Contact Text, type: text }
+          - { name: contactNoteEs, label: Contact Text (Spanish), type: text }
 
   - name: about
     label: About Page

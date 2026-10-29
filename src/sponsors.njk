@@ -12,6 +12,7 @@ description: The local card shops and collectible businesses that sponsor the So
   <p class="kicker"><span data-i18n="sponsors.poweredBy">Powered by</span> {{ sponsors.poweredBy }}</p>
   <h1 class="glow" data-i18n="nav.sponsors">Sponsors</h1>
   <p class="lede">{{ bilingual(sponsors.intro, sponsors.introEs) }}</p>
+  <p class="actions"><a class="btn" href="/sponsors/packages/" data-i18n="packages.become">Become a sponsor</a></p>
 </section>
 <section class="wrapper section">
   <ul class="sponsor-grid">
@@ -34,6 +35,9 @@ description: The local card shops and collectible businesses that sponsor the So
   <div class="cta-panel">
     <h2 data-i18n="sponsors.ctaTitle">Want to sponsor a show?</h2>
     <p data-i18n="sponsors.ctaText">Get your shop in front of thousands of Southwest collectors — and help fund the giveaways.</p>
-    <a class="btn" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="sponsors.ctaButton">Message us</a>
+    <p class="actions">
+      <a class="btn" href="/sponsors/packages/" data-i18n="packages.see">See sponsor packages</a>
+      <a class="btn btn--ghost" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="sponsors.ctaButton">Message us</a>
+    </p>
   </div>
 </section>

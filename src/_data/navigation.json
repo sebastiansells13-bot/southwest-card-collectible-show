@@ -1,6 +1,7 @@
 [
   { "text": "Home", "url": "/", "key": "nav.home" },
   { "text": "Shows", "url": "/shows/", "key": "nav.shows" },
+  { "text": "Visit", "url": "/visit/", "key": "nav.visit" },
   { "text": "Vendors", "url": "/vendors/", "key": "nav.vendors" },
   { "text": "Sponsors", "url": "/sponsors/", "key": "nav.sponsors" },
   { "text": "News", "url": "/news/", "key": "nav.news" },

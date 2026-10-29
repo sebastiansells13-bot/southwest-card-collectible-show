@@ -1,0 +1,20 @@
+{
+  "intro": "Everything you need for show day: when to come, what to bring and answers to the questions we get most.",
+  "introEs": "Todo lo que necesitas para el día del show: a qué hora venir, qué traer y respuestas a las preguntas más comunes.",
+  "bring": [
+    { "item": "Cash — plenty of vendors take cards or apps, but cash makes deals faster", "itemEs": "Efectivo — muchos vendedores aceptan tarjeta o apps, pero con efectivo los tratos son más rápidos" },
+    { "item": "Your trade binder or box", "itemEs": "Tu carpeta o caja de intercambio" },
+    { "item": "Sleeves and top loaders for new pickups", "itemEs": "Micas y toploaders para tus nuevas cartas" },
+    { "item": "A want list (and your phone charged for price checks)", "itemEs": "Tu lista de búsqueda (y el celular cargado para checar precios)" },
+    { "item": "A bag or box to carry everything home", "itemEs": "Una bolsa o caja para llevarte todo" }
+  ],
+  "faqs": [
+    { "q": "How much does it cost to get in?", "qEs": "¿Cuánto cuesta la entrada?", "a": "Nothing. Entry is free at every Southwest Card & Collectible Show and Trade Day.", "aEs": "Nada. La entrada es gratis en todos los Southwest Card & Collectible Shows y Trade Days." },
+    { "q": "Can I sell or trade my cards if I don't have a table?", "qEs": "¿Puedo vender o intercambiar mis cartas si no tengo mesa?", "a": "Yes. Lots of vendors buy and trade, so bring your binder. Trade Days also have public seating for collectors trading with each other.", "aEs": "Sí. Muchos vendedores compran e intercambian, así que trae tu carpeta. En los Trade Days también hay asientos para que los coleccionistas intercambien entre ellos." },
+    { "q": "Is it kid- and family-friendly?", "qEs": "¿Es para niños y familias?", "a": "Absolutely. Families come to every show, and our giveaways run all day.", "aEs": "Claro que sí. Vienen familias a cada show, y los regalos son durante todo el día." },
+    { "q": "How do the free giveaways work?", "qEs": "¿Cómo funcionan los regalos gratis?", "a": "Our sponsors give away packs, slabs, shirts, stickers and collector kits throughout the day. Follow us on Instagram and Discord for how each giveaway works at the next show.", "aEs": "Nuestros patrocinadores regalan sobres, cartas graduadas, playeras, stickers y kits de coleccionista durante el día. Síguenos en Instagram y Discord para saber cómo funciona cada regalo en el próximo show." },
+    { "q": "Where do I park?", "qEs": "¿Dónde me estaciono?", "a": "There's parking at the venue. Use \"Get directions\" on the show page for the exact address.", "aEs": "Hay estacionamiento en el lugar. Usa \"Cómo llegar\" en la página del show para ver la dirección exacta." },
+    { "q": "I want a vendor table. Where do I start?", "qEs": "Quiero una mesa de vendedor. ¿Por dónde empiezo?", "a": "Head to the Vendors page. When table requests are open you can pick your spot on the floor map and send us a request.", "aEs": "Ve a la página de Vendedores. Cuando la reserva de mesas esté abierta, puedes elegir tu lugar en el mapa y enviarnos tu solicitud." },
+    { "q": "Who do I ask about anything else?", "qEs": "¿A quién le pregunto sobre otra cosa?", "a": "DM us on Instagram or message us in Discord. We answer there fastest.", "aEs": "Escríbenos por Instagram o en Discord. Ahí respondemos más rápido." }
+  ]
+}

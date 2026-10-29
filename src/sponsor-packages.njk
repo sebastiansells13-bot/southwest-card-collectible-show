@@ -1,0 +1,46 @@
+---
+layout: layouts/page.njk
+title: Become a Sponsor
+titleEs: Patrocina el show
+seoTitle: Sponsor a Card Show in Las Cruces, NM
+seoTitleEs: Patrocina un show de cartas en Las Cruces, NM
+description: Sponsorship packages for the Southwest Card & Collectible Show in Las Cruces, NM — logo on show flyers, Instagram spotlights, giveaway shout-outs and more.
+permalink: /sponsors/packages/
+---
+{% from "macros/bilingual.njk" import bilingual %}
+{% set pk = sponsors.packages %}
+<section class="page-hero wrapper">
+  <p class="kicker" data-i18n="packages.kicker">Sponsorship</p>
+  <h1 class="glow" data-i18n="packages.title">Become a Sponsor</h1>
+  <p class="lede">{{ bilingual(pk.intro, pk.introEs) }}</p>
+</section>
+<section class="wrapper section">
+  <ul class="tally tally--stats">
+    {% for s in pk.stats %}<li><b>{{ bilingual(s.value, s.valueEs) }}</b><span>{{ bilingual(s.label, s.labelEs) }}</span></li>{% endfor %}
+  </ul>
+</section>
+<section class="wrapper section">
+  <h2 class="section-title"><span data-i18n="packages.tiers">Packages</span></h2>
+  <div class="tiers">
+    {% for tier in pk.tiers %}
+    <article class="tier{% if tier.featured %} tier--featured{% endif %}">
+      {% if tier.featured %}<p class="tier__badge" data-i18n="packages.popular">Top billing</p>{% endif %}
+      <h3>{{ bilingual(tier.name, tier.nameEs) }}</h3>
+      <p class="tier__price">{{ bilingual(tier.price, tier.priceEs) }}</p>
+      <ul class="checklist"{% if tier.perksEs and tier.perksEs.length %} data-i18n-lang="en"{% endif %}>{% for perk in tier.perks %}<li>{{ perk }}</li>{% endfor %}</ul>
+      {% if tier.perksEs and tier.perksEs.length %}<ul class="checklist" data-i18n-lang="es" hidden>{% for perk in tier.perksEs %}<li>{{ perk }}</li>{% endfor %}</ul>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+<section class="wrapper section">
+  <div class="cta-panel">
+    <h2 data-i18n="sponsors.ctaTitle">Want to sponsor a show?</h2>
+    <p>{{ bilingual(pk.contactNote, pk.contactNoteEs) }}</p>
+    <p class="actions">
+      <a class="btn" href="mailto:tables@swccshows.com?subject={{ 'Sponsorship – Southwest Card & Collectible Show' | urlencode }}" data-i18n="packages.email">Email us</a>
+      <a class="btn btn--ghost" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="vendors.dm">DM us on Instagram</a>
+    </p>
+  </div>
+  <p class="center"><a href="/sponsors/" data-i18n="packages.current">See our current sponsors</a></p>
+</section>

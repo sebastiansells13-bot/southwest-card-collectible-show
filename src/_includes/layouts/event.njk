@@ -26,7 +26,20 @@ layout: layouts/base.njk
     {% if bodyEs %}<div class="prose" data-i18n-lang="es" hidden>{{ bodyEs | safe }}</div>{% endif %}
     <p class="actions">
       {% if mapLink %}<a class="btn" href="{{ mapLink | safeUrl }}" rel="noopener" data-i18n="event.directions">Get directions</a>{% endif %}
+      <a class="btn btn--ghost" href="/visit/" data-i18n="event.planVisit">Plan your visit</a>
       <a class="btn btn--ghost" href="/shows/" data-i18n="event.allShows">All shows</a>
     </p>
+    {% if page.date | isUpcoming %}
+    {% set ev = collections.events | getCollectionItem(page) %}
+    {% if ev %}{% include "components/calendar-buttons.njk" %}{% endif %}
+    {% endif %}
   </div>
 </div>
+{% if gallery and gallery.length %}
+<section class="wrapper section" id="recap">
+  <h2 class="section-title"><span data-i18n="gallery.title">Show recap</span></h2>
+  {% set photos = gallery %}{% set credit = galleryCredit %}{% set limit = 0 %}
+  {% include "components/gallery.njk" %}
+</section>
+<script src="/js/gallery.js" defer></script>
+{% endif %}

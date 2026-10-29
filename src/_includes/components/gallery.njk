@@ -1,0 +1,14 @@
+{#- Show recap photos. Expects `photos` (list of {image, alt, altEs}),
+    optional `credit` and `limit`. Thumbnails link to the full photo, and
+    gallery.js turns that into a lightbox. -#}
+{%- set shown = photos | head(limit) if limit else photos -%}
+<ul class="gallery" data-gallery>
+  {% for p in shown %}
+  <li>
+    <a href="{{ p.image }}" class="gallery__item" data-gallery-item>
+      <img src="{{ p.image }}" alt="{{ p.alt }}"{% if p.altEs %} data-i18n-attr="alt:img.altEs" data-i18n-vars="{{ { text: p.altEs } | dump }}"{% endif %} loading="lazy" width="1080" height="1350">
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% if credit %}<p class="gallery__credit"><span data-i18n="gallery.credit">Photos by</span> {{ credit }}</p>{% endif %}

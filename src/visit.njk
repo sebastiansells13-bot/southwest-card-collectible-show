@@ -1,0 +1,55 @@
+---
+layout: layouts/page.njk
+title: Plan Your Visit
+titleEs: Planea tu visita
+seoTitle: Plan Your Visit – Card Show FAQ
+seoTitleEs: Planea tu visita – Preguntas frecuentes
+description: Hours, location, what to bring and answers to common questions for the Southwest Card & Collectible Show in Las Cruces, NM. Free entry.
+permalink: /visit/
+---
+{% from "macros/bilingual.njk" import bilingual %}
+{% set next = collections.events | upcoming | first %}
+<section class="page-hero wrapper">
+  <p class="kicker" data-i18n="visit.kicker">Free entry · Every show</p>
+  <h1 class="glow" data-i18n="visit.title">Plan Your Visit</h1>
+  <p class="lede">{{ bilingual(visit.intro, visit.introEs) }}</p>
+</section>
+
+<section class="wrapper section">
+  <div class="visit-grid">
+    <div class="visit-card">
+      <h2 data-i18n="visit.nextShow">Next show</h2>
+      {% if next %}
+      <p class="visit-card__big"><time datetime="{{ next.date | htmlDateString }}" data-i18n-date="long">{{ next.date | longDate }}</time></p>
+      <p>{{ next.data.time }}<br>{{ next.data.venue }}<br><span class="muted">{{ next.data.address }}</span></p>
+      <p class="actions actions--start">
+        <a class="btn btn--small" href="{{ next.url }}" data-i18n="hero.showDetails">Show details</a>
+        {% if next.data.mapLink %}<a class="btn btn--small btn--ghost" href="{{ next.data.mapLink | safeUrl }}" rel="noopener" data-i18n="event.directions">Get directions</a>{% endif %}
+      </p>
+      {% set ev = next %}{% include "components/calendar-buttons.njk" %}
+      {% else %}
+      <p class="visit-card__big" data-i18n="hero.nextSoon">Next show date dropping soon</p>
+      <p><span data-i18n="visit.watch">The 2027 schedule is on the way. Follow along so you hear first:</span></p>
+      <p class="actions actions--start">
+        <a class="btn btn--small" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
+        <a class="btn btn--small btn--ghost" href="{{ business.social.instagram | safeUrl }}" rel="noopener" data-i18n="cta.followInstagram">Follow on Instagram</a>
+      </p>
+      {% endif %}
+    </div>
+    <div class="visit-card">
+      <h2 data-i18n="visit.bring">What to bring</h2>
+      <ul class="checklist">
+        {% for b in visit.bring %}<li>{{ bilingual(b.item, b.itemEs) }}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="wrapper section">
+  <h2 class="section-title"><span data-i18n="visit.faq">Questions</span></h2>
+  <div class="faq">
+    {% for f in visit.faqs %}
+    <details><summary>{{ bilingual(f.q, f.qEs) }}</summary><p>{{ bilingual(f.a, f.aEs) }}</p></details>
+    {% endfor %}
+  </div>
+</section>

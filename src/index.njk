@@ -17,11 +17,15 @@ title: Home
         <p class="hero__date"><time datetime="{{ next.date | htmlDateString }}" data-i18n-date="long">{{ next.date | longDate }}</time></p>
         <p class="hero__time"><span>{{ next.data.time }}</span></p>
         <p class="script" data-i18n="hero.freeEntry">Free Entry!</p>
+        {% set times = next.date | eventTimes(next.data.time) %}
+        <p class="countdown" data-countdown="{{ times.start }}" data-countdown-end="{{ times.end }}" hidden><span data-countdown-text></span></p>
       </div>
       <p class="actions">
         <a class="btn" href="{{ next.url }}" data-i18n="hero.showDetails">Show details</a>
-        <a class="btn btn--ghost" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
+        {% if next.data.mapLink %}<a class="btn btn--ghost" href="{{ next.data.mapLink | safeUrl }}" rel="noopener" data-i18n="event.directions">Get directions</a>{% endif %}
+        <a class="btn btn--ghost" href="/visit/" data-i18n="event.planVisit">Plan your visit</a>
       </p>
+      {% set ev = next %}{% include "components/calendar-buttons.njk" %}
       {% elif recent %}
       <div class="hero__when">
         <p class="hero__venue"><span data-i18n="hero.thanks">Thank you for coming out to</span><br><span>{{ recent.data.venue }} · <time datetime="{{ recent.date | htmlDateString }}" data-i18n-date="long">{{ recent.date | longDate }}</time></span></p>
@@ -70,6 +74,17 @@ title: Home
   </div>
 </section>
 
+{% set recap = collections.events | past | first %}
+{% if recap and recap.data.gallery and recap.data.gallery.length %}
+<section class="wrapper section">
+  <h2 class="section-title"><span data-i18n="gallery.latest">Latest show recap</span></h2>
+  {% set photos = recap.data.gallery %}{% set credit = recap.data.galleryCredit %}{% set limit = 6 %}
+  {% include "components/gallery.njk" %}
+  <p class="center"><a class="btn btn--ghost" href="{{ recap.url }}#recap" data-i18n="gallery.seeAll">See all the photos</a></p>
+</section>
+<script src="/js/gallery.js" defer></script>
+{% endif %}
+
 <section class="wrapper section cause">
   <div class="arch arch--flyer"><img src="{{ home.cause.image }}" alt="{{ home.cause.title }} flyer" data-i18n-attr="alt:img.flyerOf" data-i18n-vars="{{ { name: home.cause.titleEs or home.cause.title } | dump }}" loading="lazy"></div>
   <div>
@@ -99,3 +114,4 @@ title: Home
     <a class="btn" href="{{ business.social.discord | safeUrl }}" rel="noopener" data-i18n="cta.joinDiscord">Join the Discord</a>
   </div>
 </section>
+{% if next %}<script src="/js/countdown.js" defer></script>{% endif %}

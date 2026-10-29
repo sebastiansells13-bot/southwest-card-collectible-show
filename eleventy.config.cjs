@@ -67,6 +67,7 @@ module.exports = function (eleventyConfig) {
   const startOfToday = () =>
     DateTime.fromISO(DateTime.now().setZone("America/Denver").toISODate(), { zone: "utc" }).toJSDate();
   eleventyConfig.addFilter("upcoming", (events) => events.filter((e) => e.date >= startOfToday()));
+  eleventyConfig.addFilter("isUpcoming", (date) => date >= startOfToday());
   eleventyConfig.addFilter("past", (events) =>
     events.filter((e) => e.date < startOfToday()).reverse()
   );
@@ -129,8 +130,26 @@ module.exports = function (eleventyConfig) {
   // escaping "<" keeps CMS text from ever closing the script tag.
   eleventyConfig.addFilter("jsonld", (obj) => JSON.stringify(obj).replace(/</g, "\\u003c"));
 
+  // "2026-10-24T10:00:00-06:00" → "20261024T160000Z", the UTC form .ics files
+  // and Google Calendar links expect.
+  eleventyConfig.addFilter("utcStamp", (iso) => {
+    const dt = DateTime.fromISO(String(iso), { setZone: true });
+    if (!dt.isValid) return "";
+    return dt.toUTC().toFormat("yyyyLLdd'T'HHmmss'Z'");
+  });
+
+  // Text for an .ics property: escape the characters RFC 5545 reserves.
+  eleventyConfig.addFilter("icsText", (str) =>
+    String(str || "").replace(/\\/g, "\\\\").replace(/([,;])/g, "\\$1").replace(/\r?\n/g, "\\n")
+  );
+
   eleventyConfig.addFilter("isoDate", (dateObj) =>
     DateTime.fromJSDate(dateObj, { zone: "utc" }).toISODate()
+  );
+
+  // [{label: "Comics", labelEs: "Cómics"}] | toMap("label", "labelEs") → {Comics: "Cómics"}
+  eleventyConfig.addFilter("toMap", (list, keyField, valueField) =>
+    Object.fromEntries((list || []).map((item) => [item[keyField], item[valueField]]))
   );
 
   eleventyConfig.addFilter("head", (array, n) => {

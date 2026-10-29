@@ -52,7 +52,7 @@
       "logo": ""
     },
     {
-      "name": "Back Naked Vintage",
+      "name": "Buck Naked Vintage",
       "tier": "Sponsor",
       "link": "",
       "logo": ""
@@ -89,5 +89,84 @@
       "image": "/img/posts/more-giveaways.jpg",
       "alt": "More giveaway sponsors flyer"
     }
-  ]
+  ],
+  "packages": {
+    "intro": "Put your shop in front of the Southwest collecting community. Every package supports free entry and the giveaways that keep collectors coming back.",
+    "introEs": "Pon tu negocio frente a la comunidad de coleccionistas del suroeste. Cada paquete apoya la entrada gratis y los regalos que hacen que los coleccionistas regresen.",
+    "stats": [
+      {
+        "value": "145+",
+        "label": "vendor tables per show",
+        "labelEs": "mesas de vendedores por show"
+      },
+      {
+        "value": "1,400+",
+        "label": "Instagram followers",
+        "labelEs": "seguidores en Instagram"
+      },
+      {
+        "value": "Free",
+        "valueEs": "Gratis",
+        "label": "entry for every collector",
+        "labelEs": "entrada para cada coleccionista"
+      }
+    ],
+    "tiers": [
+      {
+        "name": "Presenting Sponsor",
+        "nameEs": "Patrocinador principal",
+        "price": "Contact us",
+        "priceEs": "Contáctanos",
+        "featured": true,
+        "perks": [
+          "\"Powered by\" your logo on every show flyer",
+          "Top spot on the sponsor flyer and Sponsors page",
+          "Spotlight posts on Instagram before the show",
+          "Shout-outs at the show and in Discord",
+          "A table at the show"
+        ],
+        "perksEs": [
+          "Tu logo como \"Presentado por\" en cada flyer del show",
+          "El lugar principal en el flyer y la página de patrocinadores",
+          "Publicaciones destacadas en Instagram antes del show",
+          "Menciones en el show y en Discord",
+          "Una mesa en el show"
+        ]
+      },
+      {
+        "name": "Show Sponsor",
+        "nameEs": "Patrocinador del show",
+        "price": "Contact us",
+        "priceEs": "Contáctanos",
+        "perks": [
+          "Your logo on the show and sponsor flyers",
+          "Listing with your link on the Sponsors page",
+          "A thank-you post on Instagram"
+        ],
+        "perksEs": [
+          "Tu logo en los flyers del show y de patrocinadores",
+          "Aparece con tu enlace en la página de patrocinadores",
+          "Una publicación de agradecimiento en Instagram"
+        ]
+      },
+      {
+        "name": "Giveaway Sponsor",
+        "nameEs": "Patrocinador de regalos",
+        "price": "Donate a prize",
+        "priceEs": "Dona un premio",
+        "perks": [
+          "Your logo on the giveaway sponsor flyer",
+          "A shout-out when your prize is given away",
+          "Listing on the Sponsors page"
+        ],
+        "perksEs": [
+          "Tu logo en el flyer de patrocinadores de regalos",
+          "Una mención cuando se entregue tu premio",
+          "Aparece en la página de patrocinadores"
+        ]
+      }
+    ],
+    "contactNote": "Tell us about your shop and which package you're interested in, and we'll send details for the next show.",
+    "contactNoteEs": "Cuéntanos de tu negocio y qué paquete te interesa, y te mandamos los detalles para el próximo show."
+  }
 }
