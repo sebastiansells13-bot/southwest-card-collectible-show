@@ -59,13 +59,19 @@ h3 {
   text-transform: uppercase;
 }
 
+// !important so component rules (e.g. form `input[type="text"] { width: 100% }`)
+// can't resize it: the sponsor and table-picker honeypot inputs were stretching
+// to full width and making /sponsors/packages/ scroll sideways.
 .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
 }
 
 .skip-link {
