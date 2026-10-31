@@ -1520,7 +1520,9 @@
     font-family: $font-heading;
     text-transform: uppercase;
     color: $color-accent;
-    text-shadow: $glow;
+    // A softer glow than $glow: at this size the full neon blur washed out the
+    // letter edges (axe measured 3.5:1 against the glow).
+    text-shadow: 0 0 10px rgba($color-accent, 0.35);
     font-size: 1.3rem;
     margin: 0 0 1rem;
   }
