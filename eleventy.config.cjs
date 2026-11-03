@@ -51,6 +51,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("usDate", (dateObj) =>
     DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("LLL d, yyyy")
   );
+  eleventyConfig.addFilter("esDate", (dateObj) =>
+    DateTime.fromJSDate(dateObj, { zone: "utc" }).setLocale("es").toFormat("d LLL yyyy")
+  );
   eleventyConfig.addFilter("monthShort", (dateObj) =>
     DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("LLL")
   );

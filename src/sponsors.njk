@@ -29,7 +29,7 @@ description: The local card shops and collectible businesses that sponsor the So
   <h2 class="section-title"><span data-i18n="sponsors.flyers">Sponsor flyers</span></h2>
   <div class="feed-grid">
     {% for f in sponsors.flyers %}
-    <a class="feed-tile" href="{{ f.image | safeUrl }}"><img src="{{ f.image }}" alt="{{ f.alt }}" loading="lazy"></a>
+    <a class="feed-tile" href="{{ f.image | safeUrl }}"><img src="{{ f.image }}" alt="{{ f.alt }}"{% if f.altEs %} data-i18n-attr="alt:img.altEs" data-i18n-vars="{{ { text: f.altEs } | dump }}"{% endif %} loading="lazy"></a>
     {% endfor %}
   </div>
   <div class="cta-panel">

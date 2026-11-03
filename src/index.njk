@@ -99,7 +99,7 @@ title: Home
   <div class="feed-grid">
     {% for post in collections.posts | reverse | head(6) %}
     <a class="feed-tile" href="{{ post.url }}">
-      <img src="{{ post.data.image }}" alt="" loading="lazy">
+      <img src="{{ post.data.image | thumb }}" alt=""{% if loop.index > 3 %} loading="lazy"{% endif %}>
       <span class="feed-tile__caption">{{ bilingual(post.data.title, post.data.titleEs) }}</span>
     </a>
     {% endfor %}

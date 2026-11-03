@@ -435,6 +435,7 @@ content:
             options:
               path: posts
           - { name: alt, label: Description, type: string }
+          - { name: altEs, label: Description (Spanish), type: string }
       - name: packages
         label: Sponsor Packages Page
         type: object
