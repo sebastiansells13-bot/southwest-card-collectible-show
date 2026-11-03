@@ -9,7 +9,7 @@ the site diverges from the template.
 
 - **Brand**: matches the client's Instagram flyers — black background, neon-orange
   glowing sign type, rounded-top "arch" flyer panels, navy ribbon banners. Fonts are
-  Anton (headings), Bangers (the "Free Entry!" script) and Inter (body) from Google Fonts.
+  Anton (headings), Bangers (the "Free Entry!" script) and Inter (body), self-hosted.
   Palette lives in `src/_includes/css/variables.scss`.
 - **Hosting**: GitHub Pages at the custom domain https://swccshows.com, behind the
   Cloudflare proxy (registered and DNS on Cloudflare: apex A/AAAA records to GitHub
@@ -20,8 +20,11 @@ the site diverges from the template.
   - Always Use HTTPS is on, and the "Add security headers" Managed Transform adds
     X-Frame-Options, X-Content-Type-Options and a referrer policy. HSTS is off on
     purpose (it's sticky); turn it on only if the site will stay HTTPS-only.
-  - To roll back, set the records to DNS only. The site deploys with GitHub Actions, so
-  the custom domain is set in repo Settings → Pages, not by a `CNAME` file.
+  - To roll back, set the records to DNS only.
+  - Cloudflare Email Obfuscation is on for the zone; mailto links are wrapped in
+    `<!--email_off-->` so they stay plain links.
+  - The site deploys with GitHub Actions, so the custom domain is set in repo
+    Settings → Pages, not by a `CNAME` file.
   `pathPrefix` is `/`; `metadata.json` `url` is the one place the domain lives in code
   (canonicals, sitemap, feed, JSON-LD, robots.txt, llms.txt all read it).
 - **Events**: `src/events/*.md` (CMS "Shows & Trade Days"). The `upcoming` / `past`
@@ -79,7 +82,7 @@ the site diverges from the template.
     `script-src 'self'`, so never add inline `<script>` code; put it in
     `src/_includes/js/`. JSON data blocks (`application/json`, `ld+json`) are fine and
     go through the `jsonld` filter, which escapes `<`.
-  - The form endpoint's origin is added to `connect-src`/`form-action` automatically.
+  - The form endpoints' origins are added to `connect-src`/`form-action` automatically.
   - Every href that comes from the CMS goes through `safeUrl`, which allows only
     http(s), mailto, tel or a site path; the form endpoint must be https.
   - Rich-text CMS fields render as HTML: editors are repo collaborators, so they're

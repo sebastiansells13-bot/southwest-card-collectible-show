@@ -79,15 +79,18 @@
   "flyers": [
     {
       "image": "/img/posts/sponsors.jpg",
-      "alt": "Sponsors flyer for the October 24 show"
+      "alt": "Sponsors flyer for the October 24 show",
+      "altEs": "Flyer de patrocinadores del show del 24 de octubre"
     },
     {
       "image": "/img/posts/giveaway-sponsors.jpg",
-      "alt": "Giveaway sponsors flyer"
+      "alt": "Giveaway sponsors flyer",
+      "altEs": "Flyer de patrocinadores de regalos"
     },
     {
       "image": "/img/posts/more-giveaways.jpg",
-      "alt": "More giveaway sponsors flyer"
+      "alt": "More giveaway sponsors flyer",
+      "altEs": "Más patrocinadores de regalos"
     }
   ],
   "packages": {
