@@ -817,7 +817,12 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  // Two columns on phones; these cards are short, so one column was a long scroll.
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+
+  @media (min-width: 48rem) {
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  }
   gap: 1rem;
 }
 
@@ -1458,7 +1463,12 @@
   padding: 0;
   margin: 0 0 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  // Two columns on phones; these cards are short, so one column was a long scroll.
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+
+  @media (min-width: 48rem) {
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  }
   gap: 1rem;
 
   &__item {
