@@ -10,7 +10,10 @@ You can update the Southwest Card & Collectible Show website yourself — no cod
 ## 2. What you can edit
 
 - **Shows & Trade Days** — add each new show or trade day: name, date, hours, venue,
-  address, flyer and a few highlight bullets. The next upcoming event is featured on the
+  address, flyer and a few highlight bullets. Leave **Entry Price** blank for a free
+  show; for a paid one enter the amount (e.g. 2) and an optional Entry Note such as
+  "Kids 12 & under free" — the show page, home page, calendar invite and Google listing
+  all pick it up. The next upcoming event is featured on the
   home page automatically, and past events move to "Past events" on their own.
   After a show, add **Recap Photos** (and a photo credit) to it: they appear on the
   show page, and the most recent show's photos appear on the home page too. Upcoming

@@ -2,10 +2,11 @@
     Google Calendar gets a prefilled link; Apple/Outlook get the .ics file
     from shows-ics.njk. -#}
 {%- set times = ev.date | eventTimes(ev.data.time) -%}
+{%- set entryText = ("Entry $" + ev.data.entryPrice + ((" (" + ev.data.entryNote + ")") if ev.data.entryNote else "") + ". ") if ev.data.entryPrice else "Free entry. " -%}
 {%- set gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + (ev.data.title | urlencode)
   + "&dates=" + (times.start | utcStamp) + "/" + (times.end | utcStamp)
   + "&location=" + ((ev.data.venue + ", " + ev.data.address) | urlencode)
-  + "&details=" + (("Free entry. " + metadata.url + ev.url) | urlencode) -%}
+  + "&details=" + ((entryText + metadata.url + ev.url) | urlencode) -%}
 <div class="cal-buttons" role="group" aria-label="Add to calendar" data-i18n-attr="aria-label:cal.label">
   <span class="cal-buttons__label" data-i18n="cal.label">Add to calendar</span>
   <a class="btn btn--small btn--ghost" href="{{ gcal }}" rel="noopener" data-i18n="cal.google">Google</a>

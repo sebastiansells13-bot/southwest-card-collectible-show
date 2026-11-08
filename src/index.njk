@@ -16,7 +16,12 @@ title: Home
         <p class="hero__venue">{{ next.data.venue }}<br><span>{{ next.data.address }}</span></p>
         <p class="hero__date"><time datetime="{{ next.date | htmlDateString }}" data-i18n-date="long">{{ next.date | longDate }}</time></p>
         <p class="hero__time"><span>{{ next.data.time }}</span></p>
+        {% if next.data.entryPrice %}
+        <p class="script" data-i18n="hero.paidEntry" data-i18n-vars="{{ { price: '$' + next.data.entryPrice } | dump }}">${{ next.data.entryPrice }} Entry!</p>
+        {% if next.data.entryNote %}<p class="hero__note">{{ bilingual(next.data.entryNote, next.data.entryNoteEs) }}</p>{% endif %}
+        {% else %}
         <p class="script" data-i18n="hero.freeEntry">Free Entry!</p>
+        {% endif %}
         {% set times = next.date | eventTimes(next.data.time) %}
         <p class="countdown" data-countdown="{{ times.start }}" data-countdown-end="{{ times.end }}" hidden><span data-countdown-text></span></p>
       </div>

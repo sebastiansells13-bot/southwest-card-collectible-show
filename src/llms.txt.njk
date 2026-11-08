@@ -11,7 +11,7 @@ eleventyExcludeFromCollections: true
 {{ metadata.description | safe }}
 
 - Location: {{ business.address | safe }}
-- Entry: free at every show and Trade Day
+- Entry: free at the big shows; some events have a small fee (see each show page)
 - Instagram: {{ business.social.instagram | safe }}
 - Discord: {{ business.social.discord | safe }}
 {% if next %}
@@ -19,6 +19,7 @@ eleventyExcludeFromCollections: true
 
 - {{ next.data.title | safe }} ({{ next.data.kind | safe }}) — {{ next.date | longDate }}, {{ next.data.time | safe }}
 - {{ next.data.venue | safe }}, {{ next.data.address | safe }}
+- Entry: {% if next.data.entryPrice %}${{ next.data.entryPrice }}{% if next.data.entryNote %} ({{ next.data.entryNote | safe }}){% endif %}{% else %}free{% endif %}
 - Details: {{ metadata.url | safe }}{{ next.url | safe }}
 {% endif %}
 ## Pages
