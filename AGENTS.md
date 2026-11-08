@@ -29,7 +29,10 @@ the site diverges from the template.
   (canonicals, sitemap, feed, JSON-LD, robots.txt, llms.txt all read it).
 - **Events**: `src/events/*.md` (CMS "Shows & Trade Days"). The `upcoming` / `past`
   filters split them by build date; the soonest upcoming event is featured in the home
-  hero. Each event gets a page at `/shows/<file-slug>/`.
+  hero. Each event gets a page at `/shows/<file-slug>/`. Optional `entryPrice` (number)
+  and `entryNote`/`entryNoteEs` make an event paid; blank means free, and the event
+  page, home hero, calendar text, computed description and JSON-LD
+  (`isAccessibleForFree`, offer price) all follow it.
 - **Show recaps**: events take `gallery` (`image`, `alt`, `altEs`) and `galleryCredit`;
   `components/gallery.njk` renders them and `js/gallery.js` adds the lightbox. The
   `thumb` filter maps `/img/...` to `/thumbs/...` and an `eleventy.after` hook builds

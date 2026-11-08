@@ -16,7 +16,7 @@ layout: layouts/base.njk
       <div><dt data-i18n="event.time">Time</dt><dd>{{ time }}</dd></div>
       <div><dt data-i18n="event.where">Where</dt><dd>{{ venue }}<br><span class="muted">{{ address }}</span></dd></div>
       {% if tables %}<div><dt data-i18n="event.tables">Tables</dt><dd>{{ tables }}</dd></div>{% endif %}
-      <div><dt data-i18n="event.entry">Entry</dt><dd class="fire" data-i18n="event.free">Free</dd></div>
+      <div><dt data-i18n="event.entry">Entry</dt><dd>{% if entryPrice %}<span class="fire">${{ entryPrice }}</span>{% else %}<span class="fire" data-i18n="event.free">Free</span>{% endif %}{% if entryNote %}<br><span class="muted">{{ bilingual(entryNote, entryNoteEs) }}</span>{% endif %}</dd></div>
     </dl>
     {% if highlights %}
     <ul class="checklist"{% if highlightsEs and highlightsEs.length %} data-i18n-lang="en"{% endif %}>{% for h in highlights %}<li>{{ h }}</li>{% endfor %}</ul>

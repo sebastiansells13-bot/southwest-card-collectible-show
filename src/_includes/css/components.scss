@@ -1557,3 +1557,10 @@
     letter-spacing: 0.06em;
   }
 }
+
+// Entry note under a paid entry price in the home hero ("Kids 12 & under free").
+.hero__note {
+  margin: 0.25rem 0 0 !important;
+  font-weight: 600;
+  color: $color-text;
+}

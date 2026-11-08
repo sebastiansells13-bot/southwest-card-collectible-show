@@ -22,6 +22,7 @@
   "footer.explore": { "en": "Explore", "es": "Explora" },
 
   "hero.freeEntry": { "en": "Free Entry!", "es": "¡Entrada gratis!" },
+  "hero.paidEntry": { "en": "{price} Entry!", "es": "¡Entrada {price}!" },
   "hero.showDetails": { "en": "Show details", "es": "Detalles del show" },
   "hero.thanks": { "en": "Thank you for coming out to", "es": "Gracias por acompañarnos en" },
   "hero.nextSoon": { "en": "Next show date dropping soon", "es": "Muy pronto anunciamos la fecha del próximo show" },
@@ -39,6 +40,7 @@
   "home.neverMissText": { "en": "Show dates, table sales, giveaways and trade nights hit our Discord first.", "es": "Fechas de shows, venta de mesas, regalos y noches de intercambio se anuncian primero en nuestro Discord." },
 
   "kind.show": { "en": "Show", "es": "Show" },
+  "kind.tcg-show": { "en": "TCG Show", "es": "Show de TCG" },
   "kind.trade-day": { "en": "Trade Day", "es": "Trade Day" },
 
   "event.date": { "en": "Date", "es": "Fecha" },
@@ -53,7 +55,7 @@
   "post.allNews": { "en": "All news", "es": "Todas las noticias" },
   "news.kicker": { "en": "From the feed", "es": "De nuestras redes" },
 
-  "shows.kicker": { "en": "Free entry · Every time", "es": "Entrada gratis · Siempre" },
+  "shows.kicker": { "en": "Buy · Sell · Trade", "es": "Compra · Vende · Intercambia" },
   "shows.title": { "en": "Shows & Trade Days", "es": "Shows y Trade Days" },
   "shows.lede": { "en": "Big convention-center shows with 145+ tables, plus laid-back Trade Days with public seating, raffles and pizza.", "es": "Grandes shows en el centro de convenciones con más de 145 mesas, y Trade Days más relajados con asientos para el público, rifas y pizza." },
   "shows.upcoming": { "en": "Upcoming", "es": "Próximos" },
@@ -162,7 +164,7 @@
   "gallery.close": { "en": "Close", "es": "Cerrar" },
 
   "event.planVisit": { "en": "Plan your visit", "es": "Planea tu visita" },
-  "visit.kicker": { "en": "Free entry · Every show", "es": "Entrada gratis · Cada show" },
+  "visit.kicker": { "en": "Buy · Sell · Trade", "es": "Compra · Vende · Intercambia" },
   "visit.title": { "en": "Plan Your Visit", "es": "Planea tu visita" },
   "visit.nextShow": { "en": "Next show", "es": "Próximo show" },
   "visit.watch": { "en": "The 2027 schedule is on the way. Follow along so you hear first:", "es": "El calendario 2027 viene en camino. Síguenos para enterarte primero:" },

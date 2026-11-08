@@ -140,7 +140,7 @@ content:
         type: select
         default: Show
         options:
-          values: [Show, Trade Day]
+          values: [Show, Trade Day, TCG Show]
       - name: date
         label: Date
         type: date
@@ -167,6 +167,17 @@ content:
         label: Number of Tables
         type: string
         description: Optional, e.g. 145+
+      - name: entryPrice
+        label: Entry Price ($)
+        type: number
+        description: Leave blank for free entry. e.g. 2 for a $2 entry fee.
+      - name: entryNote
+        label: Entry Note
+        type: string
+        description: Optional, e.g. "Kids 12 & under free"
+      - name: entryNoteEs
+        label: Entry Note (Spanish)
+        type: string
       - name: flyer
         label: Flyer
         type: image
