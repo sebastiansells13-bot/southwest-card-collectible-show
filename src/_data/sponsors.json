@@ -74,9 +74,44 @@
       "tier": "Giveaway Sponsor",
       "link": "",
       "logo": ""
+    },
+    {
+      "name": "Pink Flamingo Collectables",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Zenkai Rips TCG",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Violet City Market",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Mintys TCG",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
+    },
+    {
+      "name": "Jays Collectibles",
+      "tier": "Sponsor",
+      "link": "",
+      "logo": ""
     }
   ],
   "flyers": [
+    {
+      "image": "/img/posts/mini-tcg-sponsors.jpg",
+      "alt": "Mini TCG Show sponsors",
+      "altEs": "Patrocinadores del Mini Show de TCG"
+    },
     {
       "image": "/img/posts/sponsors.jpg",
       "alt": "Sponsors flyer for the October 24 show",

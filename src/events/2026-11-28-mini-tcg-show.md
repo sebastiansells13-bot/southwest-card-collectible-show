@@ -16,16 +16,21 @@ highlights:
   - 26 tables of Pokémon, One Piece, Dragon Ball, Magic, Lorcana, Naruto, Riftbound & more
   - $2 entry — kids 12 & under free
   - Admission gets you into all the raffles (over $500 in items)
+  - Food by Mad Street BBQ
   - Giveaways and the vendor map revealed closer to show day
 highlightsEs:
   - 26 mesas de Pokémon, One Piece, Dragon Ball, Magic, Lorcana, Naruto, Riftbound y más
   - Entrada $2 — niños de 12 años y menores gratis
   - La entrada incluye todas las rifas (más de $500 en artículos)
+  - Comida de Mad Street BBQ
   - Los regalos y el mapa de vendedores se anuncian cerca del día del show
 bodyEs: |
   <p>¡Nuestro primer Mini Show de TCG! Ven a comprar, vender, intercambiar y coleccionar con 26 mesas llenas de Pokémon, One Piece, Dragon Ball, Magic, Lorcana, Naruto y todo lo demás de TCG — la manera perfecta de bajar el pavo del Día de Acción de Gracias. 🦃</p>
+  <p>🍖 La comida corre por cuenta de <strong>Mad Street BBQ</strong> — ven con hambre.</p>
   <p>Presentado por Pink Flamingo Collectables, Zenkai Rips TCG, Violet City Market, Mintys TCG, Casual Collectibles, Geek Shack y Jays Collectibles.</p>
 ---
 Our first-ever Mini TCG Show! Come buy, sell, trade and collect with 26 tables filled with Pokémon, One Piece, Dragon Ball, Magic, Lorcana, Naruto and everything else TCG — the perfect way to walk off all that turkey. 🦃
+
+🍖 Food is by **Mad Street BBQ**, so come hungry.
 
 Powered by Pink Flamingo Collectables, Zenkai Rips TCG, Violet City Market, Mintys TCG, Casual Collectibles, Geek Shack and Jays Collectibles.
