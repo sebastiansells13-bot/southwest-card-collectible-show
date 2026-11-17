@@ -378,6 +378,18 @@
     margin: 0;
   }
 
+  // Names the featured event when it isn't the flagship show (e.g. "Mini TCG
+  // Show"), so the neon logo above doesn't read as the big show.
+  &__event {
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-accent-hot;
+    font-size: clamp(1.3rem, 5vw, 1.9rem);
+    line-height: 1.15;
+    margin: -0.5rem 0 0.9rem !important;
+  }
+
   &__venue {
     font-family: $font-heading;
     text-transform: uppercase;

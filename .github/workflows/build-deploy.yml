@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  # Rebuild daily just after midnight in Las Cruces (07:10 UTC) so the
+  # upcoming/past split, the home hero and the countdown move on after a show
+  # without anyone having to push a commit.
+  schedule:
+    - cron: "10 7 * * *"
 
 # Production runs share a group; each pull request gets its own build group.
 concurrency:

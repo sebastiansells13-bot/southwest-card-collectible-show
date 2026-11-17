@@ -28,8 +28,9 @@ the site diverges from the template.
   `pathPrefix` is `/`; `metadata.json` `url` is the one place the domain lives in code
   (canonicals, sitemap, feed, JSON-LD, robots.txt, llms.txt all read it).
 - **Events**: `src/events/*.md` (CMS "Shows & Trade Days"). The `upcoming` / `past`
-  filters split them by build date; the soonest upcoming event is featured in the home
-  hero. Each event gets a page at `/shows/<file-slug>/`. Optional `entryPrice` (number)
+  filters split them by build date (the deploy workflow also rebuilds daily at 07:10 UTC so
+  past shows roll off on their own); the soonest upcoming event is featured in the home
+  hero, with its title shown under the neon logo when it isn't the flagship show. Each event gets a page at `/shows/<file-slug>/`. Optional `entryPrice` (number)
   and `entryNote`/`entryNoteEs` make an event paid; blank means free, and the event
   page, home hero, calendar text, computed description and JSON-LD
   (`isAccessibleForFree`, offer price) all follow it.
