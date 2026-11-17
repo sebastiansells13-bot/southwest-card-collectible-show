@@ -13,6 +13,7 @@ title: Home
       {% include "components/neon-logo.njk" %}
       {% if next %}
       <div class="hero__when">
+        {% if next.data.title != business.name %}<p class="hero__event">{{ bilingual(next.data.title, next.data.titleEs) }}</p>{% endif %}
         <p class="hero__venue">{{ next.data.venue }}<br><span>{{ next.data.address }}</span></p>
         <p class="hero__date"><time datetime="{{ next.date | htmlDateString }}" data-i18n-date="long">{{ next.date | longDate }}</time></p>
         <p class="hero__time"><span>{{ next.data.time }}</span></p>
