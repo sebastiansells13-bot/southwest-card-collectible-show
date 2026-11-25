@@ -214,6 +214,21 @@ content:
               path: recaps
           - { name: alt, label: Description, type: string, description: "What's in the photo, for screen readers, e.g. \"Collectors at the Cardboard Collex booth\"" }
           - { name: altEs, label: Description (Spanish), type: string }
+      - name: promos
+        label: Flyers & Maps
+        description: Giveaway flyers, vendor maps and other show graphics, shown on the show page before the show.
+        type: object
+        list:
+          collapsible:
+            summary: "{fields.alt}"
+        fields:
+          - name: image
+            label: Image
+            type: image
+            options:
+              path: posts
+          - { name: alt, label: Description, type: string, description: "e.g. Vendor map for the Mini TCG Show" }
+          - { name: altEs, label: Description (Spanish), type: string }
       - name: galleryCredit
         label: Photo Credit
         type: string
