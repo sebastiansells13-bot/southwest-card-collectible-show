@@ -15,7 +15,8 @@ You can update the Southwest Card & Collectible Show website yourself — no cod
   "Kids 12 & under free" — the show page, home page, calendar invite and Google listing
   all pick it up. The next upcoming event is featured on the
   home page automatically, and past events move to "Past events" on their own.
-  After a show, add **Recap Photos** (and a photo credit) to it: they appear on the
+  Before a show, add giveaway flyers and the vendor map under **Flyers & Maps** — they
+  appear on the show page. After a show, add **Recap Photos** (and a photo credit) to it: they appear on the
   show page, and the most recent show's photos appear on the home page too. Upcoming
   shows get "Add to calendar" buttons and a countdown on the home page automatically,
   as long as Hours looks like "10 AM – 5 PM".

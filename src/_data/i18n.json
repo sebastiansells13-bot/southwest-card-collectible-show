@@ -155,6 +155,7 @@
   "countdown.hours": { "en": "Doors open in {hours}h {mins}m", "es": "Abrimos en {hours} h {mins} min" },
   "countdown.open": { "en": "Doors are open now!", "es": "¡Ya estamos abiertos!" },
 
+  "gallery.promos": { "en": "Flyers & maps", "es": "Flyers y mapas" },
   "gallery.title": { "en": "Show recap", "es": "Resumen del show" },
   "gallery.latest": { "en": "Latest show recap", "es": "Resumen del último show" },
   "gallery.seeAll": { "en": "See all the photos", "es": "Ver todas las fotos" },

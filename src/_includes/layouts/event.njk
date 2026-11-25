@@ -35,11 +35,18 @@ layout: layouts/base.njk
     {% endif %}
   </div>
 </div>
+{% if promos and promos.length %}
+<section class="wrapper section" id="info">
+  <h2 class="section-title"><span data-i18n="gallery.promos">Flyers &amp; maps</span></h2>
+  {% set photos = promos %}{% set credit = "" %}{% set limit = 0 %}
+  {% include "components/gallery.njk" %}
+</section>
+{% endif %}
 {% if gallery and gallery.length %}
 <section class="wrapper section" id="recap">
   <h2 class="section-title"><span data-i18n="gallery.title">Show recap</span></h2>
   {% set photos = gallery %}{% set credit = galleryCredit %}{% set limit = 0 %}
   {% include "components/gallery.njk" %}
 </section>
-<script src="/js/gallery.js" defer></script>
 {% endif %}
+{% if (promos and promos.length) or (gallery and gallery.length) %}<script src="/js/gallery.js" defer></script>{% endif %}

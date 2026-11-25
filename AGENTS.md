@@ -34,6 +34,9 @@ the site diverges from the template.
   and `entryNote`/`entryNoteEs` make an event paid; blank means free, and the event
   page, home hero, calendar text, computed description and JSON-LD
   (`isAccessibleForFree`, offer price) all follow it.
+- **Flyers & maps**: events take `promos` (`image`, `alt`, `altEs`) for giveaway flyers,
+  vendor maps and other pre-show graphics, shown in a "Flyers & maps" section with the
+  same gallery component and lightbox.
 - **Show recaps**: events take `gallery` (`image`, `alt`, `altEs`) and `galleryCredit`;
   `components/gallery.njk` renders them and `js/gallery.js` adds the lightbox. The
   `thumb` filter maps `/img/...` to `/thumbs/...` and an `eleventy.after` hook builds
